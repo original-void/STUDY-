@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module One: Structures - Direct Stress & Thermal Stress</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --bg: #ffffff; --text: #1a1a1a; --accent: #2563eb; --card: #f8fafc; --border: #e2e8f0; --svg-stroke: #1e293b; --svg-fill: #dbeafe;
+}
+[data-theme="dark"] {
+  --bg: #0f172a; --text: #e2e8f0; --accent: #60a5fa; --card: #1e293b; --border: #334155; --svg-stroke: #e2e8f0; --svg-fill: #1e40af;
+}
+* {margin:0; padding:0; box-sizing:border-box}
+body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.7; padding:20px; transition:all 0.3s}
+.container {max-width:900px; margin:0 auto}
+header {text-align:center; margin-bottom:40px; padding:30px; background:var(--card); border-radius:12px; border:1px solid var(--border)}
+h1 {color:var(--accent); margin-bottom:10px; font-size:2.2rem}
+h2 {color:var(--accent); margin:40px 0 20px; padding-bottom:10px; border-bottom:2px solid var(--border)}
+h3 {margin:25px 0 15px; color:var(--accent)}
+.section {background:var(--card); padding:25px; margin:20px 0; border-radius:8px; border:1px solid var(--border)}
+.example {background:var(--bg); padding:20px; margin:15px 0; border-left:4px solid var(--accent); border-radius:4px}
+.formula {background:var(--bg); padding:15px; margin:10px 0; border-radius:6px; text-align:center; font-size:1.1rem}
+table {width:100%; border-collapse:collapse; margin:15px 0}
+th, td {padding:12px; text-align:left; border:1px solid var(--border)}
+th {background:var(--card); font-weight:600}
+.toc {background:var(--card); padding:20px; border-radius:8px; margin:20px 0}
+.toc ul {list-style:none; padding-left:20px}
+.toc a {color:var(--accent); text-decoration:none}
+.toc a:hover {text-decoration:underline}
+.controls {position:fixed; top:20px; right:20px; display:flex; gap:10px; z-index:100}
+button {background:var(--accent); color:white; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; font-size:14px}
+button:hover {opacity:0.9}
+.svg-container {text-align:center; margin:25px 0; padding:15px; background:var(--bg); border-radius:8px}
+.page-tag {display:inline-block; background:var(--accent); color:white; padding:2px 8px; border-radius:4px; font-size:0.75rem; margin-left:10px}
+.caption {font-size:0.9rem; color:var(--text); opacity:0.8; margin-top:8px}
+@media print {
+  .controls {display:none}
+  body {padding:0}
+  .section {break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="controls">
+  <button onclick="toggleTheme()">🌓 Theme</button>
+  <button onclick="window.print()">📄 PDF</button>
+</div>
+
+<div class="container">
+<header>
+  <h1>Module One: Structures</h1>
+  <p><strong>Direct Stress, Strain & Thermal Stress</strong></p>
+  <p>Compiled Notes - Pages 1 to 25 with Diagrams</p>
+</header>
+
+<div class="toc">
+  <h3>Table of Contents</h3>
+  <ul>
+    <li><a href="#sec1">1. Direct Stress & Strain</a></li>
+    <li><a href="#sec2">2. Hooke's Law & Elastic Constants</a></li>
+    <li><a href="#sec3">3. Factor of Safety</a></li>
+    <li><a href="#sec4">4. Bars of Uniform Section</a></li>
+    <li><a href="#sec5">5. Hollow Cylinder</a></li>
+    <li><a href="#sec6">6. Varying Cross-Section</a></li>
+    <li><a href="#sec7">7. Stepped Bars</a></li>
+    <li><a href="#sec8">8. Composite Bars</a></li>
+    <li><a href="#sec9">9. R.C.C Square Columns</a></li>
+    <li><a href="#sec10">10. R.C.C Circular Columns</a></li>
+    <li><a href="#sec11">11. Thermal Stress Theory</a></li>
+    <li><a href="#sec12">12. Thermal Stress - Fixed Ends</a></li>
+    <li><a href="#sec13">13. Thermal Stress - Stepped Bars</a></li>
+    <li><a href="#sec14">14. Composite Thermal Stress</a></li>
+  </ul>
+</div>
+
+<div class="section" id="sec1">
+<h2>1. Direct Stress & Strain <span class="page-tag">Pages 1-2</span></h2>
+<h3>Direct Stress</h3>
+<p>When force is applied on a body, it deforms. To resist deformation, internal resistance is offered by material per unit area. This is called <strong>Stress</strong>.</p>
+<div class="formula">$$\sigma = \frac{F}{A}$$</div>
+<p>Where: $\sigma$ = Stress, $F$ = Force, $A$ = Cross-sectional area</p>
+<p><strong>Units:</strong> N/m² or Pa. 1 N/mm² = 1 MN/m² = 10⁶ N/m²</p>
+
+<h3>Strain</h3>
+<p>When a bar is subjected to force, it elongates or shortens. Strain is the ratio of change in length to original length.</p>
+<div class="formula">$$\varepsilon = \frac{\Delta L}{L}$$</div>
+<p>Strain has no unit. It is linear strain or longitudinal strain.</p>
+</div>
+
+<div class="section" id="sec2">
+<h2>2. Hooke's Law & Elastic Constants <span class="page-tag">Pages 3-5</span></h2>
+<p><strong>Hooke's Law:</strong> Within elastic limit, stress is directly proportional to strain.</p>
+<div class="formula">$$\sigma \propto \varepsilon \quad \text{or} \quad \sigma = E \varepsilon$$</div>
+<p>$E$ = Young's Modulus or Modulus of Elasticity</p>
+
+<h3>Modulus of Rigidity (G)</h3>
+<p>Ratio of shear stress to shear strain within elastic limit.</p>
+<div class="formula">$$G = \frac{\tau}{\phi}$$</div>
+
+<h3>Bulk Modulus (K)</h3>
+<p>Ratio of direct stress to volumetric strain.</p>
+<div class="formula">$$K = \frac{\sigma}{\varepsilon_v}$$</div>
+
+<h3>Poisson's Ratio (ν)</h3>
+<p>Ratio of lateral strain to longitudinal strain.</p>
+<div class="formula">$$\nu = -\frac{\text{Lateral Strain}}{\text{Longitudinal Strain}}$$</div>
+</div>
+
+<div class="section" id="sec3">
+<h2>3. Factor of Safety <span class="page-tag">Pages 5-6</span></h2>
+<p><strong>Yield Point:</strong> Point beyond which material extends considerably without increase in load.</p>
+<p><strong>Ultimate Stress:</strong> Maximum stress before failure. Also called maximum strength or tensile strength.</p>
+<p><strong>Fracture Point:</strong> Point where material breaks.</p>
+<p><strong>Working Stress:</strong> Stress used in design, well within elastic limit.</p>
+<div class="formula">$$\text{F.O.S} = \frac{\text{Ultimate Stress}}{\text{Working Stress}}$$</div>
+</div>
+
+<div class="section" id="sec4">
+<h2>4. Bars of Uniform Section <span class="page-tag">Pages 7-8</span></h2>
+<div class="example">
+<h3>Example 1</h3>
+<p>A bar 1000mm long and 20mm × 20mm in cross-section is subjected to axial pull of 40kN. If E = 80 GN/m², calculate elongation.</p>
+<p><strong>Solution:</strong></p>
+<p>$A = 20 \times 20 = 400$ mm², $L = 1000$ mm, $F = 40 \times 10^3$ N</p>
+<div class="formula">$$\Delta L = \frac{FL}{AE} = \frac{40 \times 10^3 \times 1000}{400 \times 80 \times 10^3} = 1.25 \text{ mm}$$</div>
+</div>
+
+<div class="section" id="sec5">
+<h2>5. Hollow Cylinder <span class="page-tag">Page 9</span></h2>
+<div class="example">
+<p>A hollow cast iron cylinder 4m long, 300mm outer dia, 50mm thick, carries axial load 500kN. Find stress, contraction, strain energy. E = 150 GPa</p>
+<p><strong>Solution:</strong></p>
+<p>$D = 300$mm, $t = 50$mm → $d = 200$mm</p>
+<p>$A = \frac{\pi}{4}(300^2 - 200^2) = 39,270$ mm²</p>
+<div class="formula">$$\sigma = \frac{500 \times 10^3}{39270} = 12.73 \text{ N/mm²}$$</div>
+<div class="formula">$$\Delta L = \frac{500 \times 10^3 \times 4000}{39270 \times 150 \times 10^3} = 0.34 \text{ mm}$$</div>
+</div>
+
+<div class="section" id="sec6">
+<h2>6. Bars of Varying Cross-Section <span class="page-tag">Pages 10-11</span></h2>
+<p>For stepped bar with sections $L_1, A_1$ and $L_2, A_2$:</p>
+<div class="formula">$$\Delta L = \frac{PL_1}{A_1E} + \frac{PL_2}{A_2E}$$</div>
+<p>General: $\Delta L = \frac{1}{AE} \sum FL$</p>
+</div>
+
+<div class="section" id="sec7">
+<h2>7. Stepped Bars <span class="page-tag">Page 21</span></h2>
+<div class="svg-container">
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="40" width="150" height="40" fill="var(--svg-fill)" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="200" y="50" width="100" height="20" fill="var(--svg-fill)" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <line x1="50" y1="100" x2="200" y2="100" stroke="var(--svg-stroke)" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="200" y1="100" x2="50" y2="100" stroke="var(--svg-stroke)" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="125" y="115" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">$L_1, A_1$</text>
+  <line x1="200" y1="100" x2="300" y2="100" stroke="var(--svg-stroke)" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="300" y1="100" x2="200" y2="100" stroke="var(--svg-stroke)" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="250" y="115" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">$L_2, A_2$</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="var(--svg-stroke)"/></marker></defs>
+</svg>
+<p class="caption">Stepped bar with two sections under axial load P</p>
+</div>
+
+<div class="section" id="sec8">
+<h2>8. Composite Bars <span class="page-tag">Pages 12-14</span></h2>
+<p>For composite bar with materials 1 and 2:</p>
+<div class="formula">$$F_1 = \frac{F A_1 E_1}{A_1 E_1 + A_2 E_2} \quad , \quad F_2 = \frac{F A_2 E_2}{A_1 E_1 + A_2 E_2}$$</div>
+<p>Extension: $\Delta L = \frac{F_1 L}{A_1 E_1} = \frac{F_2 L}{A_2 E_2}$</p>
+</div>
+
+<div class="section" id="sec9">
+<h2>9. R.C.C Square Columns <span class="page-tag">Pages 14-16</span></h2>
+<p><strong>Modular Ratio:</strong> $m = \frac{E_s}{E_c}$</p>
+<p><strong>Stress relation:</strong> $\sigma_s = m \sigma_c$</p>
+<p><strong>Load capacity:</strong> $P = A_c \sigma_c + A_s \sigma_s$</p>
+
+<div class="svg-container">
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="40" width="120" height="120" fill="var(--svg-fill)" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <circle cx="65" cy="65" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <circle cx="135" cy="65" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <circle cx="65" cy="135" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <circle cx="135" cy="135" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <text x="100" y="30" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Concrete</text>
+  <text x="100" y="185" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Steel bars</text>
+</svg>
+<p class="caption">R.C.C Square Column: 300×300mm with 4×20mm dia bars</p>
+</div>
+
+<div class="example">
+<h3>Example: 300×300mm Column</h3>
+<p>4 bars of 20mm dia, $m = 18$, $\sigma_c = 6$ N/mm²</p>
+<p>$A_s = 1256.6$ mm², $A_c = 88743.4$ mm²</p>
+<div class="formula">$$P = 88743.4 \times 6 + 1256.6 \times 18 \times 6 = 668.14 \text{ kN}$$</div>
+</div>
+
+<div class="section" id="sec10">
+<h2>10. R.C.C Circular Columns <span class="page-tag">Page 17</span></h2>
+<div class="svg-container">
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="80" fill="var(--svg-fill)" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <circle cx="100" cy="35" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <circle cx="165" cy="75" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <circle cx="140" cy="150" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <circle cx="60" cy="150" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+  <circle cx="35" cy="75" r="8" fill="var(--accent)" stroke="var(--svg-stroke)"/>
+</svg>
+<p class="caption">R.C.C Circular Column: 400mm dia with 5×20mm bars</p>
+</div>
+
+<div class="example">
+<h3>Example: 400mm dia, 5 bars 20mm dia</h3>
+<p>$m = 18$, $\sigma_c \leq 5$ N/mm², $\sigma_s \leq 120$ N/mm²</p>
+<p>Concrete governs: $\sigma_s = 18 \times 5 = 90$ N/mm²</p>
+<div class="formula">$$P = 124092.9 \times 5 + 1570.8 \times 90 = 761.84 \text{ kN}$$</div>
+</div>
+
+<div class="section" id="sec11">
+<h2>11. Thermal Stress & Strain <span class="page-tag">Pages 18-19</span></h2>
+<p><strong>Free expansion:</strong> $\Delta L = L \alpha t$</p>
+<p><strong>Thermal strain:</strong> $\varepsilon = \alpha t$</p>
+<p><strong>If restrained:</strong> $\sigma = E \alpha t$</p>
+<p><strong>Thermal force:</strong> $F = EA\alpha t$</p>
+
+<h3>4-Step Method</h3>
+<ol>
+  <li>Calculate free expansion: $\Delta L = L\alpha t$</li>
+  <li>Find force to restore original length</li>
+  <li>Calculate stress: $\sigma = E\varepsilon$</li>
+  <li>Determine if tensile or compressive</li>
+</ol>
+
+<div class="example">
+<h3>Example: Aluminum bar</h3>
+<p>Fixed ends, heated 80°C, $E = 80$ kN/mm², $\alpha = 24 \times 10^{-6}$</p>
+<div class="formula">$$\sigma = 80 \times 10^3 \times 80 \times 24 \times 10^{-6} = 153.6 \text{ N/mm² compressive}$$</div>
+</div>
+</div>
+
+<div class="section" id="sec12">
+<h2>12. Thermal Stress - Fixed Ends <span class="page-tag">Page 20</span></h2>
+<div class="svg-container">
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="30" width="20" height="40" fill="var(--svg-stroke)"/>
+  <rect x="370" y="30" width="20" height="40" fill="var(--svg-stroke)"/>
+  <rect x="30" y="40" width="340" height="20" fill="var(--svg-fill)" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <path d="M 40 50 L 30 50 M 360 50 L 370 50" stroke="red" stroke-width="2" marker-end="url(#arrowred)"/>
+  <defs><marker id="arrowred" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="red"/></marker></defs>
+  <text x="200" y="90" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Fixed supports → Compressive stress when heated</text>
+</svg>
+<p class="caption">Bar with both ends fixed. Temperature rise causes compressive reaction forces.</p>
+</div>
+
+<div class="example">
+<h3>Example: Brass rod</h3>
+<p>20m long, fixed ends, $\sigma \leq 76.5$ N/mm², find max temp rise</p>
+<p>$\alpha = 17 \times 10^{-6}$, $E = 90$ kN/mm²</p>
+<div class="formula">$$t = \frac{76.5}{17 \times 10^{-6} \times 90 \times 10^3} = 50°C$$</div>
+</div>
+
+<div class="section" id="sec13">
+<h2>13. Thermal Stress - Stepped Bars <span class="page-tag">Page 21</span></h2>
+<p>For stepped bar with rigid supports:</p>
+<div class="formula">$$\Delta L_{free} = L\alpha t = \Delta L_P = \frac{PL_1}{A_1E} + \frac{PL_2}{A_2E}$$</div>
+
+<div class="example">
+<p>Steel rod: $L_1=500$mm, $A_1=400$mm², $L_2=300$mm, $A_2=600$mm², $t=15$K</p>
+<div class="formula">$$P = 16457 \text{ N}, \quad \sigma_1 = 41.14 \text{ N/mm²}, \quad \sigma_2 = 27.43 \text{ N/mm²}$$</div>
+</div>
+</div>
+
+<div class="section" id="sec14">
+<h2>14. Composite Thermal Stress <span class="page-tag">Pages 22-25</span></h2>
+<h3>Theory: Brass + Steel</h3>
+<p>$\alpha_{brass} > \alpha_{steel}$ → Brass compressed, Steel in tension</p>
+<p><strong>Equilibrium:</strong> $\sigma_b A_b = \sigma_s A_s$</p>
+<p><strong>Compatibility:</strong> $\alpha_b t - \frac{\sigma_b}{E_b} = \alpha_s t + \frac{\sigma_s}{E_s}$</p>
+
+<div class="example">
+<h3>Example 1: Steel + Aluminum Sandwich <span class="page-tag">Page 24</span></h3>
+<div class="svg-container">
+<svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="40" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="50" y="70" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <text x="150" y="35" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Aluminum</text>
+  <text x="150" y="105" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Steel</text>
+  <path d="M 40 50 L 50 50" stroke="red" stroke-width="2" marker-end="url(#arrowred)"/>
+  <path d="M 260 50 L 250 50" stroke="red" stroke-width="2" marker-end="url(#arrowred)"/>
+  <text x="25" y="55" fill="red" font-size="10">C</text>
+  <text x="270" y="55" fill="red" font-size="10">C</text>
+  <path d="M 40 65 L 50 65" stroke="blue" stroke-width="2" marker-start="url(#arrowblue)"/>
+  <path d="M 260 65 L 250 65" stroke="blue" stroke-width="2" marker-start="url(#arrowblue)"/>
+  <text x="25" y="70" fill="blue" font-size="10">T</text>
+  <text x="270" y="70" fill="blue" font-size="10">T</text>
+  <defs>
+    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto"><polygon points="10 0, 0 3, 10 6" fill="blue"/></marker>
+  </defs>
+</svg>
+<p class="caption">Aluminum in compression, Steel in tension when heated. $\alpha_{al} > \alpha_s$</p>
+</div>
+<p>Steel: 20×3mm, Al: 2×20×6mm, $t=50$°C</p>
+<p>$E_s=200$, $\alpha_s=12\times10^{-6}$, $E_{al}=80$, $\alpha_{al}=24\times10^{-6}$</p>
+<div class="formula">$$\sigma_{al} = 32 \text{ N/mm² compressive}$$</div>
+<div class="formula">$$\sigma_s = 128 \text{ N/mm² tensile}$$</div>
+</div>
+
+<div class="example">
+<h3>Example 2: Gun Metal Rod + Steel Tube <span class="page-tag">Page 25</span></h3>
+<div class="svg-container">
+<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="40" width="200" height="40" fill="none" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="50" y="50" width="200" height="20" fill="#cd7f32" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="40" y="35" width="20" height="50" fill="var(--svg-stroke)"/>
+  <rect x="240" y="35" width="20" height="50" fill="var(--svg-stroke)"/>
+  <text x="150" y="30" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Steel Tube</text>
+  <text x="150" y="110" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Gun Metal Rod</text>
+  <path d="M 35 60 L 40 60" stroke="red" stroke-width="2" marker-end="url(#arrowred)"/>
+  <path d="M 265 60 L 260 60" stroke="red" stroke-width="2" marker-end="url(#arrowred)"/>
+</svg>
+<p class="caption">GM rod in compression, Steel tube in tension. Bolted ends force equal displacement.</p>
+</div>
+<p>GM: 20mm dia, Steel: 25mm ID, 30mm OD, $t=200$°F</p>
+<p>$E_s=200$, $\alpha_s=6\times10^{-6}$, $E_{gm}=100$, $\alpha_{gm}=10\times10^{-6}$</p>
+<div class="formula">$$\sigma_{gm} = 72.73 \text{ N/mm² compressive}$$</div>
+<div class="formula">$$\sigma_s = 105.8 \text{ N/mm² tensile}$$</div>
+</div>
+</div>
+
+<footer style="text-align:center; margin-top:50px; padding:20px; border-top:1px solid var(--border)">
+<p><strong>End of Module One: Direct Stress & Thermal Stress</strong></p>
+<p>Total: 25 Pages | 20+ Solved Examples | 6 SVG Diagrams</p>
+</footer>
+</div>
+
+<script>
+function toggleTheme() {
+  const body = document.body;
+  const current = body.getAttribute('data-theme');
+  body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>
