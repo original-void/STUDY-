@@ -381,32 +381,46 @@ window.MathJax = {
 </div>
 <button id="complete-sec12" onclick="markSectionComplete('sec12')">Mark as Complete</button>
 </div>
-
 <div class="section" id="sec13">
-<h2>13. Example: Thermal Stress - Stepped Bars <span class="page-tag">Page 21</span></h2>
+<h2>13. Example: Thermal Stress - Stepped Bar <span class="page-tag">Page 23</span></h2>
 <div class="example">
 <h4>Question:</h4>
-<p>A steel rod fixed at ends has \(L_1=500\) mm, \(A_1=400\) mm² and \(L_2=300\) mm, \(A_2=600\) mm². If temp rises 15 K, find stresses. \(E=200\) kN/mm², \(\alpha=12\times10^{-6}\) per K.</p>
-
+<p>A stepped steel bar is fixed between rigid supports. Section 1: 40 mm dia, 200 mm long. Section 2: 25 mm dia, 300 mm long. Temperature rises 50°C. Find stresses. \(E = 200\) kN/mm², \(\alpha = 12 \times 10^{-6}\) per °C.</p>
 <div class="given">
-<strong>Given:</strong> \(L_1=500\), \(A_1=400\), \(L_2=300\), \(A_2=600\) mm², \(t=15\)K, \(E=200\times10^3\), \(\alpha=12\times10^{-6}\)
+<strong>Given:</strong> \(d_1 = 40\) mm, \(L_1 = 200\) mm, \(d_2 = 25\) mm, \(L_2 = 300\) mm, \(t = 50\)°C, \(E = 200 \times 10^3\) N/mm², \(\alpha = 12 \times 10^{-6}\)
+</div>
+
+<div class="svg-container">
+<svg width="450" height="120" viewBox="0 0 450 120" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="30" width="20" height="60" fill="var(--svg-stroke)"/>
+  <rect x="420" y="30" width="20" height="60" fill="var(--svg-stroke)"/>
+  <rect x="30" y="40" width="180" height="40" fill="var(--svg-fill)" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="210" y="50" width="210" height="20" fill="var(--svg-fill)" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <text x="120" y="105" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">40mm dia, 200mm</text>
+  <text x="315" y="105" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">25mm dia, 300mm</text>
+</svg>
+<p class="caption">Fixed supports prevent expansion → compressive stress</p>
 </div>
 
 <h4>Solution:</h4>
-<p><strong>Step 1: Free Expansion</strong></p>
-<div class="formula">$$\Delta L_{free} = L\alpha t = (500+300)\times12\times10^{-6}\times15 = 0.144000 \text{ mm}$$</div>
-<div class="why"><strong>Why:</strong> If free, whole bar would expand this much.</div>
+<p><strong>Step 1: Areas</strong></p>
+<div class="formula">$$A_1 = \frac{\pi}{4} \times 40^2 = 1256.637 \text{ mm²}$$</div>
+<div class="formula">$$A_2 = \frac{\pi}{4} \times 25^2 = 490.874 \text{ mm²}$$</div>
 
-<p><strong>Step 2: Force to Prevent Expansion</strong></p>
-<div class="formula">$$\Delta L_{free} = \frac{PL_1}{A_1E} + \frac{PL_2}{A_2E}$$</div>
-<div class="why"><strong>Why:</strong> Rigid walls push back with force \(P\) causing compression equal to free expansion.</div>
-<div class="formula">$$0.144 = P\left[\frac{500}{400\times200\times10^3} +\frac{300}{600\times200\times10^3}\right] \rightarrow P = 16457.143 \text{ N}$$</div>
+<p><strong>Step 2: Free Expansion</strong></p>
+<div class="formula">$$\Delta L_{free} = (L_1 + L_2)\alpha t = 500 \times 12 \times 10^{-6} \times 50 = 0.300 \text{ mm}$$</div>
+<div class="why"><strong>Why:</strong> If free, whole bar would expand 0.300 mm.</div>
 
-<p><strong>Step 3: Stresses</strong></p>
-<div class="formula">$$\sigma_1 = \frac{P}{A_1} = \frac{16457.143}{400} = 41.143 \text{ N/mm²}$$</div>
-<div class="formula">$$\sigma_2 = \frac{P}{A_2} = \frac{16457.143}{600} = 27.429 \text{ N/mm²}$$</div>
-<div class="why"><strong>Why:</strong> Same force \(P\) in both sections, but thinner section has higher stress.</div>
-<p><strong>Answer: \(\sigma_1 = 41.143\) N/mm², \(\sigma_2 = 27.429\) N/mm²</strong></p>
+<p><strong>Step 3: Force to Compress Back</strong></p>
+<p>Let compressive force = \(F\). Total contraction = 0.300 mm</p>
+<div class="formula">$$\frac{F L_1}{A_1 E} + \frac{F L_2}{A_2 E} = 0.300$$</div>
+<div class="why"><strong>Why:</strong> Fixed ends mean total contraction from force = free expansion. Solve for F.</div>
+<div class="formula">$$F = \frac{0.300 \times 200 \times 10^3}{\frac{200}{1256.637} + \frac{300}{490.874}} = 77469.991 \text{ N}$$</div>
+
+<p><strong>Step 4: Stresses</strong></p>
+<div class="formula">$$\sigma_1 = \frac{F}{A_1} = \frac{77469.991}{1256.637} = 61.647 \text{ N/mm²}$$</div>
+<div class="formula">$$\sigma_2 = \frac{F}{A_2} = \frac{77469.991}{490.874} = 157.813 \text{ N/mm²}$$</div>
+<p><strong>Answer: Section 1 = 61.647 N/mm², Section 2 = 157.813 N/mm² (Both Compressive)</strong></p>
 </div>
 <button id="complete-sec13" onclick="markSectionComplete('sec13')">Mark as Complete</button>
 </div>
@@ -416,46 +430,135 @@ window.MathJax = {
 
 <div class="example">
 <h4>Example 1: Steel + Aluminum Sandwich <span class="page-tag">Page 24</span></h4>
+
 <h4>Question:</h4>
-<p>Steel plate 20×3 mm is sandwiched between two aluminum plates 20×6 mm each. Temp rises 50°C. Find stresses. $E_s=200$, $\alpha_s=12\times10^{-6}$, $E_{al}=80$ kN/mm², $\alpha_{al}=24\times10^{-6}$.</p>
+<p>A steel plate 20×3 mm is sandwiched between two aluminum plates 20×6 mm each. Temperature rises 50°C. Find the stresses in each material.</p>
 
 <div class="given">
-<strong>Given:</strong> $A_s = 20\times3 = 60$ mm², $A_{al} = 2\times20\times6 = 240$ mm², $t=50$°C<br>
-<strong>Exact solution:</strong> $\sigma_{al} = -32.000$ N/mm², $\sigma_s = +128.000$ N/mm²
+<p><strong>Given Data:</strong></p>
+<table>
+  <tr><td><strong>Steel:</strong></td><td>$E_s = 200$ kN/mm²</td><td>$\alpha_s = 12 \times 10^{-6}$ per °C</td></tr>
+  <tr><td><strong>Aluminum:</strong></td><td>$E_{al} = 80$ kN/mm²</td><td>$\alpha_{al} = 24 \times 10^{-6}$ per °C</td></tr>
+  <tr><td><strong>Temp rise:</strong></td><td>$t = 50$°C</td><td></td></tr>
+</table>
+
+<p><strong>Areas:</strong></p>
+<p>Steel: $A_s = 20 \times 3 = 60$ mm²</p>
+<p>Aluminum: $A_{al} = 2 \times 20 \times 6 = 240$ mm² &nbsp; <span class="note">(2 plates)</span></p>
+</div>
+
+<div class="solution">
+<p><strong>Logic:</strong> Aluminum expands more than steel when heated. Since they’re bolted together, aluminum gets compressed and steel gets pulled in tension.</p>
+
+<p><strong>Step 1: Compatibility</strong></p>
+<div class="formula">$$\frac{\sigma_s}{E_s} + \alpha_s t = \frac{\sigma_{al}}{E_{al}} + \alpha_{al} t$$</div>
+
+<p><strong>Step 2: Force Balance</strong></p>
+<div class="formula">$$A_s \sigma_s + A_{al} \sigma_{al} = 0$$</div>
+<div class="why">Total tensile force in steel = Total compressive force in aluminum</div>
+
+<p><strong>Step 3: Solve</strong></p>
+<p>From force balance: $60 \sigma_s = -240 \sigma_{al}$ → $\sigma_s = -4 \sigma_{al}$</p>
+<p>Substituting: $\sigma_{al} = -32.000$ N/mm², $\sigma_s = +128.000$ N/mm²</p>
 </div>
 
 <div class="diagram">
-  <text class="svg-label">Aluminum in compression: -32.000 N/mm², Steel in tension: +128.000 N/mm²</text>
-  <svg width="300" height="150" viewBox="0 0 300 150">
-    <rect x="50" y="40" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
-    <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
-    <rect x="50" y="70" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
-    <text x="150" y="35" text-anchor="middle" class="svg-label">Aluminum: -32.000</text>
-    <text x="150" y="105" text-anchor="middle" class="svg-label">Steel: +128.000</text>
-    <text x="150" y="120" text-anchor="middle" class="svg-label">Force balance: 128.000×60 = 32.000×240 = 7680.000N</text>
+  <text class="svg-label">When heated: Aluminum tries to expand 2x more than Steel but is restrained</text>
+  <svg width="500" height="280" viewBox="0 0 500 280">
+    <!-- Aluminum Top -->
+    <rect x="100" y="50" width="300" height="50" fill="#fed7aa" stroke="#ea580c" stroke-width="3"/>
+    <text x="250" y="35" text-anchor="middle" class="svg-label" fill="#9a3412" font-size="16" font-weight="bold">Aluminum 20×6 mm</text>
+    <text x="250" y="80" text-anchor="middle" class="svg-label" font-size="18" fill="#9a3412">σ = -32.000 N/mm²</text>
+    <text x="250" y="100" text-anchor="middle" class="svg-label" font-size="14" fill="#dc2626">(Compression)</text>
+    
+    <!-- Steel Middle -->
+    <rect x="100" y="100" width="300" height="40" fill="#e5e7eb" stroke="#1f2937" stroke-width="3"/>
+    <text x="250" y="125" text-anchor="middle" class="svg-label" font-size="18" fill="#111827">σ = +128.000 N/mm²</text>
+    <text x="250" y="145" text-anchor="middle" class="svg-label" font-size="14" fill="#16a34a">(Tension)</text>
+    <text x="420" y="125" text-anchor="start" class="svg-label" fill="#1f2937" font-size="16" font-weight="bold">Steel 20×3 mm</text>
+    
+    <!-- Aluminum Bottom -->
+    <rect x="100" y="140" width="300" height="50" fill="#fed7aa" stroke="#ea580c" stroke-width="3"/>
+    <text x="250" y="170" text-anchor="middle" class="svg-label" font-size="18" fill="#9a3412">σ = -32.000 N/mm²</text>
+    <text x="250" y="190" text-anchor="middle" class="svg-label" font-size="14" fill="#dc2626">(Compression)</text>
+    <text x="250" y="215" text-anchor="middle" class="svg-label" fill="#9a3412" font-size="16" font-weight="bold">Aluminum 20×6 mm</text>
+    
+    <!-- Force explanation -->
+    <line x1="100" y1="240" x2="400" y2="240" stroke="#4b5563" stroke-width="2"/>
+    <text x="250" y="260" text-anchor="middle" class="svg-label" font-size="15">
+      Force Balance: Tensile Force = Compressive Force
+    </text>
+    <text x="250" y="278" text-anchor="middle" class="svg-label" font-size="15" font-weight="bold">
+      128.000 × 60 = 32.000 × 240 = 7680.000 N
+    </text>
   </svg>
+</div>
+
+<div class="formula">
+<strong>Answer: Aluminum = -32.000 N/mm² (Compression), Steel = +128.000 N/mm² (Tension)</strong>
 </div>
 </div>
 
 <div class="example">
 <h4>Example 2: Gun Metal Rod + Steel Tube <span class="page-tag">Page 25</span></h4>
+
 <h4>Question:</h4>
-<p>Gun metal rod 20 mm dia is inside steel tube 25 mm ID, 30 mm OD. Bolted at ends. Temp rises 200°F. Find stresses. $E_s=200$, $\alpha_s=6\times10^{-6}$, $E_{gm}=100$ kN/mm², $\alpha_{gm}=10\times10^{-6}$ per °F.</p>
+<p>A gun metal rod 20 mm diameter is inside a steel tube with 25 mm ID and 30 mm OD. They are bolted at the ends. Temperature rises 200°F. Find the stresses.</p>
 
 <div class="given">
-<strong>Given:</strong> $A_{gm} = \frac{\pi}{4} \times 20^2 = 314.159$ mm², $A_s = \frac{\pi}{4}(30^2 - 25^2) = 215.985$ mm², $t=200$°F<br>
-<strong>Exact solution:</strong> $\sigma_{gm} = -72.727$ N/mm², $\sigma_s = +105.818$ N/mm²
+<p><strong>Given Data:</strong></p>
+<table>
+  <tr><td><strong>Steel:</strong></td><td>$E_s = 200$ kN/mm²</td><td>$\alpha_s = 6 \times 10^{-6}$ per °F</td></tr>
+  <tr><td><strong>Gun Metal:</strong></td><td>$E_{gm} = 100$ kN/mm²</td><td>$\alpha_{gm} = 10 \times 10^{-6}$ per °F</td></tr>
+  <tr><td><strong>Temp rise:</strong></td><td>$t = 200$°F</td><td></td></tr>
+</table>
+
+<p><strong>Areas:</strong></p>
+<p>GM Rod: $A_{gm} = \frac{\pi}{4} \times 20^2 = 314.159$ mm²</p>
+<p>Steel Tube: $A_s = \frac{\pi}{4}(30^2 - 25^2) = 215.985$ mm²</p>
+</div>
+
+<div class="solution">
+<p><strong>Logic:</strong> Gun metal has higher $\alpha$, so it wants to expand more. Since bolted, GM gets compressed and steel tube gets tension.</p>
+
+<p><strong>Force Balance:</strong></p>
+<div class="formula">$$A_{gm} \sigma_{gm} + A_s \sigma_s = 0$$</div>
+
+<p><strong>Solving with compatibility:</strong></p>
+<div class="formula">$$\sigma_{gm} = -72.727 \text{ N/mm²}, \quad \sigma_s = +105.818 \text{ N/mm²}$$</div>
 </div>
 
 <div class="diagram">
-  <text class="svg-label">GM rod: -72.727 N/mm² compression, Steel tube: +105.818 N/mm² tension</text>
-  <svg width="300" height="120" viewBox="0 0 300 120">
-    <rect x="50" y="40" width="200" height="40" fill="none" stroke="var(--svg-stroke)" stroke-width="2"/>
-    <rect x="50" y="50" width="200" height="20" fill="#cd7f32" stroke="var(--svg-stroke)" stroke-width="2"/>
-    <text x="150" y="30" text-anchor="middle" class="svg-label">Steel: +105.818 N/mm²</text>
-    <text x="150" y="110" text-anchor="middle" class="svg-label">GM: -72.727 N/mm²</text>
-    <text x="150" y="15" text-anchor="middle" class="svg-label">Force: 72.727×314.159 = 105.818×215.985 = 22846.297N</text>
+  <text class="svg-label">Bolted at ends: GM expands more → compressed, Steel restrains → tension</text>
+  <svg width="500" height="240" viewBox="0 0 500 240">
+    <!-- End plates -->
+    <rect x="80" y="60" width="15" height="100" fill="#64748b" stroke="#1e293b" stroke-width="2"/>
+    <rect x="405" y="60" width="15" height="100" fill="#64748b" stroke="#1e293b" stroke-width="2"/>
+    <text x="50" y="115" text-anchor="middle" class="svg-label" font-size="13" fill="#475569">Bolted</text>
+    <text x="450" y="115" text-anchor="middle" class="svg-label" font-size="13" fill="#475569">Bolted</text>
+    
+    <!-- Steel Tube -->
+    <rect x="95" y="70" width="310" height="80" fill="none" stroke="#334155" stroke-width="4"/>
+    <text x="250" y="50" text-anchor="middle" class="svg-label" fill="#1e40af" font-size="16" font-weight="bold">Steel Tube: 30mm OD, 25mm ID</text>
+    <text x="250" y="115" text-anchor="middle" class="svg-label" font-size="18" fill="#1e40af">σ = +105.818 N/mm² (Tension)</text>
+    
+    <!-- Gun Metal Rod -->
+    <rect x="95" y="95" width="310" height="30" fill="#fcd34d" stroke="#92400e" stroke-width="3"/>
+    <text x="250" y="175" text-anchor="middle" class="svg-label" fill="#92400e" font-size="16" font-weight="bold">Gun Metal Rod: 20mm dia</text>
+    <text x="250" y="135" text-anchor="middle" class="svg-label" font-size="18" fill="#92400e">σ = -72.727 N/mm² (Compression)</text>
+    
+    <!-- Force balance -->
+    <text x="250" y="205" text-anchor="middle" class="svg-label" font-size="15">
+      Force Balance: 72.727 × 314.159 = 105.818 × 215.985
+    </text>
+    <text x="250" y="225" text-anchor="middle" class="svg-label" font-size="15" font-weight="bold">
+      = 22846.297 N
+    </text>
   </svg>
+</div>
+
+<div class="formula">
+<strong>Answer: GM Rod = -72.727 N/mm² (Compression), Steel Tube = +105.818 N/mm² (Tension)</strong>
 </div>
 </div>
 <button id="complete-sec14" onclick="markSectionComplete('sec14')">Mark as Complete</button>
@@ -463,456 +566,164 @@ window.MathJax = {
 
 <div class="topic-header">
   <h2>Topic 2: Shear Force & Bending Moment</h2>
-  <p>Pages 26-53: Beam analysis, SFD/BMD, Contraflexure, Couples, Inclined loads</p>
+  <p>Pages 26-53: Beam analysis, SFD, BMD, Overhanging beams, Inclined loads</p>
 </div>
 
 <div class="section" id="sec15">
 <h2>15. Types of Supports & Beams <span class="page-tag">Page 26</span></h2>
-<div class="theory">
-  <p><strong>Three main types of supports:</strong></p>
-  <ul>
-    <li><strong>Simply Supported/Roller:</strong> Free to rotate, resists vertical force only. 1 reaction.</li>
-    <li><strong>Hinged/Pinned:</strong> Free to rotate, resists vertical & horizontal force. 2 reactions.</li>
-    <li><strong>Fixed:</strong> No rotation or translation. Resists vertical, horizontal force & moment. 3 reactions.</li>
-  </ul>
-  <p><strong>Beam Types:</strong> Simply supported, Cantilever, Overhanging, Fixed, Continuous</p>
-  <div class="diagram">
-    <svg width="500" height="80" viewBox="0 0 500 80">
-      <text x="10" y="15" class="svg-label">Simply Supported</text>
-      <line x1="20" y1="40" x2="120" y2="40" stroke="black" stroke-width="3"/>
-      <polygon points="20,40 15,50 25,50" fill="none" stroke="black"/>
-      <circle cx="120" cy="45" r="5" fill="none" stroke="black"/>
-      
-      <text x="160" y="15" class="svg-label">Cantilever</text>
-      <line x1="170" y1="40" x2="270" y2="40" stroke="black" stroke-width="3"/>
-      <rect x="165" y="25" width="5" height="30" fill="#4a5568"/>
-      
-      <text x="310" y="15" class="svg-label">Overhanging</text>
-      <line x1="320" y1="40" x2="450" y2="40" stroke="black" stroke-width="3"/>
-      <polygon points="340,40 335,50 345,50" fill="none" stroke="black"/>
-      <circle cx="400" cy="45" r="5" fill="none" stroke="black"/>
-    </svg>
-  </div>
-</div>
+<p><strong>Simply Supported:</strong> Rest on supports, free to rotate. Reactions: Vertical only.</p>
+<p><strong>Fixed:</strong> Built-in, no rotation. Reactions: Vertical, Horizontal, Moment.</p>
+<p><strong>Cantilever:</strong> Fixed one end, free other end.</p>
+<p><strong>Overhanging:</strong> Extends beyond supports.</p>
 <button id="complete-sec15" onclick="markSectionComplete('sec15')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec16">
 <h2>16. Types of Loading <span class="page-tag">Page 27</span></h2>
-<div class="theory">
-  <table>
-    <tr><th>Loading Type</th><th>Description</th><th>SFD Effect</th><th>BMD Effect</th></tr>
-    <tr><td>Point Load</td><td>Concentrated load at a point</td><td>Vertical step</td><td>Linear slope change</td></tr>
-    <tr><td>UDL</td><td>Uniformly Distributed Load: w kN/m</td><td>Linear slope</td><td>Parabolic curve</td></tr>
-    <tr><td>UVL</td><td>Uniformly Varying Load</td><td>Parabolic</td><td>Cubic curve</td></tr>
-    <tr><td>Couple/Moment</td><td>Applied moment kNm</td><td>No change</td><td>Sudden vertical jump</td></tr>
-    <tr><td>Inclined Load</td><td>At angle to beam axis</td><td>Use vertical component</td><td>Use vertical component</td></tr>
-  </table>
-</div>
+<p><strong>Point Load:</strong> Concentrated at a point.</p>
+<p><strong>UDL:</strong> Uniformly Distributed Load - constant w N/m.</p>
+<p><strong>UVL:</strong> Uniformly Varying Load - triangular distribution.</p>
+<p><strong>Couple/Moment:</strong> Pure rotation, no resultant force.</p>
 <button id="complete-sec16" onclick="markSectionComplete('sec16')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec17">
-<h2>17. Reaction Calculations - Basic <span class="page-tag">Pages 28-30</span></h2>
+<h2>17. Reaction Calculations - Basic <span class="page-tag">Page 28</span></h2>
+<p><strong>Rule:</strong> ΣF<sub>y</sub> = 0, ΣM = 0 about any point.</p>
 <div class="example">
-<h4>Example 1: Point Load</h4>
-<p>A simply supported beam 6m span has 10kN at 2m from A. Find reactions.</p>
-<div class="diagram">
-  <svg width="400" height="100" viewBox="0 0 400 100">
-    <line x1="50" y1="50" x2="350" y2="50" stroke="black" stroke-width="3"/>
-    <polygon points="50,50 40,65 60,65" fill="none" stroke="black"/>
-    <circle cx="350" cy="55" r="5" fill="none" stroke="black"/>
-    <line x1="150" y1="20" x2="150" y2="50" stroke="red" stroke-width="2" marker-end="url(#arrow)"/>
-    <text x="145" y="15" class="svg-label">10kN</text>
-    <text x="45" y="80" class="svg-label">A</text><text x="345" y="80" class="svg-label">B</text>
-    <text x="95" y="70" class="svg-label">2m</text><text x="245" y="70" class="svg-label">4m</text>
-    <text x="40" y="40" class="svg-label" fill="blue">R_A</text>
-    <text x="340" y="40" class="svg-label" fill="blue">R_B</text>
-    <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="red"/></marker></defs>
-  </svg>
-</div>
-<div class="solution">
-  <p>Taking moments about A: $R_B \times 6 = 10 \times 2 = 20$ → $R_B = 3.333$ kN</p>
-  <p>$\sum F_y = 0$: $R_A + 3.333 = 10$ → $R_A = 6.667$ kN</p>
-  <p>Check: $6.667 + 3.333 = 10.000$ kN ✓</p>
-</div>
-</div>
-<div class="example">
-<h4>Example 2: UDL</h4>
-<p>Simply supported beam 8m with 5kN/m UDL. Find reactions.</p>
-<div class="diagram">
-  <svg width="400" height="100" viewBox="0 0 400 100">
-    <line x1="50" y1="60" x2="350" y2="60" stroke="black" stroke-width="3"/>
-    <polygon points="50,60 40,75 60,75" fill="none" stroke="black"/>
-    <circle cx="350" cy="65" r="5" fill="none" stroke="black"/>
-    <rect x="50" y="35" width="300" height="20" fill="none" stroke="red" stroke-dasharray="5,3"/>
-    <text x="190" y="30" class="svg-label">5kN/m</text>
-    <text x="45" y="90" class="svg-label">A</text><text x="345" y="90" class="svg-label">B</text>
-  </svg>
-</div>
-<div class="solution">
-  <p>Total load = $5 \times 8 = 40$ kN at center. By symmetry: $R_A = R_B = 20.000$ kN</p>
-</div>
+<p>Beam 6m, UDL 2 kN/m over entire span. Find reactions.</p>
+<p><strong>Solution:</strong> Total load = 2 × 6 = 12 kN. By symmetry, R<sub>A</sub> = R<sub>B</sub> = 6 kN</p>
 </div>
 <button id="complete-sec17" onclick="markSectionComplete('sec17')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec18">
-<h2>18. Shear Force & Bending Moment - Definitions <span class="page-tag">Pages 31-32</span></h2>
-<div class="theory">
-  <p><strong>Shear Force (S.F):</strong> Algebraic sum of vertical forces to left or right of section. +ve = right side down, left side up.</p>
-  <p><strong>Bending Moment (B.M):</strong> Algebraic sum of moments to left or right of section. +ve = sagging (smiley), -ve = hogging (frowny).</p>
-  <p><strong>Key Rule:</strong> $\frac{dM}{dx} = V$ and $\frac{dV}{dx} = -w$. Max BM occurs where SF = 0.</p>
-</div>
+<h2>18. Shear Force & Bending Moment - Definitions <span class="page-tag">Page 29</span></h2>
+<p><strong>Shear Force:</strong> Algebraic sum of vertical forces to left or right of section.</p>
+<p><strong>Bending Moment:</strong> Algebraic sum of moments to left or right of section.</p>
+<p><strong>Sign Convention:</strong> Clockwise moment = positive. Upward force = positive shear.</p>
 <button id="complete-sec18" onclick="markSectionComplete('sec18')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec19">
-<h2>19. SFD & BMD - Point Loads <span class="page-tag">Pages 33-35</span></h2>
-<div class="example">
-<h4>Example: Two Point Loads</h4>
-<p>6m beam: 4kN at 2m, 6kN at 4m from A. $R_A = 4.667$ kN, $R_B = 5.333$ kN</p>
-<div class="diagram">
-  <text class="svg-label">SFD</text>
-  <svg width="400" height="120" viewBox="0 0 400 120">
-    <line x1="50" y1="60" x2="350" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,60 50,36.665 150,36.665 150,56.665 250,56.665 250,86.665 350,86.665 350,60" 
-              fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="36.665" class="svg-label">+4.667</text>
-    <text x="25" y="86.665" class="svg-label">-5.333</text>
-    <text x="152" y="56.665" class="svg-label">+0.667</text>
-  </svg>
-  <text class="svg-label">BMD</text>
-  <svg width="400" height="120" viewBox="0 0 400 120">
-    <line x1="50" y1="100" x2="350" y2="100" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,100 150,53.335 250,46.660 350,100" 
-              fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="140" y="48" class="svg-label">9.334</text>
-    <text x="240" y="41" class="svg-label">10.668</text>
-  </svg>
-</div>
-<div class="solution">
-  <p><strong>SFD:</strong> 0 → +4.667 kN, drops 4kN to +0.667 kN, drops 6kN to -5.333 kN, jumps to 0</p>
-  <p><strong>BMD:</strong> $M_{2m} = 9.334$ kNm, $M_{4m} = 10.668$ kNm</p>
-  <p class="note">Note: SVG uses 1kN = 5px and 1kNm = 5px scaling. Coordinates use decimals for accuracy.</p>
-</div>
+<h2>19. SFD & BMD - Point Loads <span class="page-tag">Pages 30-33</span></h2>
+<div class="theory">
+<p><strong>Key Rule:</strong> SF changes suddenly at point load. BM changes slope at point load.</p>
+<p>For simply supported beam with central point load W:</p>
+<div class="formula">$$R_A = R_B = \frac{W}{2}$$</div>
+<div class="formula">$$SF_{max} = \frac{W}{2}, \quad BM_{max} = \frac{WL}{4}$$</div>
 </div>
 <button id="complete-sec19" onclick="markSectionComplete('sec19')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec20">
-<h2>20. SFD & BMD - UDL <span class="page-tag">Pages 36-38</span></h2>
-<div class="example">
-<h4>Example: Partial UDL</h4>
-<p>8m beam, 4kN/m on first 3m from A. $R_A = 9.750$ kN, $R_B = 2.250$ kN</p>
-<div class="diagram">
-  <text class="svg-label">SFD - Exact values</text>
-  <svg width="450" height="120" viewBox="0 0 450 120">
-    <line x1="50" y1="60" x2="450" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,11.250 200,71.250 450,71.250 450,60" 
-              fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="11.250" class="svg-label">+9.750</text>
-    <text x="25" y="71.250" class="svg-label">-2.250</text>
-    <circle cx="171.875" cy="60" r="3" fill="red"/>
-    <text x="175" y="55" class="svg-label">x=2.4375m</text>
-  </svg>
-  <text class="svg-label">BMD - M_max=11.8828 kNm at x=2.4375m</text>
-  <svg width="450" height="120" viewBox="0 0 450 120">
-    <line x1="50" y1="100" x2="450" y2="100" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 100 Q 110 40.5859 171.875 40.5859 Q 185 41.000 200 43.750 L 450 100" 
-          fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="160" y="35" class="svg-label">11.883</text>
-    <text x="205" y="38" class="svg-label">11.250</text>
-  </svg>
-</div>
-<div class="solution">
-  <p>Zero shear: $x = 9.75/4 = 2.4375$m from A. $M_{max} = 11.8828$ kNm</p>
-  <p>$M_{3m} = 9.75\times3 - 4\times9/2 = 11.250$ kNm</p>
-</div>
+<h2>20. SFD & BMD - UDL <span class="page-tag">Pages 34-36</span></h2>
+<div class="theory">
+<p>For UDL w over entire span L:</p>
+<div class="formula">$$R_A = R_B = \frac{wL}{2}$$</div>
+<div class="formula">$$SF_x = R_A - wx, \quad BM_x = R_A x - \frac{wx^2}{2}$$</div>
+<div class="formula">$$BM_{max} = \frac{wL^2}{8} \text{ at center}$$</div>
+<div class="why"><strong>Why:</strong> UDL gives linear SF and parabolic BM. SF = 0 at center for symmetric loading.</div>
 </div>
 <button id="complete-sec20" onclick="markSectionComplete('sec20')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec21">
-<h2>21. Overhanging Beams & Contraflexure <span class="page-tag">Pages 39-41</span></h2>
-<div class="example">
-<h4>Example: UDL with Overhang</h4>
-<p>6m span + 2m overhang, 2kN/m UDL. $R_A = 5.333$ kN, $R_B = 10.667$ kN</p>
-<div class="diagram">
-  <text class="svg-label">BMD - Contraflexure at x=4.000m, M_B=-4.000 kNm</text>
-  <svg width="450" height="140" viewBox="0 0 450 140">
-    <line x1="50" y1="70" x2="400" y2="70" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 70 Q 183.335 34.445 250 70 L 400 90" 
-          fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <circle cx="250" cy="70" r="4" fill="red"/>
-    <text x="255" y="65" class="svg-label">x=4.000</text>
-    <text x="160" y="29" class="svg-label">+7.111</text>
-    <text x="360" y="95" class="svg-label">-4.000</text>
-  </svg>
-</div>
-<div class="solution">
-  <p>$M_B = 5.333\times6 - 2\times6^2 = -4.000$ kNm hogging</p>
-  <p>Contraflexure: $5.333x - x^2 = 0$ → $x = 4.000$m from A where M = 0</p>
-  <p>Max +ve M = $7.111$ kNm at x = $5.333/2 = 2.667$m</p>
-</div>
-</div>
+<h2>21. Overhanging Beams & Contraflexure <span class="page-tag">Pages 37-40</span></h2>
+<p><strong>Contraflexure:</strong> Point where BM = 0 and changes sign. Beam bends in opposite direction.</p>
+<p><strong>Overhang:</strong> Portion beyond support. Creates negative BM at support.</p>
 <button id="complete-sec21" onclick="markSectionComplete('sec21')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec22">
-<h2>22. Combined Loading - Multiple UDLs + Point Loads <span class="page-tag">Pages 42-44</span></h2>
-<div class="example">
-<h4>Example: Complex Loading</h4>
-<p>7.5m beam: 10kN/m on 1.5m, 15kN/m on 2m, 25kN point load. $R_A = 46.800$, $R_B = 43.200$ kN</p>
-<div class="given">
-<strong>Exact BM values:</strong> $M_{1.5m} = 58.950$ kNm, $M_{3m} = 74.240$ kNm, $M_{4m} = 70.500$ kNm, $M_{5.5m} = 43.200$ kNm
-</div>
-<div class="diagram">
-  <text class="svg-label">BMD - 1kNm = 1px scale to fit exact values</text>
-  <svg width="450" height="140" viewBox="0 0 450 140">
-    <line x1="50" y1="120" x2="400" y2="120" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 120 Q 87.5 61.050 125 61.050 L 200 45.760 L 250 49.500 L 325 76.800 L 400 120" 
-          fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="120" y="56" class="svg-label">58.950</text>
-    <text x="190" y="41" class="svg-label">74.240</text>
-    <text x="240" y="44" class="svg-label">70.500</text>
-    <text x="315" y="72" class="svg-label">43.200</text>
-  </svg>
-</div>
-</div>
+<h2>22. Combined Loading - Multiple UDLs + Point Loads <span class="page-tag">Pages 41-44</span></h2>
+<p><strong>Method:</strong> Calculate reactions first. Then find SF and BM at key points: supports, load points, start/end of UDL.</p>
+<div class="why"><strong>Why:</strong> Superposition principle. Total effect = sum of individual load effects.</div>
 <button id="complete-sec22" onclick="markSectionComplete('sec22')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec23">
-<h2>23. Beams with Applied Couples/Moments <span class="page-tag">Pages 45-47</span></h2>
-<div class="theory">
-  <p><strong>Key Rules for Couples:</strong></p>
-  <ol>
-    <li>S.F does NOT change at section of couple</li>
-    <li>B.M changes suddenly by magnitude of couple</li>
-    <li>Clockwise moment: +ve jump in BMD when moving left to right</li>
-    <li>Anticlockwise moment: -ve jump in BMD</li>
-  </ol>
-</div>
-<div class="example">
-<h4>Example: Clockwise Couple</h4>
-<p>5m beam, 15kNm clockwise at 2m from A. $R_A = -3.000$ kN, $R_B = 3.000$ kN</p>
-<div class="given">
-<strong>Given:</strong> 5m span, Couple $M = 15.000$ kNm clockwise at 2m from A<br>
-<strong>Reactions:</strong> $\sum M_A = 0$: $R_B \times 5 - 15 = 0$ → $R_B = 3.000$ kN ↑, $R_A = -3.000$ kN ↓
-</div>
-<div class="diagram">
-  <text class="svg-label">SFD - Constant -3.000kN, no change at couple</text>
-  <svg width="400" height="100" viewBox="0 0 400 100">
-    <line x1="50" y1="50" x2="350" y2="50" stroke="#cbd5e0" stroke-width="1"/>
-    <line x1="50" y1="65" x2="350" y2="65" stroke="blue" stroke-width="2"/>
-    <text x="25" y="68" class="svg-label">-3.000kN</text>
-    <text x="200" y="90" class="svg-label">SFD: Constant, no step at x=2m</text>
-  </svg>
-  
-  <text class="svg-label">BMD - Sudden +15.000kNm jump at couple</text>
-  <svg width="400" height="130" viewBox="0 0 400 130">
-    <line x1="50" y1="70" x2="350" y2="70" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,70 170,100 170,25 350,70" 
-              fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <line x1="170" y1="25" x2="170" y2="100" stroke="red" stroke-width="2" stroke-dasharray="3,3"/>
-    <text x="140" y="108" class="svg-label">-6.000</text>
-    <text x="140" y="22" class="svg-label">+9.000</text>
-    <text x="172" y="65" class="svg-label">ΔM = 15.000kNm</text>
-    <text x="45" y="85" class="svg-label">A</text>
-    <text x="165" y="85" class="svg-label">x=2m</text>
-    <text x="345" y="85" class="svg-label">B</text>
-  </svg>
-</div>
-<div class="solution">
-  <p><strong>SFD Calculation:</strong> SF = $-3.000$ kN throughout. No change at couple location ✓</p>
-  <p><strong>BMD Calculation:</strong></p>
-  <p>1. At A: $M = 0.000$</p>
-  <p>2. Just left of couple at x=2m: $M = -3.000 \times 2 = -6.000$ kNm</p>
-  <p>3. Just right of couple: $M = -6.000 + 15.000 = +9.000$ kNm ← Sudden jump up</p>
-  <p>4. At B x=5m: $M = -3.000 \times 5 + 15.000 = 0.000$ kNm ✓</p>
-  <p class="note">Clockwise couple causes positive jump when moving left→right. Scaling: 1kN=5px, 1kNm=5px, 1m=60px</p>
-</div>
-</div>
+<h2>23. Beams with Applied Couples/Moments <span class="page-tag">Pages 45-48</span></h2>
+<p><strong>Key Rule:</strong> Couple causes sudden jump in BM diagram but no change in SF.</p>
+<p>At point of applied moment M: BM increases by M if clockwise, decreases if anticlockwise.</p>
 <button id="complete-sec23" onclick="markSectionComplete('sec23')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec24">
-<h2>24. Inclined Loads <span class="page-tag">Page 48-50</span></h2>
-<div class="theory">
-  <p><strong>Method:</strong> Resolve inclined load into vertical & horizontal components.</p>
-  <p>Vertical component: $F_v = F \sin\theta$ → Use for SFD & BMD</p>
-  <p>Horizontal component: $F_h = F \cos\theta$ → Creates axial force $\sigma = P/A$, not used for SFD/BMD</p>
-</div>
-<div class="example">
-<h4>Example:</h4>
-<p>6kN at 60° at 2m from A on 6m beam.</p>
-<div class="given">
-<strong>Exact components:</strong> $F_v = 6 \sin 60° = 5.196152$ kN, $F_h = 6 \cos 60° = 3.000000$ kN<br>
-<strong>Reactions:</strong> $R_{Av} = 3.464101$ kN, $R_B = 1.732051$ kN, $R_{Ah} = 3.000000$ kN
-</div>
-<div class="diagram">
-  <svg width="400" height="140" viewBox="0 0 400 140">
-    <line x1="50" y1="100" x2="350" y2="100" stroke="black" stroke-width="3"/>
-    <line x1="150" y1="100" x2="110" y2="50" stroke="red" stroke-width="2" marker-end="url(#arrow2)"/>
-    <text x="95" y="45" class="svg-label">6.000kN</text>
-    <path d="M 150 100 L 170 100 A 20 0 0 0 165 85" fill="none" stroke="blue"/>
-    <text x="172" y="95" class="svg-label">60.00°</text>
-    <line x1="150" y1="100" x2="150" y2="50" stroke="orange" stroke-dasharray="3,3"/>
-    <text x="155" y="75" class="svg-label">5.196</text>
-    <line x1="150" y1="100" x2="110" y2="100" stroke="orange" stroke-dasharray="3,3"/>
-    <text x="120" y="115" class="svg-label">3.000</text>
-    <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="red"/></marker></defs>
-  </svg>
-</div>
-<div class="solution">
-  <p>$F_v = 6 \sin 60° = 5.196152$ kN → Use for SFD/BMD</p>
-  <p>$F_h = 6 \cos 60° = 3.000000$ kN → Direct stress $\sigma = 3000/A$</p>
-  <p>For 6m beam: $R_B = 5.196\times2/6 = 1.732$ kN, $R_A = 3.464$ kN</p>
-</div>
+<h2>24. Inclined Loads <span class="page-tag">Pages 49-51</span></h2>
+<p><strong>Method:</strong> Resolve inclined load into horizontal and vertical components.</p>
+<div class="formula">$$F_x = F \cos\theta, \quad F_y = F \sin\theta$$</div>
+<div class="why"><strong>Why:</strong> Only vertical component causes SF and BM. Horizontal component causes axial force.</div>
 <button id="complete-sec24" onclick="markSectionComplete('sec24')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec25">
-<h2>25. Reverse Analysis: Load from SFD <span class="page-tag">Page 51-53</span></h2>
-<div class="theory">
-  <table>
-    <tr><th>SFD Shape</th><th>Indicates</th></tr>
-    <tr><td>Vertical step</td><td>Point load or support reaction</td></tr>
-    <tr><td>Horizontal line</td><td>No loading between points</td></tr>
-    <tr><td>Inclined straight line</td><td>UDL between points</td></tr>
-    <tr><td>Parabolic curve</td><td>Uniformly varying load</td></tr>
-    <tr><td>No change at couple</td><td>Applied moment present</td></tr>
-  </table>
-  <p><strong>Process:</strong> Given SFD → Draw load diagram → Calculate BMD</p>
-</div>
-<div class="example">
-<h4>Example: SFD to Load Diagram</h4>
-<p>Given SFD: +9.750kN at A, drops to -2.250kN at 3m, constant to B at 8m. What loading?</p>
-<div class="given">
-<strong>Interpretation:</strong> Vertical step at A = $R_A = +9.750$ kN ↑<br>
-Inclined line 0-3m dropping 12.000kN total → UDL: $w = 12.000/3 = 4.000$ kN/m<br>
-Vertical step at B = $R_B = +2.250$ kN ↑
-</div>
-<div class="diagram">
-  <text class="svg-label">Given SFD</text>
-  <svg width="450" height="120" viewBox="0 0 450 120">
-    <line x1="50" y1="60" x2="450" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,11.250 200,71.250 450,71.250 450,60" 
-              fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="11.250" class="svg-label">+9.750</text>
-    <text x="25" y="71.250" class="svg-label">-2.250</text>
-  </svg>
-  <text class="svg-label">Derived Load Diagram</text>
-  <svg width="450" height="100" viewBox="0 0 450 100">
-    <line x1="50" y1="60" x2="450" y2="60" stroke="black" stroke-width="3"/>
-    <polygon points="50,60 40,75 60,75" fill="none" stroke="black"/>
-    <circle cx="450" cy="65" r="5" fill="none" stroke="black"/>
-    <rect x="50" y="35" width="150" height="20" fill="none" stroke="red" stroke-dasharray="5,3"/>
-    <text x="115" y="30" class="svg-label">4.000kN/m</text>
-    <text x="45" y="90" class="svg-label">A</text>
-    <text x="445" y="90" class="svg-label">B</text>
-    <text x="40" y="50" class="svg-label" fill="blue">9.750</text>
-    <text x="440" y="50" class="svg-label" fill="blue">2.250</text>
-  </svg>
-</div>
-<div class="solution">
-  <p><strong>Step 1:</strong> SF starts at +9.750 → $R_A = 9.750$ kN upward</p>
-  <p><strong>Step 2:</strong> SF drops 12.000kN over 3m linearly → $w = 12.000/3 = 4.000$ kN/m UDL</p>
-  <p><strong>Step 3:</strong> SF at 8m is -2.250, then jumps to 0 → $R_B = 2.250$ kN upward</p>
-  <p><strong>Check:</strong> $9.750 + 2.250 = 12.000 = 4.000 \times 3$ ✓</p>
-</div>
-</div>
+<h2>25. Reverse Analysis: Load from SFD <span class="page-tag">Pages 52-53</span></h2>
+<p><strong>Method:</strong> Look at SF diagram changes:</p>
+<ol>
+<li>Sudden drop = Downward point load</li>
+<li>Constant slope = UDL. Slope = w</li>
+<li>Zero SF = Max BM location</li>
+</ol>
+<div class="why"><strong>Why:</strong> dM/dx = SF and dV/dx = -w. So SF is slope of BM, load is slope of SF.</div>
 <button id="complete-sec25" onclick="markSectionComplete('sec25')">Mark as Complete</button>
 </div>
 
-<footer>
-<p><strong>End of Module One: Complete Structures Notes</strong></p>
-<p>Total: 53 Pages | 25 Sections | 20+ Solved Examples | 18+ SVG Diagrams</p>
-<p>✓ Direct Stress ✓ Thermal Stress ✓ Composite Bars ✓ SFD/BMD ✓ Couples ✓ Contraflexure ✓ Inclined Loads</p>
-<p class="note">Connection: Inclined loads from sec24 link back to Topic 1 — horizontal component $F_h = F\cos\theta$ creates direct stress $\sigma = P/A$</p>
-</footer>
 </div>
 
 <script>
-let completedSections = new Set();
-const totalSections = 25;
-const PROGRESS_KEY = 'structures_progress';
-const THEME_KEY = 'structures_theme';
-let currentUser = null;
-
-// AUTH GUARD - Redirect if not logged in
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    // User logged in - show page
-    document.body.style.display = 'block';
-    currentUser = user;
-    const displayName = user.displayName || user.email.split('@')[0];
-    document.getElementById('user-display').innerText = displayName;
-    loadProgress(user.uid);
-  } else {
-    // Not logged in - redirect to login.html
+// Auth guard
+firebase.auth().onAuthStateChanged(user => {
+  if (!user) {
     window.location.href = 'login.html';
+  } else {
+    document.body.style.display = 'block';
+    document.getElementById('user-display').textContent = user.email || 'Student';
   }
 });
 
-// Load theme on startup
-window.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem(THEME_KEY);
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-theme');
-  }
-});
+// Progress tracking
+const totalSections = 25;
+let completed = JSON.parse(localStorage.getItem('completedSections') || '[]');
 
-function loadProgress(uid) {
-  const saved = JSON.parse(localStorage.getItem(PROGRESS_KEY + '_' + uid) || '[]');
-  completedSections = new Set(saved);
-  saved.forEach(id => {
-    const btn = document.getElementById('complete-' + id);
-    if (btn) {
-      btn.innerText = 'Completed ✓';
-      btn.classList.add('completed');
-    }
+function updateProgress() {
+  const percent = (completed.length / totalSections) * 100;
+  document.getElementById('progress-fill').style.width = percent + '%';
+  document.getElementById('progress-text').textContent = `${completed.length}/${totalSections} sections completed`;
+  completed.forEach(id => {
+    const btn = document.getElementById(`complete-${id}`);
+    if (btn) btn.classList.add('completed');
   });
-  updateProgress();
 }
 
 function markSectionComplete(id) {
-  if (completedSections.has(id) ||!currentUser) return;
-  completedSections.add(id);
-  const btn = document.getElementById('complete-' + id);
-  btn.innerText = 'Completed ✓';
-  btn.classList.add('completed');
-  saveProgress();
-  updateProgress();
-}
-
-function updateProgress() {
-  const percent = (completedSections.size / totalSections) * 100;
-  document.getElementById('progress-fill').style.width = percent + '%';
-  document.getElementById('progress-text').innerText = completedSections.size + '/' + totalSections + ' sections completed';
-}
-
-function saveProgress() {
-  if (!currentUser) return;
-  localStorage.setItem(PROGRESS_KEY + '_' + currentUser.uid, JSON.stringify([...completedSections]));
-}
-
-function toggleTheme() {
-  document.body.classList.toggle('dark-theme');
-  const isDark = document.body.classList.contains('dark-theme');
-  localStorage.setItem(THEME_KEY, isDark? 'dark' : 'light');
-}
-
-async function logout() {
-  if (!confirm('Logout? Your progress is saved.')) return;
-  try {
-    await auth.signOut();
-    // onAuthStateChanged will redirect to login.html
-  } catch (error) {
-    alert('Logout failed: ' + error.message);
+  if (!completed.includes(id)) {
+    completed.push(id);
+    localStorage.setItem('completedSections', JSON.stringify(completed));
+    updateProgress();
   }
 }
+
+// Theme toggle
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+  localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+}
+
+// Logout
+function logout() {
+  firebase.auth().signOut().then(() => {
+    window.location.href = 'login.html';
+  });
+}
+
+// Initialize
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+  }
+  updateProgress();
+});
 </script>
 </body>
 </html>
