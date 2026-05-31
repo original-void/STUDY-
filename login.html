@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - JUNIOR STUDY HUB</title>
-<link rel="stylesheet" href="style.css">
-<script type="module" src="auth.js"></script>
-<style>
-.auth-box {max-width:400px; margin:80px auto; background:var(--card); padding:30px; border-radius:12px; border:1px solid var(--border)}
-.auth-box input {width:100%; padding:12px; margin:8px 0 16px; border:1px solid var(--border); border-radius:6px; background:var(--bg); color:var(--text); box-sizing:border-box}
-.auth-box button {width:100%}
-.error {color:#ef4444; font-size:0.9rem; margin-bottom:10px}
-.success {color:#22c55e; font-size:0.9rem; margin-bottom:10px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body { font-family: Arial; max-width: 400px; margin: 100px auto; padding: 20px; }
+    input { display: block; width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+    button { width: 100%; padding: 12px; background: #2b6cb0; color: white; border: none; cursor: pointer; }
+    a { display: block; text-align: center; margin-top: 10px; }
+  </style>
 </head>
 <body>
-<div class="auth-box">
-  <h2 style="text-align:center; color:var(--accent); margin-bottom:20px">Login</h2>
-  <div id="auth-msg"></div>
-  <form onsubmit="loginUser(event)">
-    <label>Email</label>
-    <input type="email" id="login-user" required>
-    <label>Password</label>
-    <input type="password" id="login-pass" required>
+  <h2>Login to Junior Study Hub </h2>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
     <button type="submit">Login</button>
   </form>
-  <p style="text-align:center; margin-top:10px; font-size:0.9rem">
-    <a href="forgot.html" style="color:var(--accent)">Forgot password?</a>
-  </p>
-  <p style="text-align:center; margin-top:20px; font-size:0.9rem">
-    No account? <a href="register.html" style="color:var(--accent)">Register</a>
-  </p>
-</div>
+  <a href="register.html">Create new account</a>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.getElementById('loginForm').onsubmit = async (e) => {
+      e.preventDefault();
+      try {
+        await auth.signInWithEmailAndPassword(email.value, password.value);
+        location.href = 'index.html';
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    };
+    auth.onAuthStateChanged(user => {
+      if (user) location.href = 'index.html';
+    });
+  </script>
 </body>
 </html>
