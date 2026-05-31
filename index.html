@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module One: Structures - Direct Stress, Thermal Stress, SFD & BMD</title>
-<link rel="stylesheet" href="style.css">
-<script type="module" src="auth.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script>
 window.MathJax = {
@@ -52,7 +50,7 @@ window.MathJax = {
 </div>
 
 <div class="controls">
-  <span>Logged in as: <strong id="user-display"></strong></span>
+  <span>Logged in as: <strong id="user-display">Student</strong></span>
   <button onclick="toggleTheme()">🌓 Theme</button>
   <button onclick="window.print()">📄 PDF</button>
   <button onclick="logout()">Logout</button>
@@ -391,8 +389,8 @@ window.MathJax = {
 
 <div class="svg-container">
 <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
-  <rect x="50" y="40" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
-    <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="50" y="40"  width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
+  <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
   <rect x="50" y="70" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
   <text x="150" y="35" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Aluminum</text>
   <text x="150" y="105" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Steel</text>
@@ -579,21 +577,25 @@ window.MathJax = {
   <text class="svg-label">SFD</text>
   <svg width="400" height="120" viewBox="0 0 400 120">
     <line x1="50" y1="60" x2="350" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,60 50,35 150,35 150,55 250,55 250,90 350,90 350,60" fill="none" stroke="blue" stroke-width="2"/>
-    <text x="30" y="40" class="svg-label">+4.67</text>
-    <text x="30" y="90" class="svg-label">-5.33</text>
+    <polyline points="50,60 50,36.65 150,36.65 150,56.65 250,56.65 250,86.65 350,86.65 350,60" 
+              fill="none" stroke="blue" stroke-width="2"/>
+    <text x="25" y="36.65" class="svg-label">+4.67</text>
+    <text x="25" y="86.65" class="svg-label">-5.33</text>
+    <text x="152" y="56.65" class="svg-label">+0.67</text>
   </svg>
   <text class="svg-label">BMD</text>
   <svg width="400" height="120" viewBox="0 0 400 120">
     <line x1="50" y1="100" x2="350" y2="100" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,100 150,50 250,42 350,100" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="140" y="45" class="svg-label">9.34</text>
-    <text x="240" y="37" class="svg-label">10.68</text>
+    <polyline points="50,100 150,53.3 250,46.6 350,100" 
+              fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <text x="140" y="48" class="svg-label">9.34</text>
+    <text x="240" y="41" class="svg-label">10.68</text>
   </svg>
 </div>
 <div class="solution">
-  <p><strong>SFD:</strong> 0 to +4.67, drops 4kN to +0.67, drops 6kN to -5.33, jumps to 0</p>
+  <p><strong>SFD:</strong> 0 → +4.67 kN, drops 4kN to +0.67 kN, drops 6kN to -5.33 kN, jumps to 0</p>
   <p><strong>BMD:</strong> $M_{2m} = 9.34$ kNm, $M_{4m} = 10.68$ kNm</p>
+  <p class="note">Note: SVG uses 1kN = 5px and 1kNm = 5px scaling. Coordinates use decimals for accuracy.</p>
 </div>
 </div>
 <button id="complete-sec19" onclick="markSectionComplete('sec19')">Mark as Complete</button>
@@ -606,22 +608,25 @@ window.MathJax = {
 <p>8m beam, 4kN/m on first 3m from A. $R_A = 9.75$ kN, $R_B = 2.25$ kN</p>
 <div class="diagram">
   <text class="svg-label">SFD</text>
-  <svg width="400" height="120" viewBox="0 0 400 120">
-    <line x1="50" y1="60" x2="350" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,20 200,70 350,70 350,60" fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="25" class="svg-label">+9.75</text>
-    <text x="25" y="75" class="svg-label">-2.25</text>
-    <circle cx="172" cy="60" r="3" fill="red"/><text x="175" y="55" class="svg-label">Zero shear</text>
+  <svg width="450" height="120" viewBox="0 0 450 120">
+    <line x1="50" y1="60" x2="450" y2="60" stroke="#cbd5e0" stroke-width="1"/>
+    <polyline points="50,11.25 200,71.25 450,71.25 450,60" 
+              fill="none" stroke="blue" stroke-width="2"/>
+    <text x="25" y="11.25" class="svg-label">+9.75</text>
+    <text x="25" y="71.25" class="svg-label">-2.25</text>
+    <circle cx="171.875" cy="60" r="3" fill="red"/>
+    <text x="175" y="55" class="svg-label">Zero shear: 2.44m</text>
   </svg>
   <text class="svg-label">BMD - Parabolic under UDL</text>
-  <svg width="400" height="120" viewBox="0 0 400 120">
-    <line x1="50" y1="100" x2="350" y2="100" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 100 Q 125 50 200 65 L 350 100" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="160" y="45" class="svg-label">M_max = 11.89</text>
+  <svg width="450" height="120" viewBox="0 0 450 120">
+    <line x1="50" y1="100" x2="450" y2="100" stroke="#cbd5e0" stroke-width="1"/>
+    <path d="M 50 100 Q 110 40.586 171.875 40.586 Q 185 41 200 43.75 L 450 100" 
+          fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <text x="160" y="35" class="svg-label">M_max = 11.88</text>
   </svg>
 </div>
 <div class="solution">
-  <p>Zero shear: $x = 2.44$m from A. $M_{max} = 11.89$ kNm</p>
+  <p>Zero shear: $x = 9.75/4 = 2.4375$m from A. $M_{max} = 11.88$ kNm</p>
 </div>
 </div>
 <button id="complete-sec20" onclick="markSectionComplete('sec20')">Mark as Complete</button>
@@ -646,15 +651,17 @@ window.MathJax = {
   <text class="svg-label">BMD showing Contraflexure</text>
   <svg width="450" height="140" viewBox="0 0 450 140">
     <line x1="50" y1="70" x2="400" y2="70" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 70 Q 200 20 290 70 L 400 110" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <circle cx="290" cy="70" r="4" fill="red"/><text x="295" y="65" class="svg-label">Contraflexure</text>
-    <text x="180" y="30" class="svg-label">+ve Sagging</text>
-    <text x="360" y="120" class="svg-label">-ve Hogging</text>
-    <text x="390" y="105" class="svg-label">-4kNm</text>
+    <path d="M 50 70 Q 183.35 34.45 250 70 L 400 90" 
+          fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <circle cx="250" cy="70" r="4" fill="red"/>
+    <text x="255" y="65" class="svg-label">Contraflexure: 4m</text>
+    <text x="160" y="29" class="svg-label">+7.11 sagging</text>
+    <text x="360" y="95" class="svg-label">-4 hogging</text>
   </svg>
 </div>
 <div class="solution">
   <p>$M_B = -4$ kNm hogging. Contraflexure at 4m from A where M = 0</p>
+  <p>Max +ve M = 7.11 kNm at x = 2.667m</p>
 </div>
 </div>
 <button id="complete-sec21" onclick="markSectionComplete('sec21')">Mark as Complete</button>
@@ -669,13 +676,13 @@ window.MathJax = {
   <text class="svg-label">BMD - Multiple parabolic segments</text>
   <svg width="450" height="140" viewBox="0 0 450 140">
     <line x1="50" y1="120" x2="400" y2="120" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 120 Q 87 80 125 61 L 200 46 L 250 49 L 325 77 L 400 120" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <path d="M 50 120 Q 87.5 61.05 125 61.05 L 200 45.76 L 250 49.5 L 325 76.8 L 400 120" 
+          fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
     <text x="120" y="56" class="svg-label">58.95</text>
     <text x="190" y="41" class="svg-label">74.24</text>
     <text x="240" y="44" class="svg-label">70.5</text>
     <text x="315" y="72" class="svg-label">43.2</text>
   </svg>
-</div>
 </div>
 <button id="complete-sec22" onclick="markSectionComplete('sec22')">Mark as Complete</button>
 </div>
@@ -698,16 +705,18 @@ window.MathJax = {
   <text class="svg-label">SFD - Constant, no change at couple</text>
   <svg width="400" height="100" viewBox="0 0 400 100">
     <line x1="50" y1="50" x2="350" y2="50" stroke="#cbd5e0" stroke-width="1"/>
-    <line x1="50" y1="70" x2="350" y2="70" stroke="blue" stroke-width="2"/>
+    <line x1="50" y1="75" x2="350" y2="75" stroke="blue" stroke-width="2"/>
     <text x="25" y="75" class="svg-label">-3kN</text>
   </svg>
   <text class="svg-label">BMD - Sudden +15kNm jump at couple</text>
   <svg width="400" height="120" viewBox="0 0 400 120">
     <line x1="50" y1="70" x2="350" y2="70" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,70 170,100 170,40 350,70" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="160" y="105" class="svg-label">-6</text>
-    <text x="160" y="35" class="svg-label">+9</text>
-    <line x1="170" y1="40" x2="170" y2="100" stroke="red" stroke-width="2" stroke-dasharray="3,3"/>
+    <polyline points="50,70 150,100 150,25 350,70" 
+              fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <text x="140" y="105" class="svg-label">-6</text>
+    <text x="140" y="20" class="svg-label">+9</text>
+    <line x1="150" y1="25" x2="150" y2="100" stroke="red" stroke-width="2" stroke-dasharray="3,3"/>
+    <text x="155" y="65" class="svg-label">ΔM=15</text>
   </svg>
 </div>
 </div>
@@ -796,7 +805,6 @@ function logout() {
   alert('Logout function - connect to auth.js');
 }
 
-// Auto-load user display if auth.js sets it
 window.addEventListener('DOMContentLoaded', () => {
   if (typeof getUserDisplay === 'function') {
     document.getElementById('user-display').innerText = getUserDisplay();
@@ -804,4 +812,4 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 </body>
-</html>
+  </html>
