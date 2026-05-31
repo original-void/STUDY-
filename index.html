@@ -82,6 +82,43 @@ window.MathJax = {
   body.dark-theme a { color: #63b3ed; }
   .toc ul { list-style: none; padding-left: 0; }
   .toc li { margin: 5px 0; }
+  .floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  text-decoration: none;
+  z-index: 1000;
+  transition: transform 0.2s, background 0.2s;
+}
+.floating-whatsapp:hover {
+  background: #1ebe57;
+  transform: scale(1.1);
+}
+.floating-whatsapp svg {
+  width: 28px;
+  height: 28px;
+}
+@media (max-width: 640px) {
+  .floating-whatsapp {
+    bottom: 16px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+  }
+  .floating-whatsapp svg {
+    width: 24px;
+    height: 24px;
+  }
+}
 </style>
 </head>
 <body>
