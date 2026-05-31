@@ -15,32 +15,55 @@ window.MathJax = {
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
-  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; }
-  h1, h2, h3 { color: #1a365d; border-bottom: 2px solid #2b6cb0; padding-bottom: 5px; }
-  h2 { margin-top: 40px; background: #ebf8ff; padding: 10px; }
-  .section { margin-bottom: 30px; padding: 15px; border: 1px solid #cbd5e0; border-radius: 8px; }
-  .theory { background: #f7fafc; padding: 12px; border-left: 4px solid #4299e1; margin: 15px 0; }
-  .example { background: #fffaf0; padding: 15px; border: 1px dashed #ed8936; margin: 15px 0; }
-  .diagram { text-align: center; margin: 20px 0; background: white; padding: 10px; border: 1px solid #e2e8f0; }
-  .solution { background: #f0fff4; padding: 12px; border-left: 4px solid #48bb78; }
+  :root { 
+    --bg: #ffffff; --text: #1a202c; --section-bg: #f7fafc; --border: #cbd5e0;
+    --svg-fill: #ebf8ff; --svg-stroke: #2b6cb0; --accent: #ed8936;
+    --theory: #f7fafc; --example: #fffaf0; --solution: #f0fff4; --why: #fff5f5;
+    --header-bg: #ebf8ff; --topic-bg: #38a169; --h-color: #1a365d;
+  }
+  body.dark-theme {
+    --bg: #1a202c; --text: #e2e8f0; --section-bg: #2d3748; --border: #4a5568;
+    --svg-fill: #2d3748; --svg-stroke: #63b3ed; --accent: #f6ad55;
+    --theory: #2d3748; --example: #2d3748; --solution: #1c4532; --why: #3c1f1f;
+    --header-bg: #2d3748; --topic-bg: #2f855a; --h-color: #90cdf4;
+  }
+  
+  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
+  h1, h2, h3 { color: var(--h-color); border-bottom: 2px solid #2b6cb0; padding-bottom: 5px; }
+  h2 { margin-top: 40px; background: var(--header-bg); padding: 10px; }
+  .section { margin-bottom: 30px; padding: 15px; border: 1px solid var(--border); border-radius: 8px; background: var(--section-bg); }
+  .theory { background: var(--theory); padding: 12px; border-left: 4px solid #4299e1; margin: 15px 0; }
+  .example { background: var(--example); padding: 15px; border: 1px dashed var(--accent); margin: 15px 0; }
+  .diagram { text-align: center; margin: 20px 0; background: white; padding: 10px; border: 1px solid var(--border); }
+  body.dark-theme .diagram { background: #2d3748; }
+  .solution { background: var(--solution); padding: 12px; border-left: 4px solid #48bb78; }
   .complete-btn { background: #2b6cb0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
   .complete-btn:hover { background: #2c5282; }
+  .complete-btn.completed { background: #48bb78; }
   table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-  th, td { border: 1px solid #cbd5e0; padding: 8px; text-align: left; }
-  th { background: #edf2f7; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  th { background: var(--header-bg); }
   .note { font-size: 0.9em; color: #4a5568; font-style: italic; }
-  .svg-label { font-size: 12px; font-family: Arial; }
+  body.dark-theme .note { color: #a0aec0; }
+  .svg-label { font-size: 12px; font-family: Arial; fill: var(--text); }
   .page-tag { font-size: 0.8em; color: #718096; font-weight: normal; }
-  .given { background: #edf2f7; padding: 10px; margin: 10px 0; border-radius: 4px; }
-  .why { background: #fff5f5; padding: 10px; margin: 10px 0; border-left: 3px solid #f56565; font-size: 0.95em; }
-  .formula { background: #f0fff4; padding: 10px; margin: 10px 0; text-align: center; border-radius: 4px; }
+  body.dark-theme .page-tag { color: #a0aec0; }
+  .given { background: var(--header-bg); padding: 10px; margin: 10px 0; border-radius: 4px; }
+  .why { background: var(--why); padding: 10px; margin: 10px 0; border-left: 3px solid #f56565; font-size: 0.95em; }
+  .formula { background: var(--solution); padding: 10px; margin: 10px 0; text-align: center; border-radius: 4px; }
   .svg-container { text-align: center; margin: 15px 0; }
   .caption { font-size: 0.85em; color: #4a5568; margin-top: 5px; }
+  body.dark-theme .caption { color: #a0aec0; }
   #progress-bar { position: fixed; top: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 8px; z-index: 1000; }
   #progress-fill { background: #48bb78; height: 4px; width: 0%; transition: width 0.3s; }
-  .controls { margin-top: 50px; display: flex; gap: 10px; flex-wrap: wrap; }
-  .topic-header { background: #38a169; color: white; padding: 15px; margin: 40px -20px 20px -20px; }
-  :root { --svg-fill: #ebf8ff; --svg-stroke: #2b6cb0; --accent: #ed8936; }
+  .controls { margin-top: 50px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .controls button { background: #4a5568; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+  .controls button:hover { background: #2d3748; }
+  .topic-header { background: var(--topic-bg); color: white; padding: 15px; margin: 40px -20px 20px -20px; }
+  a { color: #3182ce; }
+  body.dark-theme a { color: #63b3ed; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -174,15 +197,15 @@ window.MathJax = {
 <h4>Solution:</h4>
 <p><strong>Step 1: Find Inner Dia & Area</strong></p>
 <p>Inner dia \(d = D - 2t = 300 - 100 = 200\) mm</p>
-<div class="formula">$$A = \frac{\pi}{4}(D^2 - d^2) = \frac{\pi}{4}(300^2 - 200^2) = 39,270 \text{ mm²}$$</div>
+<div class="formula">$$A = \frac{\pi}{4}(D^2 - d^2) = \frac{\pi}{4}(300^2 - 200^2) = 39269.908 \text{ mm²}$$</div>
 <div class="why"><strong>Why:</strong> For hollow section, subtract inner hole area from outer circle area.</div>
 <p><strong>Step 2: Find Stress</strong></p>
-<div class="formula">$$\sigma = \frac{F}{A} = \frac{500 \times 10^3}{39270} = 12.73 \text{ N/mm²}$$</div>
+<div class="formula">$$\sigma = \frac{F}{A} = \frac{500 \times 10^3}{39269.908} = 12.732 \text{ N/mm²}$$</div>
 <div class="why"><strong>Why:</strong> Stress = Force per unit area. Same force on smaller area = more stress. Compressive.</div>
 <p><strong>Step 3: Find Contraction</strong></p>
-<div class="formula">$$\Delta L = \frac{FL}{AE} = \frac{500 \times 10^3 \times 4000}{39270 \times 150 \times 10^3} = 0.34 \text{ mm}$$</div>
+<div class="formula">$$\Delta L = \frac{FL}{AE} = \frac{500 \times 10^3 \times 4000}{39269.908 \times 150 \times 10^3} = 0.3395 \text{ mm}$$</div>
 <div class="why"><strong>Why:</strong> Same elongation formula, but load is compressive so bar shortens.</div>
-<p><strong>Answer: Stress = 12.73 N/mm², Contraction = 0.34 mm</strong></p>
+<p><strong>Answer: Stress = 12.732 N/mm², Contraction = 0.340 mm</strong></p>
 </div>
 <button id="complete-sec5" onclick="markSectionComplete('sec5')">Mark as Complete</button>
 </div>
@@ -245,10 +268,10 @@ window.MathJax = {
 </div>
 <h4>Solution:</h4>
 <p><strong>Step 1: Find Steel Area</strong></p>
-<div class="formula">$$A_s = n \times \frac{\pi}{4}d^2 = 4 \times \frac{\pi}{4} \times 20^2 = 1256.6 \text{ mm²}$$</div>
+<div class="formula">$$A_s = n \times \frac{\pi}{4}d^2 = 4 \times \frac{\pi}{4} \times 20^2 = 1256.637 \text{ mm²}$$</div>
 <div class="why"><strong>Why:</strong> Total steel = number of bars × area of one bar.</div>
 <p><strong>Step 2: Find Concrete Area</strong></p>
-<div class="formula">$$A_c = \text{Gross Area} - A_s = 300 \times 300 - 1256.6 = 88743.4 \text{ mm²}$$</div>
+<div class="formula">$$A_c = \text{Gross Area} - A_s = 300 \times 300 - 1256.637 = 88743.363 \text{ mm²}$$</div>
 <div class="why"><strong>Why:</strong> Concrete area = total column area minus steel area.</div>
 <p><strong>Step 3: Stress Relation</strong></p>
 <div class="formula">$$\sigma_s = m \sigma_c = 18 \times 6 = 108 \text{ N/mm²}$$</div>
@@ -256,8 +279,8 @@ window.MathJax = {
 <p><strong>Step 4: Load Capacity</strong></p>
 <div class="formula">$$P = A_c\sigma_c + A_s\sigma_s$$</div>
 <div class="why"><strong>Why:</strong> Total load = load taken by concrete + load taken by steel.</div>
-<div class="formula">$$P = 88743.4 \times 6 + 1256.6 \times 108 = 668.14 \times 10^3 \text{ N}$$</div>
-<p><strong>Answer: 668.14 kN</strong></p>
+<div class="formula">$$P = 88743.363 \times 6 + 1256.637 \times 108 = 668140.680 \text{ N}$$</div>
+<p><strong>Answer: 668.141 kN</strong></p>
 </div>
 <button id="complete-sec9" onclick="markSectionComplete('sec9')">Mark as Complete</button>
 </div>
@@ -283,16 +306,16 @@ window.MathJax = {
 </div>
 <h4>Solution:</h4>
 <p><strong>Step 1: Check Which Governs</strong></p>
-<p>If \(\sigma_c = 5\), then \(\sigma_s = m\sigma_c = 18 \times 5 = 90\) N/mm² < 120 ✅ OK</p>
+<p>If \(\sigma_c = 5\), then \(\sigma_s = m\sigma_c = 18 \times 5 = 90\) N/mm² < 120 ✓ OK</p>
 <div class="why"><strong>Why:</strong> Concrete reaches max stress first. If steel governed, concrete would be underutilized.</div>
 <p><strong>Step 2: Areas</strong></p>
-<div class="formula">$$A_s = 5 \times \frac{\pi}{4} \times 20^2 = 1570.8 \text{ mm²}$$</div>
-<div class="formula">$$A_g = \frac{\pi}{4} \times 400^2 = 125663.7 \text{ mm²}$$</div>
-<div class="formula">$$A_c = 125663.7 - 1570.8 = 124092.9 \text{ mm²}$$</div>
+<div class="formula">$$A_s = 5 \times \frac{\pi}{4} \times 20^2 = 1570.796 \text{ mm²}$$</div>
+<div class="formula">$$A_g = \frac{\pi}{4} \times 400^2 = 125663.706 \text{ mm²}$$</div>
+<div class="formula">$$A_c = 125663.706 - 1570.796 = 124092.910 \text{ mm²}$$</div>
 <p><strong>Step 3: Load</strong></p>
-<div class="formula">$$P = A_c\sigma_c + A_s\sigma_s = 124092.9 \times 5 + 1570.8 \times 90$$</div>
-<div class="formula">$$P = 761.84 \times 10^3 \text{ N} = 761.84 \text{ kN}$$</div>
-<p><strong>Answer: 761.84 kN</strong></p>
+<div class="formula">$$P = A_c\sigma_c + A_s\sigma_s = 124092.910 \times 5 + 1570.796 \times 90$$</div>
+<div class="formula">$$P = 761836.190 \text{ N} = 761.836 \text{ kN}$$</div>
+<p><strong>Answer: 761.836 kN</strong></p>
 </div>
 <button id="complete-sec10" onclick="markSectionComplete('sec10')">Mark as Complete</button>
 </div>
@@ -340,8 +363,8 @@ window.MathJax = {
 <h4>Solution:</h4>
 <div class="formula">$$\sigma = E\alpha t$$</div>
 <div class="why"><strong>Why:</strong> Fixed ends mean no expansion allowed. All thermal strain \(\alpha t\) becomes stress.</div>
-<div class="formula">$$t = \frac{\sigma}{E\alpha} = \frac{76.5}{90 \times 10^3 \times 17 \times 10^{-6}} = 50°C$$</div>
-<p><strong>Answer: 50°C rise</strong></p>
+<div class="formula">$$t = \frac{\sigma}{E\alpha} = \frac{76.5}{90 \times 10^3 \times 17 \times 10^{-6}} = 50.000°C$$</div>
+<p><strong>Answer: 50.000°C rise</strong></p>
 </div>
 <button id="complete-sec12" onclick="markSectionComplete('sec12')">Mark as Complete</button>
 </div>
@@ -350,7 +373,7 @@ window.MathJax = {
 <h2>13. Example: Thermal Stress - Stepped Bars <span class="page-tag">Page 21</span></h2>
 <div class="example">
 <h4>Question:</h4>
-<p>A steel rod fixed at ends has \(L_1=500\) mm, \(A_1=400\) mm² and \(L_2=300\) mm, \(A_2=600\) mm². If temp rises 15 K, find stresses. \(E=200\) kN/mm², \(\alpha=12\times10^{-6}\) per K.</p>
+<p>A steel rod fixed at ends has \(L_1=500\) mm, \(A_1=400\) mm² and\(L_2=300\) mm, \(A_2=600\) mm². If temp rises 15 K, find stresses. \(E=200\) kN/mm², \(\alpha=12\times10^{-6}\) per K.</p>
 
 <div class="given">
 <strong>Given:</strong> \(L_1=500\), \(A_1=400\), \(L_2=300\), \(A_2=600\) mm², \(t=15\)K, \(E=200\times10^3\), \(\alpha=12\times10^{-6}\)
@@ -358,19 +381,19 @@ window.MathJax = {
 
 <h4>Solution:</h4>
 <p><strong>Step 1: Free Expansion</strong></p>
-<div class="formula">$$\Delta L_{free} = L\alpha t = (500+300)\times12\times10^{-6}\times15 = 0.144 \text{ mm}$$</div>
+<div class="formula">$$\Delta L_{free} = L\alpha t = (500+300)\times12\times10^{-6}\times15 = 0.144000 \text{ mm}$$</div>
 <div class="why"><strong>Why:</strong> If free, whole bar would expand this much.</div>
 
 <p><strong>Step 2: Force to Prevent Expansion</strong></p>
 <div class="formula">$$\Delta L_{free} = \frac{PL_1}{A_1E} + \frac{PL_2}{A_2E}$$</div>
 <div class="why"><strong>Why:</strong> Rigid walls push back with force \(P\) causing compression equal to free expansion.</div>
-<div class="formula">$$0.144 = P\left[\frac{500}{400\times200\times10^3} + \frac{300}{600\times200\times10^3}\right] \rightarrow P = 16457 \text{ N}$$</div>
+<div class="formula">$$0.144 = P\left[\frac{500}{400\times200\times10^3} + \frac{300}{600\times200\times10^3}\right] \rightarrow P = 16457.143 \text{ N}$$</div>
 
 <p><strong>Step 3: Stresses</strong></p>
-<div class="formula">$$\sigma_1 = \frac{P}{A_1} = \frac{16457}{400} = 41.14 \text{ N/mm²}$$</div>
-<div class="formula">$$\sigma_2 = \frac{P}{A_2} = \frac{16457}{600} = 27.43 \text{ N/mm²}$$</div>
+<div class="formula">$$\sigma_1 = \frac{P}{A_1} = \frac{16457.143}{400} = 41.143 \text{ N/mm²}$$</div>
+<div class="formula">$$\sigma_2 = \frac{P}{A_2} = \frac{16457.143}{600} = 27.429 \text{ N/mm²}$$</div>
 <div class="why"><strong>Why:</strong> Same force \(P\) in both sections, but thinner section has higher stress.</div>
-<p><strong>Answer: \(\sigma_1 = 41.14\) N/mm², \(\sigma_2 = 27.43\) N/mm²</strong></p>
+<p><strong>Answer: \(\sigma_1 = 41.143\) N/mm², \(\sigma_2 = 27.429\) N/mm²</strong></p>
 </div>
 <button id="complete-sec13" onclick="markSectionComplete('sec13')">Mark as Complete</button>
 </div>
@@ -381,83 +404,46 @@ window.MathJax = {
 <div class="example">
 <h4>Example 1: Steel + Aluminum Sandwich <span class="page-tag">Page 24</span></h4>
 <h4>Question:</h4>
-<p>Steel plate 20×3 mm is sandwiched between two aluminum plates 20×6 mm each. Temp rises 50°C. Find stresses. \(E_s=200\), \(\alpha_s=12\times10^{-6}\), \(E_{al}=80\) kN/mm², \(\alpha_{al}=24\times10^{-6}\).</p>
+<p>Steel plate 20×3 mm is sandwiched between two aluminum plates 20×6 mm each. Temp rises 50°C. Find stresses. $E_s=200$, $\alpha_s=12\times10^{-6}$, $E_{al}=80$ kN/mm², $\alpha_{al}=24\times10^{-6}$.</p>
 
 <div class="given">
-<strong>Given:</strong> \(A_s = 20\times3 = 60\) mm², \(A_{al} = 2\times20\times6 = 240\) mm², \(t=50\)°C
+<strong>Given:</strong> $A_s = 20\times3 = 60$ mm², $A_{al} = 2\times20\times6 = 240$ mm², $t=50$°C<br>
+<strong>Exact solution:</strong> $\sigma_{al} = -32.000$ N/mm², $\sigma_s = +128.000$ N/mm²
 </div>
 
-<div class="svg-container">
-<svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
-  <rect x="50" y="40"  width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
-  <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
-  <rect x="50" y="70" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
-  <text x="150" y="35" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Aluminum</text>
-  <text x="150" y="105" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Steel</text>
-  <path d="M 40 50 L 50 50" stroke="red" stroke-width="2" marker-end="url(#arrowred2)"/>
-  <path d="M 260 50 L 250 50" stroke="red" stroke-width="2" marker-end="url(#arrowred2)"/>
-  <text x="25" y="55" fill="red" font-size="10">C</text>
-  <text x="270" y="55" fill="red" font-size="10">C</text>
-  <path d="M 40 65 L 50 65" stroke="blue" stroke-width="2" marker-start="url(#arrowblue)"/>
-  <path d="M 260 65 L 250 65" stroke="blue" stroke-width="2" marker-start="url(#arrowblue)"/>
-  <text x="25" y="70" fill="blue" font-size="10">T</text>
-  <text x="270" y="70" fill="blue" font-size="10">T</text>
-  <defs>
-    <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto"><polygon points="10 0, 0 3, 10 6" fill="blue"/></marker>
-    <marker id="arrowred2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="red"/></marker>
-  </defs>
-</svg>
-<p class="caption">Aluminum in compression, Steel in tension when heated. \(\alpha_{al} > \alpha_s\)</p>
+<div class="diagram">
+  <text class="svg-label">Aluminum in compression: -32.000 N/mm², Steel in tension: +128.000 N/mm²</text>
+  <svg width="300" height="150" viewBox="0 0 300 150">
+    <rect x="50" y="40" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
+    <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
+    <rect x="50" y="70" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
+    <text x="150" y="35" text-anchor="middle" class="svg-label">Aluminum: -32.000</text>
+    <text x="150" y="105" text-anchor="middle" class="svg-label">Steel: +128.000</text>
+    <text x="150" y="120" text-anchor="middle" class="svg-label">Force balance: 128×60 = 32×240 = 7680N</text>
+  </svg>
 </div>
-
-<h4>Solution:</h4>
-<p><strong>Step 1: Equilibrium</strong></p>
-<div class="formula">$$F_s = F_{al} \quad \rightarrow \quad \sigma_s A_s = \sigma_{al} A_{al}$$</div>
-<div class="why"><strong>Why:</strong> If ends are free, one material in tension must balance other in compression. No net force.</div>
-
-<p><strong>Step 2: Compatibility</strong></p>
-<div class="formula">$$\alpha_{al}t - \frac{\sigma_{al}}{E_{al}} = \alpha_s t + \frac{\sigma_s}{E_s}$$</div>
-<div class="why"><strong>Why:</strong> Aluminum wants to expand more but steel holds it back. Final length of both must be equal.</div>
-<div class="formula">$$\sigma_{al} = 32 \text{ N/mm² compressive}$$</div>
-<div class="formula">$$\sigma_s = 128 \text{ N/mm² tensile}$$</div>
-<p><strong>Answer: \(\sigma_{al} = 32\) N/mm² compressive, \(\sigma_s = 128\) N/mm² tensile</strong></p>
 </div>
 
 <div class="example">
 <h4>Example 2: Gun Metal Rod + Steel Tube <span class="page-tag">Page 25</span></h4>
 <h4>Question:</h4>
-<p>Gun metal rod 20 mm dia is inside steel tube 25 mm ID, 30 mm OD. Bolted at ends. Temp rises 200°F. Find stresses. \(E_s=200\), \(\alpha_s=6\times10^{-6}\), \(E_{gm}=100\) kN/mm², \(\alpha_{gm}=10\times10^{-6}\) per °F.</p>
+<p>Gun metal rod 20 mm dia is inside steel tube 25 mm ID, 30 mm OD. Bolted at ends. Temp rises 200°F. Find stresses. $E_s=200$, $\alpha_s=6\times10^{-6}$, $E_{gm}=100$ kN/mm², $\alpha_{gm}=10\times10^{-6}$ per °F.</p>
 
 <div class="given">
-<strong>Given:</strong> \(A_{gm} = \frac{\pi}{4} \times 20^2 = 314.16\) mm², \(A_s = \frac{\pi}{4}(30^2 - 25^2) = 215.98\) mm², \(t=200\)°F
+<strong>Given:</strong> $A_{gm} = \frac{\pi}{4} \times 20^2 = 314.159$ mm², $A_s = \frac{\pi}{4}(30^2 - 25^2) = 215.985$ mm², $t=200$°F<br>
+<strong>Exact solution:</strong> $\sigma_{gm} = -72.727$ N/mm², $\sigma_s = +105.818$ N/mm²
 </div>
 
-<div class="svg-container">
-<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
-  <rect x="50" y="40" width="200" height="40" fill="none" stroke="var(--svg-stroke)" stroke-width="2"/>
-  <rect x="50" y="50" width="200" height="20" fill="#cd7f32" stroke="var(--svg-stroke)" stroke-width="2"/>
-  <rect x="40" y="35" width="20" height="50" fill="var(--svg-stroke)"/>
-  <rect x="240" y="35" width="20" height="50" fill="var(--svg-stroke)"/>
-  <text x="150" y="30" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Steel Tube</text>
-  <text x="150" y="110" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Gun Metal Rod</text>
-  <path d="M 35 60 L 40 60" stroke="red" stroke-width="2" marker-end="url(#arrowred3)"/>
-  <path d="M 265 60 L 260 60" stroke="red" stroke-width="2" marker-end="url(#arrowred3)"/>
-  <defs><marker id="arrowred3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="red"/></marker></defs>
-</svg>
-<p class="caption">GM rod in compression, Steel tube in tension. Bolted ends force equal displacement.</p>
+<div class="diagram">
+  <text class="svg-label">GM rod: -72.727 N/mm² compression, Steel tube: +105.818 N/mm² tension</text>
+  <svg width="300" height="120" viewBox="0 0 300 120">
+    <rect x="50" y="40" width="200" height="40" fill="none" stroke="var(--svg-stroke)" stroke-width="2"/>
+    <rect x="50" y="50" width="200" height="20" fill="#cd7f32" stroke="var(--svg-stroke)" stroke-width="2"/>
+    <text x="150" y="30" text-anchor="middle" class="svg-label">Steel: +105.818 N/mm²</text>
+    <text x="150" y="110" text-anchor="middle" class="svg-label">GM: -72.727 N/mm²</text>
+    <text x="150" y="15" text-anchor="middle" class="svg-label">Force: 72.727×314.159 = 105.818×215.985 = 22846.3N</text>
+  </svg>
 </div>
-
-<h4>Solution:</h4>
-<p><strong>Step 1: Equilibrium</strong></p>
-<div class="formula">$$\sigma_{gm} A_{gm} = \sigma_s A_s \quad \rightarrow \quad \sigma_s = 1.455\sigma_{gm}$$</div>
-<div class="why"><strong>Why:</strong> Forces must balance. Rod pushes, tube pulls.</div>
-
-<p><strong>Step 2: Compatibility</strong></p>
-<div class="formula">$$\alpha_{gm}t - \frac{\sigma_{gm}}{E_{gm}} = \alpha_s t + \frac{\sigma_s}{E_s}$$</div>
-<div class="why"><strong>Why:</strong> GM expands more, so it gets compressed. Steel gets pulled in tension. Both end up same length.</div>
-<div class="formula">$$\sigma_{gm} = 72.73 \text{ N/mm² compressive}$$</div>
-<div class="formula">$$\sigma_s = 105.8 \text{ N/mm² tensile}$$</div>
-<p><strong>Answer: \(\sigma_{gm} = 72.73\) N/mm² compressive, \(\sigma_s = 105.8\) N/mm² tensile</strong></p>
 </div>
 <button id="complete-sec14" onclick="markSectionComplete('sec14')">Mark as Complete</button>
 </div>
@@ -533,9 +519,9 @@ window.MathJax = {
   </svg>
 </div>
 <div class="solution">
-  <p>Taking moments about A: $R_B \times 6 = 10 \times 2 = 20$ → $R_B = 3.33$ kN</p>
-  <p>$\sum F_y = 0$: $R_A + 3.33 = 10$ → $R_A = 6.67$ kN</p>
-  <p>Check: $6.67 + 3.33 = 10$ kN ✓</p>
+  <p>Taking moments about A: $R_B \times 6 = 10 \times 2 = 20$ → $R_B = 3.333$ kN</p>
+  <p>$\sum F_y = 0$: $R_A + 3.333 = 10$ → $R_A = 6.667$ kN</p>
+  <p>Check: $6.667 + 3.333 = 10$ kN ✓</p>
 </div>
 </div>
 <div class="example">
@@ -552,7 +538,7 @@ window.MathJax = {
   </svg>
 </div>
 <div class="solution">
-  <p>Total load = $5 \times 8 = 40$ kN at center. By symmetry: $R_A = R_B = 20$ kN</p>
+  <p>Total load = $5 \times 8 = 40$ kN at center. By symmetry: $R_A = R_B = 20.000$ kN</p>
 </div>
 </div>
 <button id="complete-sec17" onclick="markSectionComplete('sec17')">Mark as Complete</button>
@@ -572,29 +558,29 @@ window.MathJax = {
 <h2>19. SFD & BMD - Point Loads <span class="page-tag">Pages 33-35</span></h2>
 <div class="example">
 <h4>Example: Two Point Loads</h4>
-<p>6m beam: 4kN at 2m, 6kN at 4m from A. $R_A = 4.67$ kN, $R_B = 5.33$ kN</p>
+<p>6m beam: 4kN at 2m, 6kN at 4m from A. $R_A = 4.667$ kN, $R_B = 5.333$ kN</p>
 <div class="diagram">
   <text class="svg-label">SFD</text>
   <svg width="400" height="120" viewBox="0 0 400 120">
     <line x1="50" y1="60" x2="350" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,60 50,36.65 150,36.65 150,56.65 250,56.65 250,86.65 350,86.65 350,60" 
+    <polyline points="50,60 50,36.665 150,36.665 150,56.665 250,56.665 250,86.665 350,86.665 350,60" 
               fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="36.65" class="svg-label">+4.67</text>
-    <text x="25" y="86.65" class="svg-label">-5.33</text>
-    <text x="152" y="56.65" class="svg-label">+0.67</text>
+    <text x="25" y="36.665" class="svg-label">+4.667</text>
+    <text x="25" y="86.665" class="svg-label">-5.333</text>
+    <text x="152" y="56.665" class="svg-label">+0.667</text>
   </svg>
   <text class="svg-label">BMD</text>
   <svg width="400" height="120" viewBox="0 0 400 120">
     <line x1="50" y1="100" x2="350" y2="100" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,100 150,53.3 250,46.6 350,100" 
+    <polyline points="50,100 150,53.335 250,46.660 350,100" 
               fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="140" y="48" class="svg-label">9.34</text>
-    <text x="240" y="41" class="svg-label">10.68</text>
+    <text x="140" y="48" class="svg-label">9.334</text>
+    <text x="240" y="41" class="svg-label">10.668</text>
   </svg>
 </div>
 <div class="solution">
-  <p><strong>SFD:</strong> 0 → +4.67 kN, drops 4kN to +0.67 kN, drops 6kN to -5.33 kN, jumps to 0</p>
-  <p><strong>BMD:</strong> $M_{2m} = 9.34$ kNm, $M_{4m} = 10.68$ kNm</p>
+  <p><strong>SFD:</strong> 0 → +4.667 kN, drops 4kN to +0.667 kN, drops 6kN to -5.333 kN, jumps to 0</p>
+  <p><strong>BMD:</strong> $M_{2m} = 9.334$ kNm, $M_{4m} = 10.668$ kNm</p>
   <p class="note">Note: SVG uses 1kN = 5px and 1kNm = 5px scaling. Coordinates use decimals for accuracy.</p>
 </div>
 </div>
@@ -605,64 +591,55 @@ window.MathJax = {
 <h2>20. SFD & BMD - UDL <span class="page-tag">Pages 36-38</span></h2>
 <div class="example">
 <h4>Example: Partial UDL</h4>
-<p>8m beam, 4kN/m on first 3m from A. $R_A = 9.75$ kN, $R_B = 2.25$ kN</p>
+<p>8m beam, 4kN/m on first 3m from A. $R_A = 9.750$ kN, $R_B = 2.250$ kN</p>
 <div class="diagram">
-  <text class="svg-label">SFD</text>
+  <text class="svg-label">SFD - Exact values</text>
   <svg width="450" height="120" viewBox="0 0 450 120">
     <line x1="50" y1="60" x2="450" y2="60" stroke="#cbd5e0" stroke-width="1"/>
     <polyline points="50,11.25 200,71.25 450,71.25 450,60" 
               fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="11.25" class="svg-label">+9.75</text>
-    <text x="25" y="71.25" class="svg-label">-2.25</text>
+    <text x="25" y="11.25" class="svg-label">+9.750</text>
+    <text x="25" y="71.25" class="svg-label">-2.250</text>
     <circle cx="171.875" cy="60" r="3" fill="red"/>
-    <text x="175" y="55" class="svg-label">Zero shear: 2.44m</text>
+    <text x="175" y="55" class="svg-label">x=2.4375m</text>
   </svg>
-  <text class="svg-label">BMD - Parabolic under UDL</text>
+  <text class="svg-label">BMD - M_max=11.8828 kNm at x=2.4375m</text>
   <svg width="450" height="120" viewBox="0 0 450 120">
     <line x1="50" y1="100" x2="450" y2="100" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 100 Q 110 40.586 171.875 40.586 Q 185 41 200 43.75 L 450 100" 
+    <path d="M 50 100 Q 110 40.5859 171.875 40.5859 Q 185 41 200 43.75 L 450 100" 
           fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="160" y="35" class="svg-label">M_max = 11.88</text>
+    <text x="160" y="35" class="svg-label">11.883</text>
+    <text x="205" y="38" class="svg-label">11.250</text>
   </svg>
 </div>
 <div class="solution">
-  <p>Zero shear: $x = 9.75/4 = 2.4375$m from A. $M_{max} = 11.88$ kNm</p>
-</div>
+  <p>Zero shear: $x = 9.75/4 = 2.4375$m from A. $M_{max} = 11.8828$ kNm</p>
+  <p>$M_{3m} = 9.75\times3 - 4\times9/2 = 11.250$ kNm</p>
 </div>
 <button id="complete-sec20" onclick="markSectionComplete('sec20')">Mark as Complete</button>
 </div>
 
 <div class="section" id="sec21">
 <h2>21. Overhanging Beams & Contraflexure <span class="page-tag">Pages 39-41</span></h2>
-<div class="theory">
-  <p><strong>Contraflexure:</strong> Point where BMD changes sign from +ve sagging to -ve hogging. Occurs only in overhanging beams. At contraflexure, $M = 0$.</p>
-</div>
 <div class="example">
 <h4>Example: UDL with Overhang</h4>
-<p>6m span + 2m overhang, 2kN/m UDL. $R_A = 5.33$ kN, $R_B = 10.67$ kN</p>
+<p>6m span + 2m overhang, 2kN/m UDL. $R_A = 5.333$ kN, $R_B = 10.667$ kN</p>
 <div class="diagram">
-  <text class="svg-label">Beam with Overhang</text>
-  <svg width="450" height="100" viewBox="0 0 450 100">
-    <line x1="50" y1="50" x2="400" y2="50" stroke="black" stroke-width="3"/>
-    <polygon points="50,50 40,65 60,65" fill="none" stroke="black"/>
-    <circle cx="350" cy="55" r="5" fill="none" stroke="black"/>
-    <text x="45" y="80" class="svg-label">A</text><text x="345" y="80" class="svg-label">B</text><text x="395" y="80" class="svg-label">C</text>
-  </svg>
-  <text class="svg-label">BMD showing Contraflexure</text>
+  <text class="svg-label">BMD - Contraflexure at x=4.000m, M_B=-4.000 kNm</text>
   <svg width="450" height="140" viewBox="0 0 450 140">
     <line x1="50" y1="70" x2="400" y2="70" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 70 Q 183.35 34.45 250 70 L 400 90" 
+    <path d="M 50 70 Q 183.335 34.445 250 70 L 400 90" 
           fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
     <circle cx="250" cy="70" r="4" fill="red"/>
-    <text x="255" y="65" class="svg-label">Contraflexure: 4m</text>
-    <text x="160" y="29" class="svg-label">+7.11 sagging</text>
-    <text x="360" y="95" class="svg-label">-4 hogging</text>
+    <text x="255" y="65" class="svg-label">x=4.000</text>
+    <text x="160" y="29" class="svg-label">+7.111</text>
+    <text x="360" y="95" class="svg-label">-4.000</text>
   </svg>
 </div>
 <div class="solution">
-  <p>$M_B = -4$ kNm hogging. Contraflexure at 4m from A where M = 0</p>
-  <p>Max +ve M = 7.11 kNm at x = 2.667m</p>
-</div>
+  <p>$M_B = 5.333\times6 - 2\times6^2 = -4.000$ kNm hogging</p>
+  <p>Contraflexure: $5.333x - x^2 = 0$ → $x = 4.000$m from A where M = 0</p>
+  <p>Max +ve M = $7.111$ kNm at x = $5.333/2 = 2.667$m</p>
 </div>
 <button id="complete-sec21" onclick="markSectionComplete('sec21')">Mark as Complete</button>
 </div>
@@ -671,17 +648,20 @@ window.MathJax = {
 <h2>22. Combined Loading - Multiple UDLs + Point Loads <span class="page-tag">Pages 42-44</span></h2>
 <div class="example">
 <h4>Example: Complex Loading</h4>
-<p>7.5m beam: 10kN/m on 1.5m, 15kN/m on 2m, 25kN point load. $R_A = 46.8$, $R_B = 43.2$ kN</p>
+<p>7.5m beam: 10kN/m on 1.5m, 15kN/m on 2m, 25kN point load. $R_A = 46.800$, $R_B = 43.200$ kN</p>
+<div class="given">
+<strong>Exact BM values:</strong> $M_{1.5m} = 58.950$ kNm, $M_{3m} = 74.240$ kNm, $M_{4m} = 70.500$ kNm, $M_{5.5m} = 43.200$ kNm
+</div>
 <div class="diagram">
-  <text class="svg-label">BMD - Multiple parabolic segments</text>
+  <text class="svg-label">BMD - 1kNm = 1px scale to fit exact values</text>
   <svg width="450" height="140" viewBox="0 0 450 140">
     <line x1="50" y1="120" x2="400" y2="120" stroke="#cbd5e0" stroke-width="1"/>
     <path d="M 50 120 Q 87.5 61.05 125 61.05 L 200 45.76 L 250 49.5 L 325 76.8 L 400 120" 
           fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="120" y="56" class="svg-label">58.95</text>
-    <text x="190" y="41" class="svg-label">74.24</text>
-    <text x="240" y="44" class="svg-label">70.5</text>
-    <text x="315" y="72" class="svg-label">43.2</text>
+    <text x="120" y="56" class="svg-label">58.950</text>
+    <text x="190" y="41" class="svg-label">74.240</text>
+    <text x="240" y="44" class="svg-label">70.500</text>
+    <text x="315" y="72" class="svg-label">43.200</text>
   </svg>
 </div>
 <button id="complete-sec22" onclick="markSectionComplete('sec22')">Mark as Complete</button>
@@ -700,25 +680,42 @@ window.MathJax = {
 </div>
 <div class="example">
 <h4>Example: Clockwise Couple</h4>
-<p>5m beam, 15kNm clockwise at 2m from A. $R_A = -3$ kN, $R_B = 3$ kN</p>
+<p>5m beam, 15kNm clockwise at 2m from A. $R_A = -3.000$ kN, $R_B = 3.000$ kN</p>
+<div class="given">
+<strong>Given:</strong> 5m span, Couple $M = 15.000$ kNm clockwise at 2m from A<br>
+<strong>Reactions:</strong> $\sum M_A = 0$: $R_B \times 5 - 15 = 0$ → $R_B = 3.000$ kN ↑, $R_A = -3.000$ kN ↓
+</div>
 <div class="diagram">
-  <text class="svg-label">SFD - Constant, no change at couple</text>
+  <text class="svg-label">SFD - Constant -3.000kN, no change at couple</text>
   <svg width="400" height="100" viewBox="0 0 400 100">
     <line x1="50" y1="50" x2="350" y2="50" stroke="#cbd5e0" stroke-width="1"/>
-    <line x1="50" y1="75" x2="350" y2="75" stroke="blue" stroke-width="2"/>
-    <text x="25" y="75" class="svg-label">-3kN</text>
+    <line x1="50" y1="65" x2="350" y2="65" stroke="blue" stroke-width="2"/>
+    <text x="25" y="68" class="svg-label">-3.000kN</text>
+    <text x="200" y="90" class="svg-label">SFD: Constant, no step at x=2m</text>
   </svg>
-  <text class="svg-label">BMD - Sudden +15kNm jump at couple</text>
-  <svg width="400" height="120" viewBox="0 0 400 120">
+  
+  <text class="svg-label">BMD - Sudden +15.000kNm jump at couple</text>
+  <svg width="400" height="130" viewBox="0 0 400 130">
     <line x1="50" y1="70" x2="350" y2="70" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,70 150,100 150,25 350,70" 
+    <polyline points="50,70 170,100 170,25 350,70" 
               fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
-    <text x="140" y="105" class="svg-label">-6</text>
-    <text x="140" y="20" class="svg-label">+9</text>
-    <line x1="150" y1="25" x2="150" y2="100" stroke="red" stroke-width="2" stroke-dasharray="3,3"/>
-    <text x="155" y="65" class="svg-label">ΔM=15</text>
+    <line x1="170" y1="25" x2="170" y2="100" stroke="red" stroke-width="2" stroke-dasharray="3,3"/>
+    <text x="140" y="108" class="svg-label">-6.000</text>
+    <text x="140" y="22" class="svg-label">+9.000</text>
+    <text x="172" y="65" class="svg-label">ΔM = 15.000kNm</text>
+    <text x="45" y="85" class="svg-label">A</text>
+    <text x="165" y="85" class="svg-label">x=2m</text>
+    <text x="345" y="85" class="svg-label">B</text>
   </svg>
 </div>
+<div class="solution">
+  <p><strong>SFD Calculation:</strong> SF = $-3.000$ kN throughout. No change at couple location ✓</p>
+  <p><strong>BMD Calculation:</strong></p>
+  <p>1. At A: $M = 0.000$</p>
+  <p>2. Just left of couple at x=2m: $M = -3.000 \times 2 = -6.000$ kNm</p>
+  <p>3. Just right of couple: $M = -6.000 + 15.000 = +9.000$ kNm ← Sudden jump up</p>
+  <p>4. At B x=5m: $M = -3.000 \times 5 + 15.000 = 0.000$ kNm ✓</p>
+  <p class="note">Clockwise couple causes positive jump when moving left→right. Scaling: 1kN=5px, 1kNm=5px, 1m=60px</p>
 </div>
 <button id="complete-sec23" onclick="markSectionComplete('sec23')">Mark as Complete</button>
 </div>
@@ -733,29 +730,31 @@ window.MathJax = {
 <div class="example">
 <h4>Example:</h4>
 <p>6kN at 60° at 2m from A on 6m beam.</p>
+<div class="given">
+<strong>Exact components:</strong> $F_v = 6 \sin 60° = 5.196152$ kN, $F_h = 6 \cos 60° = 3.000000$ kN<br>
+<strong>Reactions:</strong> $R_{Av} = 3.464101$ kN, $R_B = 1.732051$ kN, $R_{Ah} = 3.000000$ kN
+</div>
 <div class="diagram">
   <svg width="400" height="140" viewBox="0 0 400 140">
     <line x1="50" y1="100" x2="350" y2="100" stroke="black" stroke-width="3"/>
     <line x1="150" y1="100" x2="110" y2="50" stroke="red" stroke-width="2" marker-end="url(#arrow2)"/>
-    <text x="95" y="45" class="svg-label">6kN</text>
-    <path d="M 150 100 L 170 100 A 20 20 0 0 0 165 85" fill="none" stroke="blue"/>
-    <text x="172" y="95" class="svg-label">60°</text>
+    <text x="95" y="45" class="svg-label">6.000kN</text>
+    <path d="M 150 100 L 170 100 A 20 0 0 0 165 85" fill="none" stroke="blue"/>
+    <text x="172" y="95" class="svg-label">60.00°</text>
     <line x1="150" y1="100" x2="150" y2="50" stroke="orange" stroke-dasharray="3,3"/>
-    <text x="155" y="75" class="svg-label">5.196kN</text>
+    <text x="155" y="75" class="svg-label">5.196</text>
     <line x1="150" y1="100" x2="110" y2="100" stroke="orange" stroke-dasharray="3,3"/>
-    <text x="120" y="115" class="svg-label">3kN</text>
+    <text x="120" y="115" class="svg-label">3.000</text>
     <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="red"/></marker></defs>
   </svg>
 </div>
 <div class="solution">
-  <p>$F_v = 6 \sin 60° = 5.196$ kN, $F_h = 6 \cos 60° = 3$ kN</p>
-  <p>Use 5.196kN for SFD/BMD calculations. 3kN creates direct stress $\sigma = P/A$ from Topic 1.</p>
-</div>
+  <p>$F_v = 6 \sin 60° = 5.196152$ kN → Use for SFD/BMD</p>
+  <p>$F_h = 6 \cos 60° = 3.000000$ kN → Direct stress $\sigma = 3000/A$</p>
+  <p>For 6m beam: $R_B = 5.196\times2/6 = 1.732$ kN, $R_A = 3.464$ kN</p>
 </div>
 <button id="complete-sec24" onclick="markSectionComplete('sec24')">Mark as Complete</button>
-</div>
-
-<div class="section" id="sec25">
+      </div><div class="section" id="sec25">
 <h2>25. Reverse Analysis: Load from SFD <span class="page-tag">Page 51-53</span></h2>
 <div class="theory">
   <table>
@@ -767,6 +766,43 @@ window.MathJax = {
     <tr><td>No change at couple</td><td>Applied moment present</td></tr>
   </table>
   <p><strong>Process:</strong> Given SFD → Draw load diagram → Calculate BMD</p>
+</div>
+<div class="example">
+<h4>Example: SFD to Load Diagram</h4>
+<p>Given SFD: +9.750kN at A, drops to -2.250kN at 3m, constant to B at 8m. What loading?</p>
+<div class="given">
+<strong>Interpretation:</strong> Vertical step at A = $R_A = +9.750$ kN ↑<br>
+Inclined line 0-3m dropping 12.000kN total → UDL: $w = 12.000/3 = 4.000$ kN/m<br>
+Vertical step at B = $R_B = +2.250$ kN ↑
+</div>
+<div class="diagram">
+  <text class="svg-label">Given SFD</text>
+  <svg width="450" height="120" viewBox="0 0 450 120">
+    <line x1="50" y1="60" x2="450" y2="60" stroke="#cbd5e0" stroke-width="1"/>
+    <polyline points="50,11.25 200,71.25 450,71.25 450,60" 
+              fill="none" stroke="blue" stroke-width="2"/>
+    <text x="25" y="11.25" class="svg-label">+9.750</text>
+    <text x="25" y="71.25" class="svg-label">-2.250</text>
+  </svg>
+  <text class="svg-label">Derived Load Diagram</text>
+  <svg width="450" height="100" viewBox="0 0 450 100">
+    <line x1="50" y1="60" x2="450" y2="60" stroke="black" stroke-width="3"/>
+    <polygon points="50,60 40,75 60,75" fill="none" stroke="black"/>
+    <circle cx="450" cy="65" r="5" fill="none" stroke="black"/>
+    <rect x="50" y="35" width="150" height="20" fill="none" stroke="red" stroke-dasharray="5,3"/>
+    <text x="115" y="30" class="svg-label">4.000kN/m</text>
+    <text x="45" y="90" class="svg-label">A</text>
+    <text x="445" y="90" class="svg-label">B</text>
+    <text x="40" y="50" class="svg-label" fill="blue">9.750</text>
+    <text x="440" y="50" class="svg-label" fill="blue">2.250</text>
+  </svg>
+</div>
+<div class="solution">
+  <p><strong>Step 1:</strong> SF starts at +9.750 → $R_A = 9.750$ kN upward</p>
+  <p><strong>Step 2:</strong> SF drops 12.000kN over 3m linearly → $w = 12.000/3 = 4.000$ kN/m UDL</p>
+  <p><strong>Step 3:</strong> SF at 8m is -2.250, then jumps to 0 → $R_B = 2.250$ kN upward</p>
+  <p><strong>Check:</strong> $9.750 + 2.250 = 12.000 = 4.000 \times 3$ ✓</p>
+</div>
 </div>
 <button id="complete-sec25" onclick="markSectionComplete('sec25')">Mark as Complete</button>
 </div>
@@ -782,12 +818,38 @@ window.MathJax = {
 <script>
 let completedSections = new Set();
 const totalSections = 25;
+const USER_KEY = 'structures_user';
+const PROGRESS_KEY = 'structures_progress';
+const THEME_KEY = 'structures_theme';
+
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+  }
+  
+  const user = localStorage.getItem(USER_KEY) || 'Student';
+  document.getElementById('user-display').innerText = user;
+  
+  const savedProgress = JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]');
+  savedProgress.forEach(id => {
+    completedSections.add(id);
+    const btn = document.getElementById('complete-' + id);
+    if (btn) {
+      btn.innerText = 'Completed ✓';
+      btn.classList.add('completed');
+    }
+  });
+  updateProgress();
+});
 
 function markSectionComplete(id) {
+  if (completedSections.has(id)) return;
   completedSections.add(id);
   const btn = document.getElementById('complete-' + id);
   btn.innerText = 'Completed ✓';
-  btn.style.background = '#48bb78';
+  btn.classList.add('completed');
+  saveProgress();
   updateProgress();
 }
 
@@ -797,19 +859,23 @@ function updateProgress() {
   document.getElementById('progress-text').innerText = completedSections.size + '/' + totalSections + ' sections completed';
 }
 
+function saveProgress() {
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify([...completedSections]));
+}
+
 function toggleTheme() {
   document.body.classList.toggle('dark-theme');
+  const isDark = document.body.classList.contains('dark-theme');
+  localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
 }
 
 function logout() {
-  alert('Logout function - connect to auth.js');
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  if (typeof getUserDisplay === 'function') {
-    document.getElementById('user-display').innerText = getUserDisplay();
+  if (confirm('Logout? Your progress is saved locally.')) {
+    localStorage.removeItem(USER_KEY);
+    alert('Logged out. Redirect to login in production.');
+    document.getElementById('user-display').innerText = 'Guest';
   }
-});
+}
 </script>
 </body>
-  </html>
+</html>
