@@ -13,18 +13,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Auth guard for protected pages
+// Auth guard - runs on every page load
 onAuthStateChanged(auth, (user) => {
   if (!user) {
+    // Not logged in, redirect to login
     window.location.href = 'login.html';
   } else {
+    // Logged in, show the page
     document.body.style.display = 'block';
     const userDisplay = document.getElementById('user-display');
     if (userDisplay) userDisplay.textContent = user.email || 'Student';
   }
 });
 
-// Logout function - make it global so onclick works
+// Global logout function for the button
 window.logout = function() {
   signOut(auth).then(() => {
     window.location.href = 'login.html';
