@@ -3,68 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module One: Structures - Direct Stress, Thermal Stress, SFD & BMD</title>
+<title>Module One: Structures</title>
+
+<!-- Your CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase v10 compat -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<!-- Your auth.js - must load after Firebase -->
+<script src="auth.js"></script>
+
+<!-- MathJax -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['\\(', '\\)']],
-    displayMath: [['$$', '$$']]
-  }
-};
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] } };
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<style>
-  :root { 
-    --bg: #ffffff; --text: #1a202c; --section-bg: #f7fafc; --border: #cbd5e0;
-    --svg-fill: #ebf8ff; --svg-stroke: #2b6cb0; --accent: #ed8936;
-    --theory: #f7fafc; --example: #fffaf0; --solution: #f0fff4; --why: #fff5f5;
-    --header-bg: #ebf8ff; --topic-bg: #38a169; --h-color: #1a365d;
-  }
-  body.dark-theme {
-    --bg: #1a202c; --text: #e2e8f0; --section-bg: #2d3748; --border: #4a5568;
-    --svg-fill: #2d3748; --svg-stroke: #63b3ed; --accent: #f6ad55;
-    --theory: #2d3748; --example: #2d3748; --solution: #1c4532; --why: #3c1f1f;
-    --header-bg: #2d3748; --topic-bg: #2f855a; --h-color: #90cdf4;
-  }
-  
-  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
-  h1, h2, h3 { color: var(--h-color); border-bottom: 2px solid #2b6cb0; padding-bottom: 5px; }
-  h2 { margin-top: 40px; background: var(--header-bg); padding: 10px; }
-  .section { margin-bottom: 30px; padding: 15px; border: 1px solid var(--border); border-radius: 8px; background: var(--section-bg); }
-  .theory { background: var(--theory); padding: 12px; border-left: 4px solid #4299e1; margin: 15px 0; }
-  .example { background: var(--example); padding: 15px; border: 1px dashed var(--accent); margin: 15px 0; }
-  .diagram { text-align: center; margin: 20px 0; background: white; padding: 10px; border: 1px solid var(--border); }
-  body.dark-theme .diagram { background: #2d3748; }
-  .solution { background: var(--solution); padding: 12px; border-left: 4px solid #48bb78; }
-  .complete-btn { background: #2b6cb0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
-  .complete-btn:hover { background: #2c5282; }
-  .complete-btn.completed { background: #48bb78; }
-  table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
-  th { background: var(--header-bg); }
-  .note { font-size: 0.9em; color: #4a5568; font-style: italic; }
-  body.dark-theme .note { color: #a0aec0; }
-  .svg-label { font-size: 12px; font-family: Arial; fill: var(--text); }
-  .page-tag { font-size: 0.8em; color: #718096; font-weight: normal; }
-  body.dark-theme .page-tag { color: #a0aec0; }
-  .given { background: var(--header-bg); padding: 10px; margin: 10px 0; border-radius: 4px; }
-  .why { background: var(--why); padding: 10px; margin: 10px 0; border-left: 3px solid #f56565; font-size: 0.95em; }
-  .formula { background: var(--solution); padding: 10px; margin: 10px 0; text-align: center; border-radius: 4px; }
-  .svg-container { text-align: center; margin: 15px 0; }
-  .caption { font-size: 0.85em; color: #4a5568; margin-top: 5px; }
-  body.dark-theme .caption { color: #a0aec0; }
-  #progress-bar { position: fixed; top: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 8px; z-index: 1000; }
-  #progress-fill { background: #48bb78; height: 4px; width: 0%; transition: width 0.3s; }
-  .controls { margin-top: 50px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-  .controls button { background: #4a5568; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
-  .controls button:hover { background: #2d3748; }
-  .topic-header { background: var(--topic-bg); color: white; padding: 15px; margin: 40px -20px 20px -20px; }
-  a { color: #3182ce; }
-  body.dark-theme a { color: #63b3ed; }
-  .toc ul { list-style: none; padding-left: 0; }
-  .toc li { margin: 5px 0; }
-</style>
+
 </head>
 <body>
 <div id="progress-bar">
