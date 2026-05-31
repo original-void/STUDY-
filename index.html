@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module One: Structures - Direct Stress & Thermal Stress</title>
+<title>Module One: Structures - Direct Stress, Thermal Stress, SFD & BMD</title>
 <link rel="stylesheet" href="style.css">
 <script type="module" src="auth.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -16,11 +16,39 @@ window.MathJax = {
 };
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1, h2, h3 { color: #1a365d; border-bottom: 2px solid #2b6cb0; padding-bottom: 5px; }
+  h2 { margin-top: 40px; background: #ebf8ff; padding: 10px; }
+  .section { margin-bottom: 30px; padding: 15px; border: 1px solid #cbd5e0; border-radius: 8px; }
+  .theory { background: #f7fafc; padding: 12px; border-left: 4px solid #4299e1; margin: 15px 0; }
+  .example { background: #fffaf0; padding: 15px; border: 1px dashed #ed8936; margin: 15px 0; }
+  .diagram { text-align: center; margin: 20px 0; background: white; padding: 10px; border: 1px solid #e2e8f0; }
+  .solution { background: #f0fff4; padding: 12px; border-left: 4px solid #48bb78; }
+  .complete-btn { background: #2b6cb0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+  .complete-btn:hover { background: #2c5282; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+  th, td { border: 1px solid #cbd5e0; padding: 8px; text-align: left; }
+  th { background: #edf2f7; }
+  .note { font-size: 0.9em; color: #4a5568; font-style: italic; }
+  .svg-label { font-size: 12px; font-family: Arial; }
+  .page-tag { font-size: 0.8em; color: #718096; font-weight: normal; }
+  .given { background: #edf2f7; padding: 10px; margin: 10px 0; border-radius: 4px; }
+  .why { background: #fff5f5; padding: 10px; margin: 10px 0; border-left: 3px solid #f56565; font-size: 0.95em; }
+  .formula { background: #f0fff4; padding: 10px; margin: 10px 0; text-align: center; border-radius: 4px; }
+  .svg-container { text-align: center; margin: 15px 0; }
+  .caption { font-size: 0.85em; color: #4a5568; margin-top: 5px; }
+  #progress-bar { position: fixed; top: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 8px; z-index: 1000; }
+  #progress-fill { background: #48bb78; height: 4px; width: 0%; transition: width 0.3s; }
+  .controls { margin-top: 50px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .topic-header { background: #38a169; color: white; padding: 15px; margin: 40px -20px 20px -20px; }
+  :root { --svg-fill: #ebf8ff; --svg-stroke: #2b6cb0; --accent: #ed8936; }
+</style>
 </head>
 <body>
 <div id="progress-bar">
   <div id="progress-fill"></div>
-  <span id="progress-text">0/14 sections completed</span>
+  <span id="progress-text">0/25 sections completed</span>
 </div>
 
 <div class="controls">
@@ -33,12 +61,13 @@ window.MathJax = {
 <div class="container">
 <header>
   <h1>Module One: Structures</h1>
-  <p><strong>Direct Stress, Strain & Thermal Stress - Solved Examples</strong></p>
-  <p>Questions + Step Solutions + Formula Logic | Pages 1-25</p>
+  <p><strong>Topic 1: Direct Stress & Thermal Stress | Topic 2: Shear Force & Bending Moment</strong></p>
+  <p>Questions + Step Solutions + Formula Logic + SVG Diagrams | 53 Total Pages</p>
 </header>
 
 <div class="toc">
   <h3>Table of Contents</h3>
+  <h4>Topic 1: Direct Stress & Thermal Stress</h4>
   <ul>
     <li><a href="#sec1">1. Direct Stress & Strain Theory</a></li>
     <li><a href="#sec2">2. Hooke's Law & Elastic Constants</a></li>
@@ -55,6 +84,25 @@ window.MathJax = {
     <li><a href="#sec13">13. Thermal Stress Stepped Bars - Example</a></li>
     <li><a href="#sec14">14. Composite Thermal Stress - 2 Examples</a></li>
   </ul>
+  <h4>Topic 2: Shear Force & Bending Moment</h4>
+  <ul>
+    <li><a href="#sec15">15. Types of Supports & Beams</a></li>
+    <li><a href="#sec16">16. Types of Loading</a></li>
+    <li><a href="#sec17">17. Reaction Calculations - Basic</a></li>
+    <li><a href="#sec18">18. Shear Force & Bending Moment - Definitions</a></li>
+    <li><a href="#sec19">19. SFD & BMD - Point Loads</a></li>
+    <li><a href="#sec20">20. SFD & BMD - UDL</a></li>
+    <li><a href="#sec21">21. Overhanging Beams & Contraflexure</a></li>
+    <li><a href="#sec22">22. Combined Loading - Multiple UDLs + Point Loads</a></li>
+    <li><a href="#sec23">23. Beams with Applied Couples/Moments</a></li>
+    <li><a href="#sec24">24. Inclined Loads</a></li>
+    <li><a href="#sec25">25. Reverse Analysis: Load from SFD</a></li>
+  </ul>
+</div>
+
+<div class="topic-header">
+  <h2>Topic 1: Direct Stress & Thermal Stress</h2>
+  <p>Pages 1-25: Axial loading, Hooke's Law, Composite bars, Thermal effects</p>
 </div>
 
 <div class="section" id="sec1">
@@ -344,7 +392,7 @@ window.MathJax = {
 <div class="svg-container">
 <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
   <rect x="50" y="40" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
-  <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
+    <rect x="50" y="60" width="200" height="10" fill="#c0c0c0" stroke="var(--svg-stroke)" stroke-width="2"/>
   <rect x="50" y="70" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
   <text x="150" y="35" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Aluminum</text>
   <text x="150" y="105" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">Steel</text>
@@ -416,10 +464,344 @@ window.MathJax = {
 <button id="complete-sec14" onclick="markSectionComplete('sec14')">Mark as Complete</button>
 </div>
 
+<div class="topic-header">
+  <h2>Topic 2: Shear Force & Bending Moment</h2>
+  <p>Pages 26-53: Beam analysis, SFD/BMD, Contraflexure, Couples, Inclined loads</p>
+</div>
+
+<div class="section" id="sec15">
+<h2>15. Types of Supports & Beams <span class="page-tag">Page 26</span></h2>
+<div class="theory">
+  <p><strong>Three main types of supports:</strong></p>
+  <ul>
+    <li><strong>Simply Supported/Roller:</strong> Free to rotate, resists vertical force only. 1 reaction.</li>
+    <li><strong>Hinged/Pinned:</strong> Free to rotate, resists vertical & horizontal force. 2 reactions.</li>
+    <li><strong>Fixed:</strong> No rotation or translation. Resists vertical, horizontal force & moment. 3 reactions.</li>
+  </ul>
+  <p><strong>Beam Types:</strong> Simply supported, Cantilever, Overhanging, Fixed, Continuous</p>
+  <div class="diagram">
+    <svg width="500" height="80" viewBox="0 0 500 80">
+      <text x="10" y="15" class="svg-label">Simply Supported</text>
+      <line x1="20" y1="40" x2="120" y2="40" stroke="black" stroke-width="3"/>
+      <polygon points="20,40 15,50 25,50" fill="none" stroke="black"/>
+      <circle cx="120" cy="45" r="5" fill="none" stroke="black"/>
+      
+      <text x="160" y="15" class="svg-label">Cantilever</text>
+      <line x1="170" y1="40" x2="270" y2="40" stroke="black" stroke-width="3"/>
+      <rect x="165" y="25" width="5" height="30" fill="#4a5568"/>
+      
+      <text x="310" y="15" class="svg-label">Overhanging</text>
+      <line x1="320" y1="40" x2="450" y2="40" stroke="black" stroke-width="3"/>
+      <polygon points="340,40 335,50 345,50" fill="none" stroke="black"/>
+      <circle cx="400" cy="45" r="5" fill="none" stroke="black"/>
+    </svg>
+  </div>
+</div>
+<button id="complete-sec15" onclick="markSectionComplete('sec15')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec16">
+<h2>16. Types of Loading <span class="page-tag">Page 27</span></h2>
+<div class="theory">
+  <table>
+    <tr><th>Loading Type</th><th>Description</th><th>SFD Effect</th><th>BMD Effect</th></tr>
+    <tr><td>Point Load</td><td>Concentrated load at a point</td><td>Vertical step</td><td>Linear slope change</td></tr>
+    <tr><td>UDL</td><td>Uniformly Distributed Load: w kN/m</td><td>Linear slope</td><td>Parabolic curve</td></tr>
+    <tr><td>UVL</td><td>Uniformly Varying Load</td><td>Parabolic</td><td>Cubic curve</td></tr>
+    <tr><td>Couple/Moment</td><td>Applied moment kNm</td><td>No change</td><td>Sudden vertical jump</td></tr>
+    <tr><td>Inclined Load</td><td>At angle to beam axis</td><td>Use vertical component</td><td>Use vertical component</td></tr>
+  </table>
+</div>
+<button id="complete-sec16" onclick="markSectionComplete('sec16')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec17">
+<h2>17. Reaction Calculations - Basic <span class="page-tag">Pages 28-30</span></h2>
+<div class="example">
+<h4>Example 1: Point Load</h4>
+<p>A simply supported beam 6m span has 10kN at 2m from A. Find reactions.</p>
+<div class="diagram">
+  <svg width="400" height="100" viewBox="0 0 400 100">
+    <line x1="50" y1="50" x2="350" y2="50" stroke="black" stroke-width="3"/>
+    <polygon points="50,50 40,65 60,65" fill="none" stroke="black"/>
+    <circle cx="350" cy="55" r="5" fill="none" stroke="black"/>
+    <line x1="150" y1="20" x2="150" y2="50" stroke="red" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="145" y="15" class="svg-label">10kN</text>
+    <text x="45" y="80" class="svg-label">A</text><text x="345" y="80" class="svg-label">B</text>
+    <text x="95" y="70" class="svg-label">2m</text><text x="245" y="70" class="svg-label">4m</text>
+    <text x="40" y="40" class="svg-label" fill="blue">R_A</text>
+    <text x="340" y="40" class="svg-label" fill="blue">R_B</text>
+    <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="red"/></marker></defs>
+  </svg>
+</div>
+<div class="solution">
+  <p>Taking moments about A: $R_B \times 6 = 10 \times 2 = 20$ → $R_B = 3.33$ kN</p>
+  <p>$\sum F_y = 0$: $R_A + 3.33 = 10$ → $R_A = 6.67$ kN</p>
+  <p>Check: $6.67 + 3.33 = 10$ kN ✓</p>
+</div>
+</div>
+<div class="example">
+<h4>Example 2: UDL</h4>
+<p>Simply supported beam 8m with 5kN/m UDL. Find reactions.</p>
+<div class="diagram">
+  <svg width="400" height="100" viewBox="0 0 400 100">
+    <line x1="50" y1="60" x2="350" y2="60" stroke="black" stroke-width="3"/>
+    <polygon points="50,60 40,75 60,75" fill="none" stroke="black"/>
+    <circle cx="350" cy="65" r="5" fill="none" stroke="black"/>
+    <rect x="50" y="35" width="300" height="20" fill="none" stroke="red" stroke-dasharray="5,3"/>
+    <text x="190" y="30" class="svg-label">5kN/m</text>
+    <text x="45" y="90" class="svg-label">A</text><text x="345" y="90" class="svg-label">B</text>
+  </svg>
+</div>
+<div class="solution">
+  <p>Total load = $5 \times 8 = 40$ kN at center. By symmetry: $R_A = R_B = 20$ kN</p>
+</div>
+</div>
+<button id="complete-sec17" onclick="markSectionComplete('sec17')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec18">
+<h2>18. Shear Force & Bending Moment - Definitions <span class="page-tag">Pages 31-32</span></h2>
+<div class="theory">
+  <p><strong>Shear Force (S.F):</strong> Algebraic sum of vertical forces to left or right of section. +ve = right side down, left side up.</p>
+  <p><strong>Bending Moment (B.M):</strong> Algebraic sum of moments to left or right of section. +ve = sagging (smiley), -ve = hogging (frowny).</p>
+  <p><strong>Key Rule:</strong> $\frac{dM}{dx} = V$ and $\frac{dV}{dx} = -w$. Max BM occurs where SF = 0.</p>
+</div>
+<button id="complete-sec18" onclick="markSectionComplete('sec18')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec19">
+<h2>19. SFD & BMD - Point Loads <span class="page-tag">Pages 33-35</span></h2>
+<div class="example">
+<h4>Example: Two Point Loads</h4>
+<p>6m beam: 4kN at 2m, 6kN at 4m from A. $R_A = 4.67$ kN, $R_B = 5.33$ kN</p>
+<div class="diagram">
+  <text class="svg-label">SFD</text>
+  <svg width="400" height="120" viewBox="0 0 400 120">
+    <line x1="50" y1="60" x2="350" y2="60" stroke="#cbd5e0" stroke-width="1"/>
+    <polyline points="50,60 50,35 150,35 150,55 250,55 250,90 350,90 350,60" fill="none" stroke="blue" stroke-width="2"/>
+    <text x="30" y="40" class="svg-label">+4.67</text>
+    <text x="30" y="90" class="svg-label">-5.33</text>
+  </svg>
+  <text class="svg-label">BMD</text>
+  <svg width="400" height="120" viewBox="0 0 400 120">
+    <line x1="50" y1="100" x2="350" y2="100" stroke="#cbd5e0" stroke-width="1"/>
+    <polyline points="50,100 150,50 250,42 350,100" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <text x="140" y="45" class="svg-label">9.34</text>
+    <text x="240" y="37" class="svg-label">10.68</text>
+  </svg>
+</div>
+<div class="solution">
+  <p><strong>SFD:</strong> 0 to +4.67, drops 4kN to +0.67, drops 6kN to -5.33, jumps to 0</p>
+  <p><strong>BMD:</strong> $M_{2m} = 9.34$ kNm, $M_{4m} = 10.68$ kNm</p>
+</div>
+</div>
+<button id="complete-sec19" onclick="markSectionComplete('sec19')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec20">
+<h2>20. SFD & BMD - UDL <span class="page-tag">Pages 36-38</span></h2>
+<div class="example">
+<h4>Example: Partial UDL</h4>
+<p>8m beam, 4kN/m on first 3m from A. $R_A = 9.75$ kN, $R_B = 2.25$ kN</p>
+<div class="diagram">
+  <text class="svg-label">SFD</text>
+  <svg width="400" height="120" viewBox="0 0 400 120">
+    <line x1="50" y1="60" x2="350" y2="60" stroke="#cbd5e0" stroke-width="1"/>
+    <polyline points="50,20 200,70 350,70 350,60" fill="none" stroke="blue" stroke-width="2"/>
+    <text x="25" y="25" class="svg-label">+9.75</text>
+    <text x="25" y="75" class="svg-label">-2.25</text>
+    <circle cx="172" cy="60" r="3" fill="red"/><text x="175" y="55" class="svg-label">Zero shear</text>
+  </svg>
+  <text class="svg-label">BMD - Parabolic under UDL</text>
+  <svg width="400" height="120" viewBox="0 0 400 120">
+    <line x1="50" y1="100" x2="350" y2="100" stroke="#cbd5e0" stroke-width="1"/>
+    <path d="M 50 100 Q 125 50 200 65 L 350 100" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <text x="160" y="45" class="svg-label">M_max = 11.89</text>
+  </svg>
+</div>
+<div class="solution">
+  <p>Zero shear: $x = 2.44$m from A. $M_{max} = 11.89$ kNm</p>
+</div>
+</div>
+<button id="complete-sec20" onclick="markSectionComplete('sec20')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec21">
+<h2>21. Overhanging Beams & Contraflexure <span class="page-tag">Pages 39-41</span></h2>
+<div class="theory">
+  <p><strong>Contraflexure:</strong> Point where BMD changes sign from +ve sagging to -ve hogging. Occurs only in overhanging beams. At contraflexure, $M = 0$.</p>
+</div>
+<div class="example">
+<h4>Example: UDL with Overhang</h4>
+<p>6m span + 2m overhang, 2kN/m UDL. $R_A = 5.33$ kN, $R_B = 10.67$ kN</p>
+<div class="diagram">
+  <text class="svg-label">Beam with Overhang</text>
+  <svg width="450" height="100" viewBox="0 0 450 100">
+    <line x1="50" y1="50" x2="400" y2="50" stroke="black" stroke-width="3"/>
+    <polygon points="50,50 40,65 60,65" fill="none" stroke="black"/>
+    <circle cx="350" cy="55" r="5" fill="none" stroke="black"/>
+    <text x="45" y="80" class="svg-label">A</text><text x="345" y="80" class="svg-label">B</text><text x="395" y="80" class="svg-label">C</text>
+  </svg>
+  <text class="svg-label">BMD showing Contraflexure</text>
+  <svg width="450" height="140" viewBox="0 0 450 140">
+    <line x1="50" y1="70" x2="400" y2="70" stroke="#cbd5e0" stroke-width="1"/>
+    <path d="M 50 70 Q 200 20 290 70 L 400 110" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <circle cx="290" cy="70" r="4" fill="red"/><text x="295" y="65" class="svg-label">Contraflexure</text>
+    <text x="180" y="30" class="svg-label">+ve Sagging</text>
+    <text x="360" y="120" class="svg-label">-ve Hogging</text>
+    <text x="390" y="105" class="svg-label">-4kNm</text>
+  </svg>
+</div>
+<div class="solution">
+  <p>$M_B = -4$ kNm hogging. Contraflexure at 4m from A where M = 0</p>
+</div>
+</div>
+<button id="complete-sec21" onclick="markSectionComplete('sec21')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec22">
+<h2>22. Combined Loading - Multiple UDLs + Point Loads <span class="page-tag">Pages 42-44</span></h2>
+<div class="example">
+<h4>Example: Complex Loading</h4>
+<p>7.5m beam: 10kN/m on 1.5m, 15kN/m on 2m, 25kN point load. $R_A = 46.8$, $R_B = 43.2$ kN</p>
+<div class="diagram">
+  <text class="svg-label">BMD - Multiple parabolic segments</text>
+  <svg width="450" height="140" viewBox="0 0 450 140">
+    <line x1="50" y1="120" x2="400" y2="120" stroke="#cbd5e0" stroke-width="1"/>
+    <path d="M 50 120 Q 87 80 125 61 L 200 46 L 250 49 L 325 77 L 400 120" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <text x="120" y="56" class="svg-label">58.95</text>
+    <text x="190" y="41" class="svg-label">74.24</text>
+    <text x="240" y="44" class="svg-label">70.5</text>
+    <text x="315" y="72" class="svg-label">43.2</text>
+  </svg>
+</div>
+</div>
+<button id="complete-sec22" onclick="markSectionComplete('sec22')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec23">
+<h2>23. Beams with Applied Couples/Moments <span class="page-tag">Pages 45-47</span></h2>
+<div class="theory">
+  <p><strong>Key Rules for Couples:</strong></p>
+  <ol>
+    <li>S.F does NOT change at section of couple</li>
+    <li>B.M changes suddenly by magnitude of couple</li>
+    <li>Clockwise moment: +ve jump in BMD when moving left to right</li>
+    <li>Anticlockwise moment: -ve jump in BMD</li>
+  </ol>
+</div>
+<div class="example">
+<h4>Example: Clockwise Couple</h4>
+<p>5m beam, 15kNm clockwise at 2m from A. $R_A = -3$ kN, $R_B = 3$ kN</p>
+<div class="diagram">
+  <text class="svg-label">SFD - Constant, no change at couple</text>
+  <svg width="400" height="100" viewBox="0 0 400 100">
+    <line x1="50" y1="50" x2="350" y2="50" stroke="#cbd5e0" stroke-width="1"/>
+    <line x1="50" y1="70" x2="350" y2="70" stroke="blue" stroke-width="2"/>
+    <text x="25" y="75" class="svg-label">-3kN</text>
+  </svg>
+  <text class="svg-label">BMD - Sudden +15kNm jump at couple</text>
+  <svg width="400" height="120" viewBox="0 0 400 120">
+    <line x1="50" y1="70" x2="350" y2="70" stroke="#cbd5e0" stroke-width="1"/>
+    <polyline points="50,70 170,100 170,40 350,70" fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
+    <text x="160" y="105" class="svg-label">-6</text>
+    <text x="160" y="35" class="svg-label">+9</text>
+    <line x1="170" y1="40" x2="170" y2="100" stroke="red" stroke-width="2" stroke-dasharray="3,3"/>
+  </svg>
+</div>
+</div>
+<button id="complete-sec23" onclick="markSectionComplete('sec23')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec24">
+<h2>24. Inclined Loads <span class="page-tag">Page 48-50</span></h2>
+<div class="theory">
+  <p><strong>Method:</strong> Resolve inclined load into vertical & horizontal components.</p>
+  <p>Vertical component: $F_v = F \sin\theta$ → Use for SFD & BMD</p>
+  <p>Horizontal component: $F_h = F \cos\theta$ → Creates axial force $\sigma = P/A$, not used for SFD/BMD</p>
+</div>
+<div class="example">
+<h4>Example:</h4>
+<p>6kN at 60° at 2m from A on 6m beam.</p>
+<div class="diagram">
+  <svg width="400" height="140" viewBox="0 0 400 140">
+    <line x1="50" y1="100" x2="350" y2="100" stroke="black" stroke-width="3"/>
+    <line x1="150" y1="100" x2="110" y2="50" stroke="red" stroke-width="2" marker-end="url(#arrow2)"/>
+    <text x="95" y="45" class="svg-label">6kN</text>
+    <path d="M 150 100 L 170 100 A 20 20 0 0 0 165 85" fill="none" stroke="blue"/>
+    <text x="172" y="95" class="svg-label">60°</text>
+    <line x1="150" y1="100" x2="150" y2="50" stroke="orange" stroke-dasharray="3,3"/>
+    <text x="155" y="75" class="svg-label">5.196kN</text>
+    <line x1="150" y1="100" x2="110" y2="100" stroke="orange" stroke-dasharray="3,3"/>
+    <text x="120" y="115" class="svg-label">3kN</text>
+    <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="red"/></marker></defs>
+  </svg>
+</div>
+<div class="solution">
+  <p>$F_v = 6 \sin 60° = 5.196$ kN, $F_h = 6 \cos 60° = 3$ kN</p>
+  <p>Use 5.196kN for SFD/BMD calculations. 3kN creates direct stress $\sigma = P/A$ from Topic 1.</p>
+</div>
+</div>
+<button id="complete-sec24" onclick="markSectionComplete('sec24')">Mark as Complete</button>
+</div>
+
+<div class="section" id="sec25">
+<h2>25. Reverse Analysis: Load from SFD <span class="page-tag">Page 51-53</span></h2>
+<div class="theory">
+  <table>
+    <tr><th>SFD Shape</th><th>Indicates</th></tr>
+    <tr><td>Vertical step</td><td>Point load or support reaction</td></tr>
+    <tr><td>Horizontal line</td><td>No loading between points</td></tr>
+    <tr><td>Inclined straight line</td><td>UDL between points</td></tr>
+    <tr><td>Parabolic curve</td><td>Uniformly varying load</td></tr>
+    <tr><td>No change at couple</td><td>Applied moment present</td></tr>
+  </table>
+  <p><strong>Process:</strong> Given SFD → Draw load diagram → Calculate BMD</p>
+</div>
+<button id="complete-sec25" onclick="markSectionComplete('sec25')">Mark as Complete</button>
+</div>
+
 <footer>
-<p><strong>End of Module One: Direct Stress & Thermal Stress</strong></p>
-<p>Total: 25 Pages | 14 Sections | 8+ Solved Examples | 6 SVG Diagrams</p>
+<p><strong>End of Module One: Complete Structures Notes</strong></p>
+<p>Total: 53 Pages | 25 Sections | 20+ Solved Examples | 18+ SVG Diagrams</p>
+<p>✓ Direct Stress ✓ Thermal Stress ✓ Composite Bars ✓ SFD/BMD ✓ Couples ✓ Contraflexure ✓ Inclined Loads</p>
+<p class="note">Connection: Inclined loads from sec24 link back to Topic 1 — horizontal component $F_h = F\cos\theta$ creates direct stress $\sigma = P/A$</p>
 </footer>
 </div>
+
+<script>
+let completedSections = new Set();
+const totalSections = 25;
+
+function markSectionComplete(id) {
+  completedSections.add(id);
+  const btn = document.getElementById('complete-' + id);
+  btn.innerText = 'Completed ✓';
+  btn.style.background = '#48bb78';
+  updateProgress();
+}
+
+function updateProgress() {
+  const percent = (completedSections.size / totalSections) * 100;
+  document.getElementById('progress-fill').style.width = percent + '%';
+  document.getElementById('progress-text').innerText = completedSections.size + '/' + totalSections + ' sections completed';
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+}
+
+function logout() {
+  alert('Logout function - connect to auth.js');
+}
+
+// Auto-load user display if auth.js sets it
+window.addEventListener('DOMContentLoaded', () => {
+  if (typeof getUserDisplay === 'function') {
+    document.getElementById('user-display').innerText = getUserDisplay();
+  }
+});
+</script>
 </body>
 </html>
