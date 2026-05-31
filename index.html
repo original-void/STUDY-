@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module One: Structures</title>
+<title>Module One: Structures - Direct Stress, Thermal Stress, SFD & BMD</title>
 
 <!-- Your CSS -->
 <link rel="stylesheet" href="style.css">
@@ -12,16 +12,72 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-<!-- Your auth.js - must load after Firebase -->
+<!-- Your auth.js - must have your Firebase config -->
 <script src="auth.js"></script>
 
 <!-- MathJax -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script>
-window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] } };
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['$$', '$$']]
+  }
+};
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+<style>
+  :root { 
+    --bg: #ffffff; --text: #1a202c; --section-bg: #f7fafc; --border: #cbd5e0;
+    --svg-fill: #ebf8ff; --svg-stroke: #2b6cb0; --accent: #ed8936;
+    --theory: #f7fafc; --example: #fffaf0; --solution: #f0fff4; --why: #fff5f5;
+    --header-bg: #ebf8ff; --topic-bg: #38a169; --h-color: #1a365d;
+  }
+  body.dark-theme {
+    --bg: #1a202c; --text: #e2e8f0; --section-bg: #2d3748; --border: #4a5568;
+    --svg-fill: #2d3748; --svg-stroke: #63b3ed; --accent: #f6ad55;
+    --theory: #2d3748; --example: #2d3748; --solution: #1c4532; --why: #3c1f1f;
+    --header-bg: #2d3748; --topic-bg: #2f855a; --h-color: #90cdf4;
+  }
+  
+  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; display: none; }
+  h1, h2, h3 { color: var(--h-color); border-bottom: 2px solid #2b6cb0; padding-bottom: 5px; }
+  h2 { margin-top: 40px; background: var(--header-bg); padding: 10px; }
+  .section { margin-bottom: 30px; padding: 15px; border: 1px solid var(--border); border-radius: 8px; background: var(--section-bg); }
+  .theory { background: var(--theory); padding: 12px; border-left: 4px solid #4299e1; margin: 15px 0; }
+  .example { background: var(--example); padding: 15px; border: 1px dashed var(--accent); margin: 15px 0; }
+  .diagram { text-align: center; margin: 20px 0; background: white; padding: 10px; border: 1px solid var(--border); }
+  body.dark-theme .diagram { background: #2d3748; }
+  .solution { background: var(--solution); padding: 12px; border-left: 4px solid #48bb78; }
+  .complete-btn { background: #2b6cb0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+  .complete-btn:hover { background: #2c5282; }
+  .complete-btn.completed { background: #48bb78; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  th { background: var(--header-bg); }
+  .note { font-size: 0.9em; color: #4a5568; font-style: italic; }
+  body.dark-theme .note { color: #a0aec0; }
+  .svg-label { font-size: 12px; font-family: Arial; fill: var(--text); }
+  .page-tag { font-size: 0.8em; color: #718096; font-weight: normal; }
+  body.dark-theme .page-tag { color: #a0aec0; }
+  .given { background: var(--header-bg); padding: 10px; margin: 10px 0; border-radius: 4px; }
+  .why { background: var(--why); padding: 10px; margin: 10px 0; border-left: 3px solid #f56565; font-size: 0.95em; }
+  .formula { background: var(--solution); padding: 10px; margin: 10px 0; text-align: center; border-radius: 4px; }
+  .svg-container { text-align: center; margin: 15px 0; }
+  .caption { font-size: 0.85em; color: #4a5568; margin-top: 5px; }
+  body.dark-theme .caption { color: #a0aec0; }
+  #progress-bar { position: fixed; top: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 8px; z-index: 1000; }
+  #progress-fill { background: #48bb78; height: 4px; width: 0%; transition: width 0.3s; }
+  .controls { margin-top: 50px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .controls button { background: #4a5568; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+  .controls button:hover { background: #2d3748; }
+  .topic-header { background: var(--topic-bg); color: white; padding: 15px; margin: 40px -20px 20px -20px; }
+  a { color: #3182ce; }
+  body.dark-theme a { color: #63b3ed; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { margin: 5px 0; }
+</style>
 </head>
 <body>
 <div id="progress-bar">
@@ -137,8 +193,8 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
 <p><strong>Step 2: Use Hooke’s Law for Elongation</strong></p>
 <div class="formula">$$\Delta L = \frac{FL}{AE}$$</div>
 <div class="why"><strong>Why this formula:</strong> Force stretches bar. Longer bar stretches more \(L\). Stiffer material \(E\) or bigger area \(A\) reduces stretch.</div>
-<div class="formula">$$\Delta L = \frac{40 \times 10^3 \times 1000}{400 \times 80 \times 10^3} = 1.25 \text{ mm}$$</div>
-<p><strong>Answer: 1.25 mm</strong></p>
+<div class="formula">$$\Delta L = \frac{40 \times 10^3 \times 1000}{400 \times 80 \times 10^3} = 1.250 \text{ mm}$$</div>
+<p><strong>Answer: 1.250 mm</strong></p>
 </div>
 <button id="complete-sec4" onclick="markSectionComplete('sec4')">Mark as Complete</button>
 </div>
@@ -330,7 +386,7 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
 <h2>13. Example: Thermal Stress - Stepped Bars <span class="page-tag">Page 21</span></h2>
 <div class="example">
 <h4>Question:</h4>
-<p>A steel rod fixed at ends has \(L_1=500\) mm, \(A_1=400\) mm² and\(L_2=300\) mm, \(A_2=600\) mm². If temp rises 15 K, find stresses. \(E=200\) kN/mm², \(\alpha=12\times10^{-6}\) per K.</p>
+<p>A steel rod fixed at ends has \(L_1=500\) mm, \(A_1=400\) mm² and \(L_2=300\) mm, \(A_2=600\) mm². If temp rises 15 K, find stresses. \(E=200\) kN/mm², \(\alpha=12\times10^{-6}\) per K.</p>
 
 <div class="given">
 <strong>Given:</strong> \(L_1=500\), \(A_1=400\), \(L_2=300\), \(A_2=600\) mm², \(t=15\)K, \(E=200\times10^3\), \(\alpha=12\times10^{-6}\)
@@ -376,7 +432,7 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
     <rect x="50" y="70" width="200" height="20" fill="#ffd89b" stroke="var(--svg-stroke)" stroke-width="2"/>
     <text x="150" y="35" text-anchor="middle" class="svg-label">Aluminum: -32.000</text>
     <text x="150" y="105" text-anchor="middle" class="svg-label">Steel: +128.000</text>
-    <text x="150" y="120" text-anchor="middle" class="svg-label">Force balance: 128×60 = 32×240 = 7680N</text>
+    <text x="150" y="120" text-anchor="middle" class="svg-label">Force balance: 128.000×60 = 32.000×240 = 7680.000N</text>
   </svg>
 </div>
 </div>
@@ -398,7 +454,7 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
     <rect x="50" y="50" width="200" height="20" fill="#cd7f32" stroke="var(--svg-stroke)" stroke-width="2"/>
     <text x="150" y="30" text-anchor="middle" class="svg-label">Steel: +105.818 N/mm²</text>
     <text x="150" y="110" text-anchor="middle" class="svg-label">GM: -72.727 N/mm²</text>
-    <text x="150" y="15" text-anchor="middle" class="svg-label">Force: 72.727×314.159 = 105.818×215.985 = 22846.3N</text>
+    <text x="150" y="15" text-anchor="middle" class="svg-label">Force: 72.727×314.159 = 105.818×215.985 = 22846.297N</text>
   </svg>
 </div>
 </div>
@@ -478,8 +534,7 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
 <div class="solution">
   <p>Taking moments about A: $R_B \times 6 = 10 \times 2 = 20$ → $R_B = 3.333$ kN</p>
   <p>$\sum F_y = 0$: $R_A + 3.333 = 10$ → $R_A = 6.667$ kN</p>
-  <p>Check: $6.667 + 3.333 = 10$ kN ✓</p>
-</div>
+  <p>Check: $6.667 + 3.333 = 10.000$ kN ✓</p>
 </div>
 <div class="example">
 <h4>Example 2: UDL</h4>
@@ -540,7 +595,6 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
   <p><strong>BMD:</strong> $M_{2m} = 9.334$ kNm, $M_{4m} = 10.668$ kNm</p>
   <p class="note">Note: SVG uses 1kN = 5px and 1kNm = 5px scaling. Coordinates use decimals for accuracy.</p>
 </div>
-</div>
 <button id="complete-sec19" onclick="markSectionComplete('sec19')">Mark as Complete</button>
 </div>
 
@@ -553,17 +607,17 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
   <text class="svg-label">SFD - Exact values</text>
   <svg width="450" height="120" viewBox="0 0 450 120">
     <line x1="50" y1="60" x2="450" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,11.25 200,71.25 450,71.25 450,60" 
+    <polyline points="50,11.250 200,71.250 450,71.250 450,60" 
               fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="11.25" class="svg-label">+9.750</text>
-    <text x="25" y="71.25" class="svg-label">-2.250</text>
+    <text x="25" y="11.250" class="svg-label">+9.750</text>
+    <text x="25" y="71.250" class="svg-label">-2.250</text>
     <circle cx="171.875" cy="60" r="3" fill="red"/>
     <text x="175" y="55" class="svg-label">x=2.4375m</text>
   </svg>
   <text class="svg-label">BMD - M_max=11.8828 kNm at x=2.4375m</text>
   <svg width="450" height="120" viewBox="0 0 450 120">
     <line x1="50" y1="100" x2="450" y2="100" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 100 Q 110 40.5859 171.875 40.5859 Q 185 41 200 43.75 L 450 100" 
+    <path d="M 50 100 Q 110 40.5859 171.875 40.5859 Q 185 41.000 200 43.750 L 450 100" 
           fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
     <text x="160" y="35" class="svg-label">11.883</text>
     <text x="205" y="38" class="svg-label">11.250</text>
@@ -613,7 +667,7 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
   <text class="svg-label">BMD - 1kNm = 1px scale to fit exact values</text>
   <svg width="450" height="140" viewBox="0 0 450 140">
     <line x1="50" y1="120" x2="400" y2="120" stroke="#cbd5e0" stroke-width="1"/>
-    <path d="M 50 120 Q 87.5 61.05 125 61.05 L 200 45.76 L 250 49.5 L 325 76.8 L 400 120" 
+    <path d="M 50 120 Q 87.5 61.050 125 61.050 L 200 45.760 L 250 49.500 L 325 76.800 L 400 120" 
           fill="rgba(66,153,225,0.2)" stroke="green" stroke-width="2"/>
     <text x="120" y="56" class="svg-label">58.950</text>
     <text x="190" y="41" class="svg-label">74.240</text>
@@ -706,12 +760,14 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$
   </svg>
 </div>
 <div class="solution">
-  <p>$F_v = 6 \sin 60° = 5.196152$ kN → Use for SFD/BMD</p>
+    <p>$F_v = 6 \sin 60° = 5.196152$ kN → Use for SFD/BMD</p>
   <p>$F_h = 6 \cos 60° = 3.000000$ kN → Direct stress $\sigma = 3000/A$</p>
   <p>For 6m beam: $R_B = 5.196\times2/6 = 1.732$ kN, $R_A = 3.464$ kN</p>
 </div>
 <button id="complete-sec24" onclick="markSectionComplete('sec24')">Mark as Complete</button>
-      </div><div class="section" id="sec25">
+</div>
+
+<div class="section" id="sec25">
 <h2>25. Reverse Analysis: Load from SFD <span class="page-tag">Page 51-53</span></h2>
 <div class="theory">
   <table>
@@ -736,10 +792,10 @@ Vertical step at B = $R_B = +2.250$ kN ↑
   <text class="svg-label">Given SFD</text>
   <svg width="450" height="120" viewBox="0 0 450 120">
     <line x1="50" y1="60" x2="450" y2="60" stroke="#cbd5e0" stroke-width="1"/>
-    <polyline points="50,11.25 200,71.25 450,71.25 450,60" 
+    <polyline points="50,11.250 200,71.250 450,71.250 450,60" 
               fill="none" stroke="blue" stroke-width="2"/>
-    <text x="25" y="11.25" class="svg-label">+9.750</text>
-    <text x="25" y="71.25" class="svg-label">-2.250</text>
+    <text x="25" y="11.250" class="svg-label">+9.750</text>
+    <text x="25" y="71.250" class="svg-label">-2.250</text>
   </svg>
   <text class="svg-label">Derived Load Diagram</text>
   <svg width="450" height="100" viewBox="0 0 450 100">
@@ -775,22 +831,37 @@ Vertical step at B = $R_B = +2.250$ kN ↑
 <script>
 let completedSections = new Set();
 const totalSections = 25;
-const USER_KEY = 'structures_user';
 const PROGRESS_KEY = 'structures_progress';
 const THEME_KEY = 'structures_theme';
+let currentUser = null;
 
+// AUTH GUARD - Redirect if not logged in
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // User logged in - show page
+    document.body.style.display = 'block';
+    currentUser = user;
+    const displayName = user.displayName || user.email.split('@')[0];
+    document.getElementById('user-display').innerText = displayName;
+    loadProgress(user.uid);
+  } else {
+    // Not logged in - redirect to login.html
+    window.location.href = 'login.html';
+  }
+});
+
+// Load theme on startup
 window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem(THEME_KEY);
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-theme');
   }
-  
-  const user = localStorage.getItem(USER_KEY) || 'Student';
-  document.getElementById('user-display').innerText = user;
-  
-  const savedProgress = JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]');
-  savedProgress.forEach(id => {
-    completedSections.add(id);
+});
+
+function loadProgress(uid) {
+  const saved = JSON.parse(localStorage.getItem(PROGRESS_KEY + '_' + uid) || '[]');
+  completedSections = new Set(saved);
+  saved.forEach(id => {
     const btn = document.getElementById('complete-' + id);
     if (btn) {
       btn.innerText = 'Completed ✓';
@@ -798,10 +869,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
   updateProgress();
-});
+}
 
 function markSectionComplete(id) {
-  if (completedSections.has(id)) return;
+  if (completedSections.has(id) ||!currentUser) return;
   completedSections.add(id);
   const btn = document.getElementById('complete-' + id);
   btn.innerText = 'Completed ✓';
@@ -817,20 +888,23 @@ function updateProgress() {
 }
 
 function saveProgress() {
-  localStorage.setItem(PROGRESS_KEY, JSON.stringify([...completedSections]));
+  if (!currentUser) return;
+  localStorage.setItem(PROGRESS_KEY + '_' + currentUser.uid, JSON.stringify([...completedSections]));
 }
 
 function toggleTheme() {
   document.body.classList.toggle('dark-theme');
   const isDark = document.body.classList.contains('dark-theme');
-  localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+  localStorage.setItem(THEME_KEY, isDark? 'dark' : 'light');
 }
 
-function logout() {
-  if (confirm('Logout? Your progress is saved locally.')) {
-    localStorage.removeItem(USER_KEY);
-    alert('Logged out. Redirect to login in production.');
-    document.getElementById('user-display').innerText = 'Guest';
+async function logout() {
+  if (!confirm('Logout? Your progress is saved.')) return;
+  try {
+    await auth.signOut();
+    // onAuthStateChanged will redirect to login.html
+  } catch (error) {
+    alert('Logout failed: ' + error.message);
   }
 }
 </script>
