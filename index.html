@@ -21,7 +21,12 @@
 window.MathJax = {
   tex: {
     inlineMath: [['\\(', '\\)']],
-    displayMath: [['$$', '$$']]
+    displayMath: [['$$', '$$']],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
   }
 };
 </script>
@@ -139,7 +144,6 @@ window.MathJax = {
   <p>Pages 1-25: Axial loading, Hooke's Law, Composite bars, Thermal effects</p>
 </div>
 
-<!-- Sections 1-14 from previous message remain same -->
 <div class="section" id="sec1">
 <h2>1. Direct Stress & Strain <span class="page-tag">Pages 1-2</span></h2>
 <h3>Direct Stress</h3>
@@ -439,14 +443,14 @@ window.MathJax = {
 <div class="given">
 <p><strong>Given Data:</strong></p>
 <table>
-  <tr><td><strong>Steel:</strong></td><td>$E_s = 200$ kN/mm²</td><td>$\alpha_s = 12 \times 10^{-6}$ per °C</td></tr>
-  <tr><td><strong>Aluminum:</strong></td><td>$E_{al} = 80$ kN/mm²</td><td>$\alpha_{al} = 24 \times 10^{-6}$ per °C</td></tr>
-  <tr><td><strong>Temp rise:</strong></td><td>$t = 50$°C</td><td></td></tr>
+  <tr><td><strong>Steel:</strong></td><td>\(E_s = 200\) kN/mm²</td><td>\(\alpha_s = 12 \times 10^{-6}\) per °C</td></tr>
+  <tr><td><strong>Aluminum:</strong></td><td>\(E_{al} = 80\) kN/mm²</td><td>\(\alpha_{al} = 24 \times 10^{-6}\) per °C</td></tr>
+  <tr><td><strong>Temp rise:</strong></td><td>\(t = 50\)°C</td><td></td></tr>
 </table>
 
 <p><strong>Areas:</strong></p>
-<p>Steel: $A_s = 20 \times 3 = 60$ mm²</p>
-<p>Aluminum: $A_{al} = 2 \times 20 \times 6 = 240$ mm² &nbsp; <span class="note">(2 plates)</span></p>
+<p>Steel: \(A_s = 20 \times 3 = 60\) mm²</p>
+<p>Aluminum: \(A_{al} = 2 \times 20 \times 6 = 240\) mm² &nbsp; <span class="note">(2 plates)</span></p>
 </div>
 
 <div class="solution">
@@ -460,8 +464,8 @@ window.MathJax = {
 <div class="why">Total tensile force in steel = Total compressive force in aluminum</div>
 
 <p><strong>Step 3: Solve</strong></p>
-<p>From force balance: $60 \sigma_s = -240 \sigma_{al}$ → $\sigma_s = -4 \sigma_{al}$</p>
-<p>Substituting: $\sigma_{al} = -32.000$ N/mm², $\sigma_s = +128.000$ N/mm²</p>
+<p>From force balance: \(60 \sigma_s = -240 \sigma_{al}\) → \(\sigma_s = -4 \sigma_{al}\)</p>
+<p>Substituting: \(\sigma_{al} = -32.000\) N/mm², \(\sigma_s = +128.000\) N/mm²</p>
 </div>
 
 <div class="diagram">
@@ -499,18 +503,18 @@ window.MathJax = {
 <div class="given">
 <p><strong>Given Data:</strong></p>
 <table>
-  <tr><td><strong>Steel:</strong></td><td>$E_s = 200$ kN/mm²</td><td>$\alpha_s = 6 \times 10^{-6}$ per °F</td></tr>
-  <tr><td><strong>Gun Metal:</strong></td><td>$E_{gm} = 100$ kN/mm²</td><td>$\alpha_{gm} = 10 \times 10^{-6}$ per °F</td></tr>
-  <tr><td><strong>Temp rise:</strong></td><td>$t = 200$°F</td><td></td></tr>
+  <tr><td><strong>Steel:</strong></td><td>\(E_s = 200\) kN/mm²</td><td>\(\alpha_s = 6 \times 10^{-6}\) per °F</td></tr>
+  <tr><td><strong>Gun Metal:</strong></td><td>\(E_{gm} = 100\) kN/mm²</td><td>\(\alpha_{gm} = 10 \times 10^{-6}\) per °F</td></tr>
+  <tr><td><strong>Temp rise:</strong></td><td>\(t = 200\)°F</td><td></td></tr>
 </table>
 
 <p><strong>Areas:</strong></p>
-<p>GM Rod: $A_{gm} = \frac{\pi}{4} \times 20^2 = 314.159$ mm²</p>
-<p>Steel Tube: $A_s = \frac{\pi}{4}(30^2 - 25^2) = 215.985$ mm²</p>
+<p>GM Rod: \(A_{gm} = \frac{\pi}{4} \times 20^2 = 314.159\) mm²</p>
+<p>Steel Tube: \(A_s = \frac{\pi}{4}(30^2 - 25^2) = 215.985\) mm²</p>
 </div>
 
 <div class="solution">
-<p><strong>Logic:</strong> Gun metal has higher $\alpha$, so it wants to expand more. Since bolted, GM gets compressed and steel tube gets tension.</p>
+<p><strong>Logic:</strong> Gun metal has higher \(\alpha\), so it wants to expand more. Since bolted, GM gets compressed and steel tube gets tension.</p>
 
 <p><strong>Force Balance:</strong></p>
 <div class="formula">$$A_{gm} \sigma_{gm} + A_s \sigma_s = 0$$</div>
@@ -611,7 +615,7 @@ window.MathJax = {
   
   <text x="200" y="90" text-anchor="middle" class="svg-label" font-size="12">Applied Couple</text>
   <line x1="150" y1="115" x2="250" y2="115" stroke="#2b6cb0" stroke-width="3"/>
-  <path d="M 200 115 A 15 15 0 0 1 215 100" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowred2)"/>
+  <path d="M 200 115 A 15 0 1 215 100" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowred2)"/>
   <text x="200" y="135" text-anchor="middle" class="svg-label">M</text>
   
   <defs><marker id="arrowred2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#dc2626"/></marker></defs>
@@ -639,7 +643,7 @@ window.MathJax = {
 <div class="formula">$$W = w \times L = 2 \times 6 = 12 \text{ kN}$$</div>
 <p><strong>Step 2: By Symmetry</strong></p>
 <div class="formula">$$R_A = R_B = \frac{W}{2} = \frac{12}{2} = 6 \text{ kN}$$</div>
-<div class="why"><strong>Why:</strong> Load is symmetric, so reactions are equal. Or use moments: $\sum M_A = 0$ → $R_B \times 6 - 12 \times 3 = 0$ → $R_B = 6$ kN</div>
+<div class="why"><strong>Why:</strong> Load is symmetric, so reactions are equal. Or use moments: \(\sum M_A = 0\) → \(R_B \times 6 - 12 \times 3 = 0\) → \(R_B = 6\) kN</div>
 </div>
 </div>
 
@@ -652,8 +656,6 @@ window.MathJax = {
 <div class="formula">$$R_B = \frac{20}{5} = 4 \text{ kN}$$</div>
 <p><strong>Vertical equilibrium:</strong></p>
 <div class="formula">$$R_A + R_B = 10 \quad \Rightarrow \quad R_A = 10 - 4 = 6 \text{ kN}$$</div>
-</div>
-</div>
 <button id="complete-sec17" onclick="markSectionComplete('sec17')">Mark as Complete</button>
 </div>
 
@@ -839,8 +841,8 @@ window.MathJax = {
 <p>Beam 6m between supports A & B, overhang 2m to right of B with point load 6 kN at free end. UDL 2 kN/m on AB. Find contraflexure point.</p>
 <div class="solution">
 <p><strong>Step 1: Reactions</strong></p>
-<p>Taking moments about A: $R_B \times 6 = 2 \times 6 \times 3 + 6 \times 8$ → $R_B = 14$ kN</p>
-<p>Vertical: $R_A = 2 \times 6 + 6 - 14 = 4$ kN</p>
+<p>Taking moments about A: \(R_B \times 6 = 2 \times 6 \times 3 + 6 \times 8\) → \(R_B = 14\) kN</p>
+<p>Vertical: \(R_A = 2 \times 6 + 6 - 14 = 4\) kN</p>
 
 <p><strong>Step 2: BM Equation for AB</strong></p>
 <div class="formula">$$M_x = 4x - \frac{2x^2}{2} = 4x - x^2$$</div>
@@ -884,7 +886,7 @@ window.MathJax = {
 <div class="theory">
 <p><strong>Method for Combined Loading:</strong></p>
 <ol>
-<li>Calculate reactions using $\sum M = 0$ and $\sum F_y = 0$</li>
+<li>Calculate reactions using \(\sum M = 0\) and \(\sum F_y = 0\)</li>
 <li>Divide beam into sections at: supports, point loads, start/end of UDLs</li>
 <li>Find SF at each section boundary. SF changes suddenly at point loads, linearly over UDL</li>
 <li>Find BM at each section. BM slope = SF. Max BM where SF = 0</li>
@@ -907,8 +909,10 @@ window.MathJax = {
 <p>At A: +8.5 kN → At 4m: 8.5 - 8 = +0.5 kN → At 6m: 0.5 - 10 = -9.5 kN → At B: -9.5 kN</p>
 
 <p><strong>Step 3: BM Max</strong></p>
-<p>SF = 0 at some point in UDL region: $8.5 - 2x = 0$ → $x = 4.25$ m</p>
+<p>SF = 0 at some point in UDL region: \(8.5 - 2x = 0\) → \(x = 4.25\) m</p>
 <div class="formula">$$M_{max} = 8.5 \times 4.25 - 2 \times \frac{4.25^2}{2} = 18.063 \text{ kN·m}$$</div>
+</div>
+</div>
 <button id="complete-sec22" onclick="markSectionComplete('sec22')">Mark as Complete</button>
 </div>
 
@@ -931,14 +935,14 @@ window.MathJax = {
 <p>Simply supported beam 6m, clockwise couple 12 kN·m at 2m from left. Draw BMD.</p>
 <div class="solution">
 <p><strong>Step 1: Reactions</strong></p>
-<p>Couple has no vertical force, so $R_A + R_B = 0$. Taking moments about A:</p>
+<p>Couple has no vertical force, so \(R_A + R_B = 0\). Taking moments about A:</p>
 <div class="formula">$$R_B \times 6 - 12 = 0 \quad \Rightarrow \quad R_B = 2 \text{ kN up}$$</div>
 <div class="formula">$$R_A = -2 \text{ kN (downward)}$$</div>
 
 <p><strong>Step 2: BM Values</strong></p>
-<p>Just left of couple: $M = -2 \times 2 = -4$ kN·m</p>
-<p>Just right of couple: $M = -4 + 12 = +8$ kN·m (jump of +12)</p>
-<p>At B: $M = 0$</p>
+<p>Just left of couple: \(M = -2 \times 2 = -4\) kN·m</p>
+<p>Just right of couple: \(M = -4 + 12 = +8\) kN·m (jump of +12)</p>
+<p>At B: \(M = 0\)</p>
 <div class="why"><strong>Why:</strong> Clockwise couple adds positive BM. Without couple, BM would be -4 at 2m and -12 at 6m. Couple rotates beam up.</div>
 </div>
 
@@ -946,7 +950,7 @@ window.MathJax = {
 <svg width="450" height="200" viewBox="0 0 450 200">
   <line x1="50" y1="50" x2="400" y2="50" stroke="#2b6cb0" stroke-width="3"/>
   <polygon points="45,55 55,55 50,65" fill="#2b6cb0"/><polygon points="395,55 405,55 400,65" fill="#2b6cb0"/>
-  <path d="M 150 50 A 15 15 0 0 1 165 35" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowred5)"/>
+  <path d="M 150 50 A 15 0 0 1 165 35" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowred5)"/>
   <text x="158" y="30" text-anchor="middle" class="svg-label">12 kN·m</text>
   
   <text x="225" y="90" text-anchor="middle" class="svg-label" font-size="13">BMD with Couple</text>
@@ -975,9 +979,9 @@ window.MathJax = {
 <div class="formula">$$F_y = F \sin\theta \quad \text{(Vertical component)}$$</div>
 <p><strong>Effects:</strong></p>
 <ol>
-<li>Vertical component $F_y$ causes SF and BM - use normal beam analysis.</li>
-<li>Horizontal component $F_x$ causes axial force/thrust in beam - causes direct stress.</li>
-<li>For simply supported beams, $F_x$ creates horizontal reactions at supports.</li>
+<li>Vertical component \(F_y\) causes SF and BM - use normal beam analysis.</li>
+<li>Horizontal component \(F_x\) causes axial force/thrust in beam - causes direct stress.</li>
+<li>For simply supported beams, \(F_x\) creates horizontal reactions at supports.</li>
 </ol>
 <div class="why"><strong>Why:</strong> Beam theory assumes loads perpendicular to beam axis. Inclined loads must be resolved. Horizontal part tries to push/pull beam axially.</div>
 </div>
@@ -995,7 +999,7 @@ window.MathJax = {
 <div class="formula">$$R_{Ay} = 5 - 3 = 2 \text{ kN}$$</div>
 
 <p><strong>Step 3: Horizontal Reactions (for axial force)</strong></p>
-<p>Assume roller at B, pin at A: $R_{Ax} = 8.66$ kN (to balance $F_x$), $R_{Bx} = 0$</p>
+<p>Assume roller at B, pin at A: \(R_{Ax} = 8.66\) kN (to balance \(F_x\)), \(R_{Bx} = 0\)</p>
 
 <p><strong>Step 4: Max BM</strong></p>
 <div class="formula">$$M_{max} = R_{Ay} \times 3 = 2 \times 3 = 6 \text{ kN·m at load}$$</div>
@@ -1046,18 +1050,18 @@ window.MathJax = {
 <p>SFD shows: +6 kN at A, drops to +2 kN at 2m, then drops to -8 kN, then rises to 0 at B (6m). Find loads.</p>
 <div class="solution">
 <p><strong>Step 1: Analyze SFD</strong></p>
-<p>At x=0: SF = +6 kN → Upward reaction $R_A = 6$ kN</p>
+<p>At x=0: SF = +6 kN → Upward reaction \(R_A = 6\) kN</p>
 <p>0 to 2m: SF constant at +6 → No load</p>
 <p>At x=2m: Drop of 4 kN (from +6 to +2) → Downward point load 4 kN</p>
 <p>2m to 4m: SF constant at +2 → No load</p>
 <p>At x=4m: Drop of 10 kN (from +2 to -8) → Downward point load 10 kN</p>
 <p>4m to 6m: SF constant at -8 → No load</p>
-<p>At x=6m: Rise of 8 kN (from -8 to 0) → Upward reaction $R_B = 8$ kN</p>
+<p>At x=6m: Rise of 8 kN (from -8 to 0) → Upward reaction \(R_B = 8\) kN</p>
 
 <p><strong>Step 2: Verify</strong></p>
 <div class="formula">$$\sum F_y = 6 - 4 - 10 + 8 = 0 \, ✓$$</div>
 
-<p><strong>Answer: $R_A = 6$ kN up, 4 kN down at 2m, 10 kN down at 4m, $R_B = 8$ kN up</strong></p>
+<p><strong>Answer: \(R_A = 6\) kN up, 4 kN down at 2m, 10 kN down at 4m, \(R_B = 8\) kN up</strong></p>
 </div>
 </div>
 <button id="complete-sec25" onclick="markSectionComplete('sec25')">Mark as Complete</button>
@@ -1118,6 +1122,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   updateProgress();
 });
+
+// Force MathJax to render after everything loads
+window.addEventListener('load', function() {
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
+});
 </script>
 </body>
-</html>
+  </html>
