@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surveying - SURVEY I Complete Notes</title>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root { 
+    --bg: #ffffff; --text: #1a202c; --section-bg: #f7fafc; --border: #cbd5e0;
+    --accent: #ed8936; --header-bg: #ebf8ff; --topic-bg: #38a169; --h-color: #1a365d;
+  }
+  body.dark-theme {
+    --bg: #1a202c; --text: #e2e8f0; --section-bg: #2d3748; --border: #4a5568;
+    --accent: #f6ad55; --header-bg: #2d3748; --topic-bg: #2f855a; --h-color: #90cdf4;
+  }
+  
+  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; background: var(--bg); color: var(--text); display: block; }
+  h1, h2, h3, h4 { color: var(--h-color); border-bottom: 2px solid #2b6cb0; padding-bottom: 5px; }
+  h2 { margin-top: 40px; background: var(--header-bg); padding: 10px; }
+  h3 { margin-top: 30px; border-bottom: 1px solid var(--border); }
+  .section { margin-bottom: 30px; padding: 15px; border: 1px solid var(--border); border-radius: 8px; background: var(--section-bg); }
+  .complete-btn { background: #2b6cb0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+  .complete-btn:hover { background: #2c5282; }
+  .complete-btn.completed { background: #48bb78; }
+  .formula { background: #f0fff4; padding: 10px; margin: 10px 0; text-align: center; border-radius: 4px; font-family: monospace; }
+  .why { background: #fff5f5; padding: 10px; margin: 10px 0; border-left: 3px solid #f56565; font-size: 0.95em; }
+  .given { background: var(--header-bg); padding: 10px; margin: 10px 0; border-radius: 4px; }
+  #progress-bar { position: fixed; top: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 8px; z-index: 1000; }
+  #progress-fill { background: #48bb78; height: 4px; width: 0%; transition: width 0.3s; }
+  .controls { margin-top: 50px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .controls button, .controls a { background: #4a5568; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; text-decoration: none; }
+  .controls button:hover, .controls a:hover { background: #2d3748; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; overflow-x: auto; display: block; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  th { background: var(--accent); color: white; }
+  svg { max-width: 100%; height: auto; }
+  hr { margin: 2rem 0; border: none; border-top: 2px solid var(--accent); }
+  p b { color: var(--h-color); }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { margin: 8px 0; }
+  a { color: #3182ce; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div id="progress-bar">
+  <div id="progress-fill"></div>
+  <span id="progress-text">0/20 sections completed</span>
+</div>
+
+<div class="controls">
+  <a href="index.html">‹ Back to Subjects</a>
+  <button onclick="toggleTheme()">🌓 Theme</button>
+  <button onclick="window.print()">📄 PDF</button>
+</div>
+
+<div class="container">
+<header>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="auth.js"></script>
+  <div style="position:absolute; top:15px; right:20px; display:flex; align-items:center; gap:12px; color:white;">
+  <span id="user-display">Loading...</span>
+  <button onclick="logout()" style="background:rgba(255,255,255,0.2); border:none; padding:8px 16px; border-radius:6px; color:white; cursor:pointer;">Logout</button>
+  </div>
+  <h1>SURVEY I</h1>
+  <p><strong>Complete Notes - Introduction, Classification, Methods, Principles, Process, Measurements, Errors, Surveyors, Chain Surveying, Corrections, Levelling & Contouring</strong></p>
+</header>
+
+<div class="toc">
+  <h3>Table of Contents</h3>
+  <ul>
+    <li><a href="#sur1">1. Define Survey & Objectives</a></li>
+    <li><a href="#sur2">2. Classification of Survey</a></li>
+    <li><a href="#sur3">3. Earth's Curvature - Geodetic vs Plane</a></li>
+    <li><a href="#sur4">4. Purpose & Field Application</a></li>
+    <li><a href="#sur5">5. Instruments Used</a></li>
+    <li><a href="#sur6">6. Methods Employed</a></li>
+    <li><a href="#sur7">7. Principles of Survey</a></li>
+    <li><a href="#sur8">8. Process of Surveying</a></li>
+    <li><a href="#sur9">9. Horizontal Distance Measurement</a></li>
+    <li><a href="#sur10">10. Errors in Surveying</a></li>
+    <li><a href="#sur11">11. Types of Surveyor</a></li>
+    <li><a href="#sur12">12. Chain Surveying Basics</a></li>
+    <li><a href="#sur13">13. Chain Equipment & Terms</a></li>
+    <li><a href="#sur14">14. Procedure for Chaining</a></li>
+    <li><a href="#sur15">15. Corrections in Chain Survey</a></li>
+    <li><a href="#sur16">16. Levelling - Terms & Setup</a></li>
+    <li><a href="#sur17">17. Levelling Methods</a></li>
+    <li><a href="#sur18">18. Rise & Fall Examples + Tables</a></li>
+    <li><a href="#sur19">19. HI Method Examples + Tables</a></li>
+    <li><a href="#sur20">20. Contours & Methods</a></li>
+  </ul>
+</div>
+
+<!-- SUR1: Define Survey + Objectives -->
+<div class="section" id="sur1">
+<h2> Define Survey & Objectives</h2>
+<h3>Define Survey:</h3>
+<p>Surveying is the art of determining relative positions of the points on earth's surface.</p>
+<p>It is done through observation & taking measurements & determining the boundaries, sizes, positions, quantity, value etc of lands, estates, buildings, farms etc.</p>
+
+<h3>Objectives of Surveying</h3>
+<p>Primary purpose of surveying is to measure and record field data from which accurate plans & maps can be prepared, usually through:</p>
+<p>i) Determining horizontal distance between two or more points on the earth's surface</p>
+<p>ii) Determining vertical distance between two different points on the earth's surface</p>
+<p>iii) Determining the area of a given piece of land</p>
+<p>iv) Locating the directions of various features on the earth's surface</p>
+<button id="complete-sur1" class="complete-btn" onclick="markSectionComplete('sur1')">Mark as Complete</button>
+</div>
+
+<!-- SUR2: Classification -->
+<div class="section" id="sur2">
+<h2> Classification of Survey</h2>
+<p>Surveys can be classified based on several factors.</p>
+<p>The most common classification is based on purpose & field application:</p>
+<p>i)- Based on instrument used</p>
+<p>ii)- Based on method employed</p>
+<p>iii)- Based on Purpose </p>
+<p>iv)- Based on Earth's Curvature </p>
+<hr>
+<button id="complete-sur2" class="complete-btn" onclick="markSectionComplete('sur2')">Mark as Complete</button>
+</div>
+
+<!-- SUR3: Earth's Curvature -->
+<div class="section" id="sur3">
+<h2>i) Based on Earth's Curvature</h2>
+<p>This is the primary fundamental classification of survey.</p>
+<p>It's further divided into two types of survey:</p>
+<h4>a) Geodetic surveys</h4>
+<p>These are surveys that cover a large area, i.e., a country or a continent. It uses complex mathematics and a spheroidal model of the earth.</p>
+<h4>b) Plane survey</h4>
+<p>These are surveys done in small areas.</p>
+<p>The surface is assumed to be a flat plane.</p>
+<p>This simplifies calculations & it is mostly used for engineering projects, cross country highways.</p>
+<div class="why"><b>N/B:</b> Unless you are building a tunnel you will always use plane survey.</div>
+<button id="complete-sur3" class="complete-btn" onclick="markSectionComplete('sur3')">Mark as Complete</button>
+</div>
+
+<!-- SUR4: Purpose & Field -->
+<div class="section" id="sur4">
+<h2>ii) Based on Purpose & Field of Application</h2>
+<p>This is how surveys in disciplines are defined by their end use.</p>
+<p><b>Topographic survey:</b> This is survey done to gather data of natural & manmade features on the earth & represent them on a map.</p>
+<h4>b) Cadastral Survey</h4>
+<p>This is survey done to determine and mark property boundaries. It is also a legally binding type of survey.</p>
+<h4>c) Engineering Survey</h4>
+<p>Done to collect data for the planning, design & construction of engineering works. It involves setting out where dimensions are transferred on the ground with dimension control, ensuring construction follows design dimensions.</p>
+<h4>d) Control Survey</h4>
+<p>Is done to establish a network of horizontal & vertical reference points (bench marks) across a project and provides the fundamental framework of control points from which all other surveys and setting out are done.</p>
+<button id="complete-sur4" class="complete-btn" onclick="markSectionComplete('sur4')">Mark as Complete</button>
+</div>
+
+<!-- SUR5: Instruments -->
+<div class="section" id="sur5">
+<h2>iii) Based on Instrument Used</h2>
+<p>This classification is based on the primary tools employed:</p>
+<p>a. <b>Theodolite survey:</b> It is applied when measuring horizontal and vertical angles</p>
+<p>b. <b>Compass / Chain:</b> It is applied when measuring direction / bearings</p>
+<p>c. <b>Tapes & Ranging rods:</b> It is applied when measuring distances for small and open areas</p>
+<p>d. <b>Dumpy levels, Automatic level & Digital levels:</b> They are used to determine height differences and establish elevations.</p>
+<p>e. <b>Echo sounders:</b> Used in mapping the bed & features of water bodies</p>
+<p>f. <b>Drones & Cameras:</b> Used when creating maps and 3D models from aerial photographs</p>
+<p>g. <b>Total station:</b> It integrates electronic distance measurement for measuring distances using electromagnetic waves. This is the standard modern distance measurement.</p>
+<p>h. <b>Remote sensing:</b> Which uses satellites and gathers information about surface without physical interference.</p>
+<p>i. <b>GPS survey:</b> It determines absolute position i.e. latitude, longitude using satellite.</p>
+<button id="complete-sur5" class="complete-btn" onclick="markSectionComplete('sur5')">Mark as Complete</button>
+</div>
+
+<!-- SUR6: Methods -->
+<div class="section" id="sur6">
+<h2>iv) Based on Method Employed</h2>
+<p>This focus on geometric technique for determining positions.</p>
+<p>Classification based on this survey:</p>
+<p>a. <b>Triangulation:</b> A system of triangles are established, angles are measured precisely & only a few baseline distances are needed.</p>
+<p>b. <b>Traversing:</b> A series of connected lines are established, the length & directions of this line are measured. It is the most common method of establishing control networks on construction site.</p>
+<p>c <b>Trilateration:</b> A network of triangles are established by measuring all the sides with EDM or no angles measured. It is common in EDM i.e. total station surveys which uses the principle of GPS.</p>
+<button id="complete-sur6" class="complete-btn" onclick="markSectionComplete('sur6')">Mark as Complete</button>
+</div>
+
+<!-- SUR7: Principles -->
+<div class="section" id="sur7">
+<h2>* PRINCIPLES OF SURVEY</h2>
+<p><b>1. Principle of working from whole to part:</b> Is achieved by first identifying the primary control point</p>
+<p><b>Control point:</b> Is a point on the ground whose horizontal and vertical location is known. This points are located with a high precision using sophisticated equipment. Based on this point (primary point) number of large triangles are drawn. Secondary control point are then established to fill the gaps with lesser precision than primary control point. Tertiary control points are also established at a moderate and less precise level.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="280" height="180" viewBox="0 0 280 180" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="140" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Whole to Part Principle</text>
+    <polygon points="140,40 60,140 220,140" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <polygon points="140,40 100,90 180,90" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4"/>
+    <circle cx="140" cy="40" r="4" fill="red"/><text x="145" y="35" fill="var(--text)" font-size="12">Primary</text>
+    <circle cx="100" cy="90" r="3" fill="orange"/><text x="105" y="85" fill="var(--text)" font-size="12">Secondary</text>
+    <circle cx="180" cy="90" r="3" fill="orange"/>
+    <circle cx="60" cy="140" r="2" fill="green"/><text x="65" y="145" fill="var(--text)" font-size="12">Tertiary</text>
+    <circle cx="220" cy="140" r="2" fill="green"/>
+  </svg>
+</div>
+
+<p>In other terms this principle involves covering the area to be surveyed with large triangles which are further divided into small triangles and the process continuous until the area has been covered with small triangles to a level that allows detailed surveys to be made.</p>
+
+<p><b>Using measurements from two known control point to fix other points:</b> Given two points whose length and bearing have been accurately established a line can be drawn to join them. Hence surveying has control reference points, the location of various other points and the lines joining them can be fixed by measurement made from this two points. For example in point A & B are the control point the following operation can be performed to fix other points, one of the operation:</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="300" height="200" viewBox="0 0 300 200" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="150" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Locating Point C using Arcs</text>
+    <line x1="50" y1="150" x2="250" y2="150" stroke="var(--accent)" stroke-width="2"/>
+    <circle cx="50" cy="150" r="4" fill="red"/><text x="35" y="170" fill="var(--text)" font-size="14">A</text>
+    <circle cx="250" cy="150" r="4" fill="red"/><text x="255" y="170" fill="var(--text)" font-size="14">B</text>
+    <circle cx="150" cy="70" r="4" fill="blue"/><text x="155" y="65" fill="var(--text)" font-size="14">C</text>
+    <line x1="50" y1="150" x2="150" y2="70" stroke="var(--text)" stroke-width="1"/>
+    <line x1="250" y1="150" x2="150" y2="70" stroke="var(--text)" stroke-width="1"/>
+    <circle cx="50" cy="150" r="100" fill="none" stroke="orange" stroke-width="1" stroke-dasharray="3"/>
+    <circle cx="250" cy="150" r="100" fill="none" stroke="orange" stroke-width="1" stroke-dasharray="3"/>
+    <text x="150" y="190" text-anchor="middle" fill="var(--text)" font-size="12">Arcs intersect at C</text>
+  </svg>
+</div>
+
+<p>A. Using point A and B as centers scribe arcs and fix where they intersects</p>
+<p>B. Draw a perpendicular from D along AB to a point</p>
+<p>C. To locate point C measure distance AB and use your protractor to measure and angle ABC</p>
+
+<p>To locate C the interior angle of triangle ABC can be measured, the length or size AC and BC can be calculated by solving the triangle.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="280" height="220" viewBox="0 0 280 220" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="140" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Triangle ABC</text>
+    <polygon points="70,180 210,180 140,60" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <circle cx="70" cy="180" r="4" fill="red"/><text x="55" y="195" fill="var(--text)" font-size="14">A</text>
+    <circle cx="210" cy="180" r="4" fill="red"/><text x="215" y="195" fill="var(--text)" font-size="14">B</text>
+    <circle cx="140" cy="60" r="4" fill="blue"/><text x="145" y="55" fill="var(--text)" font-size="14">C</text>
+    <text x="140" y="125" text-anchor="middle" fill="var(--text)" font-size="12">AC, BC calculated</text>
+    <text x="140" y="145" text-anchor="middle" fill="var(--text)" font-size="12">∠ABC measured</text>
+  </svg>
+</div>
+
+<h4>2. Checking of Measurements</h4>
+<p>All survey work must be checked in such a way that any error will be apparent by the survey is completed. Care and concentration are necessary in order to ensure that all measures are taken to the required degree of accuracy & that nothing is omitted.</p>
+<p>Surveyors on site should be checking the correctness of both his own work and that of others based on his information. Measurements should be checked constantly. Survey records & computations such field notes, level books, field books, setting out & levelling books must be kept clean & complete with clear notes and diagrams so that the survey data can be clearly understood by others.</p>
+<p>It checks are not done on observation expensive mistakes may occurs. It is always preferable to derive a few more information on site to ensure that the survey will resolve itself at the plotting stage and this is where accuracy and precision.</p>
+<p>The term are commonly used by manufacturers of surveying equipment as well as surveyors to describe results obtained from the field work.</p>
+<p><b>Accuracy:</b> Allows a certain amount of tolerance error in measurement</p>
+<p><b>Precision:</b> Demands exactness in reading and</p>
+<p><b>N/B:</b> Scientific honesty is important in surveying</p>
+<button id="complete-sur7" class="complete-btn" onclick="markSectionComplete('sur7')">Mark as Complete</button>
+</div>
+
+<!-- SUR8: Process -->
+<div class="section" id="sur8">
+<h2>* PROCESS OF SURVEYING</h2>
+<p>It is done in three main phases:</p>
+<p>1. Conduct of reconnaissance</p>
+<p>2. Field work and Measurements</p>
+<p>3. Office work</p>
+
+<h4>1. Reconnaissance</h4>
+<p>This is the pre-field work and measurement phase. It requires an overall inspection of the area to obtain a general view by commencement of any serious surveys.</p>
+<p>Walking through the site enables one to understand the terrain and helps in determining the survey method to be adopted and the scale to be used.</p>
+<p>The initial information obtained helps in successful planning and execution of the surveying job.</p>
+<p><b>Objectives of Reconnaissance:</b></p>
+<p>i) To understand what you may be dealing with</p>
+<p>ii) To understand which method to be used</p>
+<p>iii) Estimate cost and time required</p>
+<p>iv) To ascertain the possibility of building or constructing a route</p>
+<p>v) To choose the most suitable position for stations</p>
+
+<h4>2. Field Work & Measurement</h4>
+<p>This is where actual measurement and recording are taken to get the best results. The surveyors must be fully familiar with the functions of equipment and take care of them.</p>
+
+<h4>3. Office Work</h4>
+<p>This is the post-field work stage. In which data collected and recordings in the field notebooks are recorded to prepare the charts, plans and maps for presentation to the client and target audience.</p>
+<button id="complete-sur8" class="complete-btn" onclick="markSectionComplete('sur8')">Mark as Complete</button>
+</div>
+
+<!-- SUR9: Horizontal Distance -->
+<div class="section" id="sur9">
+<h2>* Horizontal Distance Measurement</h2>
+<p>This is the basic measurement in survey which determines the distance btn 2 points on the earth's surface for use in fixing positions, setting out & scaling.</p>
+<p>The method to be employed in measuring distance depends on accuracy of the measurement and in turn depends on purpose for which the measurement is intended.</p>
+<p><b>Some of the method used:</b></p>
+<p>1. <b>Pacing:</b> This is where distance is obtained by the number of paces which are manually counted, or by a pedometer register attached to one length. The average pace length has to be known by pacing known distance several times and taking the average. It is commonly used in small scale mapping.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="300" height="120" viewBox="0 0 300 120" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="150" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Pacing Method</text>
+    <line x1="40" y1="80" x2="260" y2="80" stroke="var(--accent)" stroke-width="2"/>
+    <circle cx="60" cy="80" r="3" fill="red"/><text x="55" y="95" fill="var(--text)" font-size="12">A</text>
+    <circle cx="240" cy="80" r="3" fill="red"/><text x="235" y="95" fill="var(--text)" font-size="12">B</text>
+    <path d="M 80 80 q 10 -15 20 0 q 10 15 20 0 q 10 -15 20 0 q 10 15 20 0" fill="none" stroke="orange" stroke-width="2"/>
+    <text x="150" y="50" text-anchor="middle" fill="var(--text)" font-size="12">Count paces: Distance = No. of paces × Avg pace length</text>
+  </svg>
+</div>
+
+<p>2. <b>Tachometry:</b> Distance can be measured indirectly by optical surveying instrument such as Theodolite. The method is rapid and accurate.</p>
+<p>3. <b>Chaining:</b> This method involves direct measurement with a tape or chain. Steel tape is commonly used in this type of survey.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="300" height="120" viewBox="0 0 300 120" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="150" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Chaining Method</text>
+    <line x1="40" y1="80" x2="260" y2="80" stroke="var(--accent)" stroke-width="3"/>
+    <rect x="35" y="70" width="10" height="20" fill="gray"/><text x="25" y="95" fill="var(--text)" font-size="12">Start</text>
+    <rect x="255" y="70" width="10" height="20" fill="gray"/><text x="250" y="95" fill="var(--text)" font-size="12">End</text>
+    <text x="150" y="50" text-anchor="middle" fill="var(--text)" font-size="12">Steel tape/chain laid along AB</text>
+    <line x1="40" y1="90" x2="260" y2="90" stroke="var(--text)" stroke-width="1" stroke-dasharray="2"/>
+  </svg>
+</div>
+
+<p><b>Other tapes it can be also used include:</b> Invar tape, Hapu tape, Linen tape, Fiberglass tape.</p>
+<p>4. <b>EDM:</b> These are indirect distance measuring instruments that works using the invariant velocity of light or electromagnetic waves in a vacuum. They have a high degree of accuracy and are effectively used for long distance and for modern survey operations.</p>
+<button id="complete-sur9" class="complete-btn" onclick="markSectionComplete('sur9')">Mark as Complete</button>
+</div>
+
+<!-- SUR10: Errors -->
+<div class="section" id="sur10">
+<h2>* Errors in Surveying</h2>
+<p><b>An error is a difference btn measured and true value of quantity.</b></p>
+<p><b>There are three types of survey errors:</b></p>
+<p>i) <b>Gross errors / Mistakes:</b> Mistakes made by surveyer, instrument handler or due to carelessness, inexperience or fatigue.</p>
+<p><b>Examples of Gross errors:</b></p>
+<p>- Misreading an instrument scale</p>
+<p>- Writing down wrong figures in the field book</p>
+<p>- Using the wrong station or target</p>
+<p>- Entering wrong units</p>
+<p>- Missing a reading</p>
+<p><b>Characteristic of Gross error:</b> </p>
+<p>1. Are usually large in magnitude</p>
+<p>2. They occur irregularly</p>
+<p>3. They cannot be corrected by mathematical adjustment</p>
+<p><b>Prevention & Control:</b></p>
+<p>a) Proper training & Supervision</p>
+<p>b) Checking readings in the field</p>
+<p>c) Use the principle of checking measurement & calculation</p>
+<p>d) Ensure proper instrument manipulation & data recording</p>
+
+<p>ii) <b>Systematic Errors:</b> These are errors that follow a definite pattern & occur in the same direction and magnitude under the same conditions. They are predictable and can often be calculated and corrected.</p>
+<p><b>Causes of Systematic Errors:</b></p>
+<p>a) <b>Instrumental errors:</b> Due to imperfections in instrument design or adjustment i.e. Tape too long or too short, level bubbles not centered.</p>
+<p>b) <b>Natural errors:</b> Caused due to environmental factors i.e. temperature changes.</p>
+<p>c) <b>Personal errors:</b> Caused due to observer's habit or reaction time.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="320" height="200" viewBox="0 0 320 200" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="160" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Types of Errors</text>
+    <text x="60" y="40" text-anchor="middle" fill="var(--text)" font-size="12">Gross</text>
+    <circle cx="60" cy="80" r="25" fill="none" stroke="red" stroke-width="2"/>
+    <circle cx="60" cy="80" r="3" fill="red"/>
+    <text x="60" y="120" text-anchor="middle" fill="var(--text)" font-size="10">Large, scattered</text>
+    <text x="160" y="40" text-anchor="middle" fill="var(--text)" font-size="12">Systematic</text>
+    <circle cx="160" cy="80" r="25" fill="none" stroke="orange" stroke-width="2"/>
+    <circle cx="140" cy="80" r="3" fill="orange"/>
+    <circle cx="180" cy="80" r="3" fill="orange"/>
+    <text x="160" y="120" text-anchor="middle" fill="var(--text)" font-size="10">Same direction</text>
+    <text x="260" y="40" text-anchor="middle" fill="var(--text)" font-size="12">Random</text>
+    <circle cx="260" cy="80" r="25" fill="none" stroke="green" stroke-width="2"/>
+    <circle cx="250" cy="70" r="3" fill="green"/>
+    <circle cx="270" cy="85" r="3" fill="green"/>
+    <circle cx="265" cy="95" r="3" fill="green"/>
+    <text x="260" y="120" text-anchor="middle" fill="var(--text)" font-size="10">Scattered</text>
+  </svg>
+</div>
+
+<p><b>Control or Prevention of Systematic Errors:</b></p>
+<p>a) Apply instrument corrections</p>
+<p>b) Use well adjusted and calibrated instruments</p>
+<p>c) Take readings in opposite directions</p>
+<p>d) Reduce natural effects</p>
+
+<p>iii) <b>Random Errors:</b> Are small unpredictable variations that occur without any fixed pattern.</p>
+<p><b>Characteristics of Random Errors:</b></p>
+<p>1. They occur in both direction i.e +ve & -ve</p>
+<p>2. They tend to cancel out when observation are repeated</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="300" height="140" viewBox="0 0 300 140" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="150" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Random Errors ± Cancel Out</text>
+    <line x1="40" y1="70" x2="260" y2="70" stroke="var(--accent)" stroke-width="1"/>
+    <text x="40" y="85" fill="var(--text)" font-size="12">True value</text>
+    <circle cx="100" cy="50" r="3" fill="green"/><text x="100" y="40" fill="var(--text)" font-size="10">+ve</text>
+    <circle cx="130" cy="90" r="3" fill="green"/><text x="130" y="105" fill="var(--text)" font-size="10">-ve</text>
+    <circle cx="170" cy="45" r="3" fill="green"/><text x="170" y="35" fill="var(--text)" font-size="10">+ve</text>
+    <circle cx="200" cy="95" r="3" fill="green"/><text x="200" y="110" fill="var(--text)" font-size="10">-ve</text>
+    <text x="150" y="125" text-anchor="middle" fill="var(--text)" font-size="12">Mean approaches true value</text>
+  </svg>
+</div>
+
+<p><b>Control of Random Errors:</b></p>
+<p>- Take multiple readings and find the mean value</p>
+<p>- Maintain good observation technique</p>
+<p><b>Accumulative & Compensative Errors:</b></p>
+<hr>
+<button id="complete-sur10" class="complete-btn" onclick="markSectionComplete('sur10')">Mark as Complete</button>
+</div>
+
+<!-- SUR11: Types of Surveyor -->
+<div class="section" id="sur11">
+<h2>* Types of Surveyor</h2>
+<p>1. Land Surveyor</p>
+<p>2. Geodetic Surveyor</p>
+<p>3. Hydrographic Surveyors</p>
+<p>4. Construction Surveyors</p>
+<p>5. Quantity Surveyor</p>
+<p>6. Mining Surveyor</p>
+<p>7. Aerial Surveyor</p>
+<p>8. Environmental Surveyor</p>
+<p>9. Agricultural Surveyor</p>
+<p>10. Photogrammetric & Remote Sensing Surveyor</p>
+<hr>
+<button id="complete-sur11" class="complete-btn" onclick="markSectionComplete('sur11')">Mark as Complete</button>
+</div>
+
+<!-- SUR12: Chain Surveying Basics -->
+<div class="section" id="sur12">
+<h2>* CHAIN SURVEYING</h2>
+<p>Chain surveying is the simplest and oldest method of surveying whose basic principle involves making linear measurements only i.e. measuring the distance btn points on the ground to determine relative position.</p>
+<p>Unlike modern surveying whichrelying on angles & electronic equipment, chain surveying focuses on measuring distances to create a network of triangles from which a map or plan is plotted.</p>
+
+<p><b>Principle of Chain Surveying:</b> Fundamental principle of chain survey is Triangulation.</p>
+<p>A large area is divided into a network of triangles because it is the only simple geometric figure that can be plotted uniquely if the length of three sides is known. Surveyor measures the sides of this triangles directly in the field with no angular measurement being taken and once this sides are measured, the entire framework can be plotted to scale on paper.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="300" height="200" viewBox="0 0 300 200" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="150" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Triangulation Principle</text>
+    <polygon points="150,40 60,160 240,160" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <polygon points="150,40 100,100 200,100" fill="none" stroke="var(--accent)" stroke-width="1"/>
+    <text x="150" y="190" text-anchor="middle" fill="var(--text)" font-size="12">Area divided into triangles</text>
+    <circle cx="150" cy="40" r="3" fill="red"/><text x="155" y="35" fill="var(--text)" font-size="12">Station</text>
+    <circle cx="60" cy="160" r="3" fill="red"/>
+    <circle cx="240" cy="160" r="3" fill="red"/>
+  </svg>
+</div>
+
+<p><b>Types of Chain:</b></p>
+<p>1. Gunter Chain → 66ft = 100 links</p>
+<p>2. Engineer Chain → 100ft = 100 links</p>
+<p>3. Metric Chain → 20m = 100 links, 30m = 150 links</p>
+
+<p><b>Key Equipment / Tools Used:</b></p>
+<p>1. <b>Chain:</b> Usually made of steel wire & consists of long links joined by shorter links. Each link measures 200mm from center to center of each middle connecting link.</p>
+<p>2. <b>Steel bands/Tapes:</b> May be 30m or 100m long and 13mm wide. Used where greater accuracy of measurement is required. Marked in cm, mm. Types: Linen tape, Fiberglass, Invar tape, Steel tape.</p>
+<p>3. <b>Arrows:</b> Metal pins 40cm long used to mark the end of each chain length during measurement.</p>
+<p>4. <b>Ranging rods:</b> Long painted rods (black & white) used to mark survey point & for ranging out straight lines btn distant points.</p>
+<p>5. <b>Pegs:</b> Wooden pegs hammered into ground to permanently mark survey stations.</p>
+<p>6. <b>Offset rod:</b> Rod similar to ranging rod but with hook at end used for taking perpendicular offset.</p>
+<p>7. <b>Cross staff:</b> Used to set out perpendicular lines for taking offsets.</p>
+<hr>
+<button id="complete-sur12" class="complete-btn" onclick="markSectionComplete('sur12')">Mark as Complete</button>
+</div>
+
+<!-- SUR13: Equipment & Terms -->
+<div class="section" id="sur13">
+<h2>* Basic Terms Used in Chain Survey</h2>
+<p>1. <b>Survey Station:</b> Main points that form vertices of triangles. Sub-divided into:</p>
+<p>(i) Main Station: Stations taken along boundary area</p>
+<p>(ii) Tie Station: Stations selected on main survey line to locate interior details</p>
+<p>2. <b>Baseline:</b> The longest & most important line in survey. Measured very carefully & precisely. The entire framework is built upon this line.</p>
+<p>3. <b>Check line:</b> A line measured to check the accuracy of the framework.</p>
+<p>4. <b>Tie line:</b> A line joining tie stations to locate interior details.</p>
+<p>5. <b>Offsets:</b> Lateral measurements from a survey line to locate details of a building, boundary, tree, etc. Usually taken perpendicular to the main line.</p>
+<p>Types: (i) Perpendicular offset taken at 90° to survey line - most common & accurate</p>
+<p>(ii) Oblique offset taken at an angle other than 90° - used when perpendicular offset is not possible</p>
+<p>6. <b>Survey line:</b> Lines joining the main survey stations.</p>
+
+<hr>
+<h3>Necessary Precautions in Using Surveying Instruments</h3>
+<p>- After use in wet weather chains should be cleaned & steel tape should be dried & wiped with an oil cloth</p>
+<p>- A piece of coloured cloth should be tied to arrows to enable them to be seen clearly</p>
+<p>- The operating tension & temperature for which steel bands & tapes are graduated should be indicated</p>
+<p>- Always keep tapes reeled up when not in use</p>
+<button id="complete-sur13" class="complete-btn" onclick="markSectionComplete('sur13')">Mark as Complete</button>
+</div>
+
+<!-- SUR14: Procedure for Chaining -->
+<div class="section" id="sur14">
+<h2>* Procedure for Chaining</h2>
+<p>1. <b>Conduct a reconnaissance:</b> Walk over the area to be surveying and note the general layout, the positions of features and the shape of the area</p>
+<p>2. <b>Choice of Stations:</b> Design a plan of the framework to be used and drive in the station pegs to mark the station selected</p>
+<p>3. <b>Station Marking:</b> Station marks should be either located somewhere possible to be tied into a permanent object so that they be easily replaced or moved during survey</p>
+<p>4. <b>Witnessing:</b> This consists of making a sketch of the immediate area around the station showing existing permanent features, the position of features, the station and its description and designation. Measurements are then made from at least 3 surrounding features to the station point and recorded on the sketch. The aim of witnessing is to relocate a station again at much later days even by others after a long intervals</p>
+<p>5. <b>Offsetting:</b> Offsets are usually taken perpendicular to chain line in order to detail obstacles/obstructions on the chain line</p>
+<p>6. <b>Sketching:</b> This is the layout on the last page on the chain book together with the date & the name of survey & longest line of surveying which is usually taken as baseline and is measured first</p>
+
+<hr>
+<h3>Method of Measuring a Chain Line</h3>
+<p>Chaining a line involves taking linear measurement which is defined as the horizontal measurement of the distance btn two surfaces. This is carried out by three chain men i.e the leader, follower & assistant.</p>
+<p>Ranging rods are inserted as close as possible to the station pegs so that the position of the peg may be located from a distance. In case of long lines, they are placed immediately btn the stations & lined in by eye to enable a straight line to be measured.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="300" height="120" viewBox="0 0 300 120" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="150" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Chaining a Line</text>
+    <line x1="40" y1="80" x2="260" y2="80" stroke="var(--accent)" stroke-width="3"/>
+    <circle cx="40" cy="80" r="4" fill="red"/><text x="25" y="95" fill="var(--text)" font-size="12">Start</text>
+    <circle cx="260" cy="80" r="4" fill="red"/><text x="265" y="95" fill="var(--text)" font-size="12">End</text>
+    <rect x="120" y="65" width="20" height="30" fill="orange"/><text x="110" y="55" fill="var(--text)" font-size="12">Leader</text>
+    <rect x="180" y="65" width="20" height="30" fill="orange"/><text x="175" y="55" fill="var(--text)" font-size="12">Follower</text>
+    <text x="150" y="110" text-anchor="middle" fill="var(--text)" font-size="12">Ranging rods keep line straight</text>
+  </svg>
+</div>
+
+<p>The follower stands at the starting peg holding one end of the chain, while the leader drags the other end forward with arrows & ranging rods.</p>
+<p>The leader straightens the chain, ensures it’s taut and horizontal, then places an arrow at the end of the chain length. The follower then moves to this arrow and the process repeats.</p>
+<p><b>N/B:</b> Chain must be pulled tight, horizontal, and free from sag for accurate measurements.</p>
+<hr>
+<button id="complete-sur14" class="complete-btn" onclick="markSectionComplete('sur14')">Mark as Complete</button>
+</div>
+
+<!-- SUR15: Corrections -->
+<div class="section" id="sur15">
+<h2>* CORRECTIONS IN CHAIN SURVEYING</h2>
+<p>All measurements taken in the field are subject to errors. Corrections are applied to get true distances.</p>
+<p><b>1. Correction for Standardization:</b></p>
+<p>If chain is too long: Correction = - Error per chain × No. of chains</p>
+<p>If chain is too short: Correction = + Error per chain × No. of chains</p>
+<p>True Distance = Measured Distance ± Correction</p>
+
+<p><b>2. Correction for Temperature:</b></p>
+<div class="formula">$$C_t = L \times \alpha \times (T_m - T_o)$$</div>
+<p>Where: L = measured length, α = coefficient of expansion, T_m = mean temp, T_o = standard temp</p>
+
+<p><b>3. Correction for Pull/Tension:</b></p>
+<div class="formula">$$C_p = \frac{(P - P_o)L}{AE}$$</div>
+<p>Where: P = pull applied, P_o = standard pull, A = cross-sectional area, E = Young’s modulus</p>
+
+<p><b>4. Correction for Sag:</b></p>
+<div class="formula">$$C_s = \frac{W^2L}{24P^2}$$</div>
+<p>Always negative. W = weight of chain, L = length, P = pull</p>
+
+<p><b>5. Correction for Slope:</b></p>
+<p>For steep slopes, reduce to horizontal: $H = L \cos \theta$ or $C_{slope} = L(1 - \cos \theta)$</p>
+<hr>
+<button id="complete-sur15" class="complete-btn" onclick="markSectionComplete('sur15')">Mark as Complete</button>
+</div>
+
+<!-- SUR16: Levelling Terms -->
+<div class="section" id="sur16">
+<h2>* LEVELLING</h2>
+<p>Levelling is the process of determining relative heights or elevations of points on the earth's surface.</p>
+<p><b>Key Terms:</b></p>
+<p>1. <b>Datum:</b> Reference surface for vertical measurements. Mean Sea Level is the common datum.</p>
+<p>2. <b>Reduced Level (RL):</b> Height of a point above or below the datum.</p>
+<p>3. <b>Bench Mark (BM):</b> Fixed point of known RL.</p>
+<p>4. <b>Back Sight (BS):</b> First staff reading after setting up level. Always to point of known RL.</p>
+<p>5. <b>Fore Sight (FS):</b> Last staff reading before moving instrument.</p>
+<p>6. <b>Intermediate Sight (IS):</b> All readings between BS and FS.</p>
+<p>7. <b>Height of Instrument (HI):</b> RL of line of sight = RL of BM + BS</p>
+<p>8. <b>Change Point (CP):</b> Point where both BS and FS are taken.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="340" height="200" viewBox="0 0 340 200" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="170" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Levelling Setup</text>
+    <line x1="20" y1="170" x2="320" y2="170" stroke="var(--accent)" stroke-width="2"/>
+    <text x="30" y="185" fill="var(--text)" font-size="12">Datum</text>
+    <rect x="160" y="100" width="20" height="70" fill="gray"/><text x="155" y="95" fill="var(--text)" font-size="12">Level</text>
+    <line x1="40" y1="120" x2="300" y2="120" stroke="red" stroke-width="1" stroke-dasharray="3"/><text x="305" y="125" fill="var(--text)" font-size="12">LOS</text>
+    <rect x="60" y="130" width="8" height="40" fill="orange"/><text x="50" y="145" fill="var(--text)" font-size="12">BS</text>
+    <rect x="260" y="150" width="8" height="20" fill="orange"/><text x="250" y="165" fill="var(--text)" font-size="12">FS</text>
+    <text x="170" y="185" text-anchor="middle" fill="var(--text)" font-size="12">HI = RL + BS</text>
+  </svg>
+</div>
+<button id="complete-sur16" class="complete-btn" onclick="markSectionComplete('sur16')">Mark as Complete</button>
+</div>
+
+<!-- SUR17: Levelling Methods -->
+<div class="section" id="sur17">
+<h2>* Methods of Levelling</h2>
+<p><b>1. Rise and Fall Method:</b></p>
+<p>Rise = BS - FS if BS > FS, Fall = FS - BS if FS > BS</p>
+<p>RL of next point = RL of previous point + Rise OR - Fall</p>
+<p><b>Check:</b> ΣBS - ΣFS = ΣRise - ΣFall = Last RL - First RL</p>
+
+<p><b>2. Height of Instrument Method:</b></p>
+<p>HI = RL + BS, RL = HI - FS or IS</p>
+<p><b>Check:</b> ΣBS - ΣFS = Last RL - First RL</p>
+
+<p><b>Reciprocal Levelling:</b></p>
+<p>Used when points are across a river/wide obstacle to eliminate curvature & refraction errors.</p>
+<p>True difference = (h_A + h_B) / 2</p>
+<p>Where h_A = difference with level at A, h_B = difference with level at B</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="320" height="180" viewBox="0 0 320 180" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="160" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Reciprocal Levelling</text>
+    <path d="M 20 140 Q 160 180 300 140" fill="none" stroke="blue" stroke-width="2"/>
+    <text x="160" y="165" text-anchor="middle" fill="var(--text)" font-size="12">River</text>
+    <rect x="50" y="100" width="10" height="40" fill="gray"/><text x="45" y="95" fill="var(--text)" font-size="12">A</text>
+    <rect x="260" y="100" width="10" height="40" fill="gray"/><text x="255" y="95" fill="var(--text)" font-size="12">B</text>
+    <line x1="60" y1="105" x2="270" y2="105" stroke="red" stroke-width="1" stroke-dasharray="3"/>
+    <line x1="270" y1="105" x2="60" y2="105" stroke="red" stroke-width="1" stroke-dasharray="3"/>
+    <text x="160" y="125" text-anchor="middle" fill="var(--text)" font-size="12">Readings taken from both banks</text>
+  </svg>
+</div>
+
+<p><b>Curvature & Refraction Corrections</b></p>
+<p><b>Curvature:</b> C_c = 0.0785D² meters where D is in km. Always negative.</p>
+<p><b>Refraction:</b> C_r = 0.0112D² meters. Always positive.</p>
+<p><b>Combined:</b> C = -0.0673D² meters</p>
+<hr>
+<button id="complete-sur17" class="complete-btn" onclick="markSectionComplete('sur17')">Mark as Complete</button>
+</div>
+
+<!-- SUR18: Rise & Fall Examples -->
+<div class="section" id="sur18">
+<h2>* Rise & Fall Examples + Tables</h2>
+<h4>Example 1: Simple Rise & Fall</h4>
+<p>The following staff readings were taken: 2.655, 1.230, 0.955, 2.140, 1.605, 2.780, 1.045. First reading on BM of RL 100.000m.</p>
+
+<div style="overflow-x:auto; margin:1rem 0;">
+<table style="width:100%; border-collapse:collapse; font-size:14px;">
+<tr style="background:var(--accent); color:white;">
+<th style="padding:8px; border:1px solid var(--border);">BS</th>
+<th style="padding:8px; border:1px solid var(--border);">IS</th>
+<th style="padding:8px; border:1px solid var(--border);">FS</th>
+<th style="padding:8px; border:1px solid var(--border);">Rise</th>
+<th style="padding:8px; border:1px solid var(--border);">Fall</th>
+<th style="padding:8px; border:1px solid var(--border);">RL</th>
+<th style="padding:8px; border:1px solid var(--border);">Remarks</th>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">2.655</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">100.000</td>
+<td style="padding:6px; border:1px solid var(--border);">BM</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.230</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.425</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">101.425</td>
+<td style="padding:6px; border:1px solid var(--border);">A</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">0.955</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">0.275</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">101.700</td>
+<td style="padding:6px; border:1px solid var(--border);">B</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">2.140</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.605</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">0.650</td>
+<td style="padding:6px; border:1px solid var(--border);">101.050</td>
+<td style="padding:6px; border:1px solid var(--border);">CP1</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">2.780</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.175</td>
+<td style="padding:6px; border:1px solid var(--border);">99.875</td>
+<td style="padding:6px; border:1px solid var(--border);">C</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.045</td>
+<td style="padding:6px; border:1px solid var(--border);">1.735</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">101.610</td>
+<td style="padding:6px; border:1px solid var(--border);">D</td>
+</tr>
+<tr style="font-weight:600;">
+<td style="padding:6px; border:1px solid var(--border);">ΣBS=4.795</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">ΣFS=3.185</td>
+<td style="padding:6px; border:1px solid var(--border);">ΣRise=3.435</td>
+<td style="padding:6px; border:1px solid var(--border);">ΣFall=1.825</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+</tr>
+</table>
+</div>
+<p><b>Arithmetic Check:</b> ΣBS - ΣFS = 4.795 - 3.185 = 1.610, ΣRise - ΣFall = 3.435 - 1.825 = 1.610, Last RL - First RL = 101.610 - 100.000 = 1.610 ✓</p>
+
+<h4>Example 2: Rise & Fall with Multiple Change Points</h4>
+<p>Staff readings: 1.850, 2.345, 1.955, 0.780, 2.650, 1.125, 2.895, 0.650. RL of BM = 250.450m</p>
+
+<div style="overflow-x:auto; margin:1rem 0;">
+<table style="width:100%; border-collapse:collapse; font-size:14px;">
+<tr style="background:var(--accent); color:white;">
+<th style="padding:8px; border:1px solid var(--border);">BS</th>
+<th style="padding:8px; border:1px solid var(--border);">IS</th>
+<th style="padding:8px; border:1px solid var(--border);">FS</th>
+<th style="padding:8px; border:1px solid var(--border);">Rise</th>
+<th style="padding:8px; border:1px solid var(--border);">Fall</th>
+<th style="padding:8px; border:1px solid var(--border);">RL</th>
+<th style="padding:8px; border:1px solid var(--border);">Remarks</th>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">1.850</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">250.450</td>
+<td style="padding:6px; border:1px solid var(--border);">BM</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">2.345</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">0.495</td>
+<td style="padding:6px; border:1px solid var(--border);">249.955</td>
+<td style="padding:6px; border:1px solid var(--border);">A</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">1.955</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">0.780</td>
+<td style="padding:6px; border:1px solid var(--border);">1.565</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">251.520</td>
+<td style="padding:6px; border:1px solid var(--border);">CP1</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">2.650</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.870</td>
+<td style="padding:6px; border:1px solid var(--border);">249.650</td>
+<td style="padding:6px; border:1px solid var(--border);">B</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">1.125</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">2.895</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.770</td>
+<td style="padding:6px; border:1px solid var(--border);">247.880</td>
+<td style="padding:6px; border:1px solid var(--border);">CP2</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">0.650</td>
+<td style="padding:6px; border:1px solid var(--border);">0.475</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">248.355</td>
+<td style="padding:6px; border:1px solid var(--border);">C</td>
+</tr>
+<tr style="font-weight:600;">
+<td style="padding:6px; border:1px solid var(--border);">ΣBS=4.930</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">ΣFS=7.025</td>
+<td style="padding:6px; border:1px solid var(--border);">ΣRise=2.040</td>
+<td style="padding:6px; border:1px solid var(--border);">ΣFall=4.135</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+</tr>
+</table>
+</div>
+<p><b>Arithmetic Check:</b> ΣBS - ΣFS = 4.930 - 7.025 = -2.095, ΣRise - ΣFall = 2.040 - 4.135 = -2.095, Last RL - First RL = 248.355 - 250.450 = -2.095 ✓</p>
+<button id="complete-sur18" class="complete-btn" onclick="markSectionComplete('sur18')">Mark as Complete</button>
+</div>
+
+<!-- SUR19: HI Method Examples -->
+<div class="section" id="sur19">
+<h2>* HI Method Examples + Tables</h2>
+<h4>Example 1: Height of Instrument Method</h4>
+<p>Same data as Rise & Fall Example 1: 2.655, 1.230, 0.955, 2.140, 1.605, 2.780, 1.045. BM RL = 100.000m</p>
+
+<div style="overflow-x:auto; margin:1rem 0;">
+<table style="width:100%; border-collapse:collapse; font-size:14px;">
+<tr style="background:var(--accent); color:white;">
+<th style="padding:8px; border:1px solid var(--border);">BS</th>
+<th style="padding:8px; border:1px solid var(--border);">IS</th>
+<th style="padding:8px; border:1px solid var(--border);">FS</th>
+<th style="padding:8px; border:1px solid var(--border);">HI</th>
+<th style="padding:8px; border:1px solid var(--border);">RL</th>
+<th style="padding:8px; border:1px solid var(--border);">Remarks</th>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">2.655</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">102.655</td>
+<td style="padding:6px; border:1px solid var(--border);">100.000</td>
+<td style="padding:6px; border:1px solid var(--border);">BM</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.230</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">101.425</td>
+<td style="padding:6px; border:1px solid var(--border);">A</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">0.955</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">101.700</td>
+<td style="padding:6px; border:1px solid var(--border);">B</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">2.140</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.605</td>
+<td style="padding:6px; border:1px solid var(--border);">103.190</td>
+<td style="padding:6px; border:1px solid var(--border);">101.050</td>
+<td style="padding:6px; border:1px solid var(--border);">CP1</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">2.780</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">99.875</td>
+<td style="padding:6px; border:1px solid var(--border);">C</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.045</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">101.610</td>
+<td style="padding:6px; border:1px solid var(--border);">D</td>
+</tr>
+<tr style="font-weight:600;">
+<td style="padding:6px; border:1px solid var(--border);">ΣBS=4.795</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">ΣFS=3.185</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+</tr>
+</table>
+</div>
+<p><b>Arithmetic Check:</b> ΣBS - ΣFS = 4.795 - 3.185 = 1.610, Last RL - First RL = 101.610 - 100.000 = 1.610 ✓</p>
+
+<h4>Example 2: Height of Instrument - Fly Levelling</h4>
+<p>Carry forward a level from BM 45.250m to new BM. Readings: 1.625, 2.105, 3.120, 0.955, 2.450, 1.875, 0.665</p>
+
+<div style="overflow-x:auto; margin:1rem 0;">
+<table style="width:100%; border-collapse:collapse; font-size:14px;">
+<tr style="background:var(--accent); color:white;">
+<th style="padding:8px; border:1px solid var(--border);">BS</th>
+<th style="padding:8px; border:1px solid var(--border);">IS</th>
+<th style="padding:8px; border:1px solid var(--border);">FS</th>
+<th style="padding:8px; border:1px solid var(--border);">HI</th>
+<th style="padding:8px; border:1px solid var(--border);">RL</th>
+<th style="padding:8px; border:1px solid var(--border);">Remarks</th>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">1.625</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">46.875</td>
+<td style="padding:6px; border:1px solid var(--border);">45.250</td>
+<td style="padding:6px; border:1px solid var(--border);">BM1</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">2.105</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">44.770</td>
+<td style="padding:6px; border:1px solid var(--border);">A</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">0.955</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">3.120</td>
+<td style="padding:6px; border:1px solid var(--border);">44.710</td>
+<td style="padding:6px; border:1px solid var(--border);">43.755</td>
+<td style="padding:6px; border:1px solid var(--border);">CP1</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">2.450</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">42.260</td>
+<td style="padding:6px; border:1px solid var(--border);">B</td>
+</tr>
+<tr>
+<td style="padding:6px; border:1px solid var(--border);">0.665</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">1.875</td>
+<td style="padding:6px; border:1px solid var(--border);">43.500</td>
+<td style="padding:6px; border:1px solid var(--border);">42.835</td>
+<td style="padding:6px; border:1px solid var(--border);">CP2</td>
+</tr>
+<tr style="font-weight:600;">
+<td style="padding:6px; border:1px solid var(--border);">ΣBS=3.245</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">ΣFS=4.995</td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);"></td>
+<td style="padding:6px; border:1px solid var(--border);">BM2</td>
+</tr>
+</table>
+</div>
+<p><b>Arithmetic Check:</b> ΣBS - ΣFS = 3.245 - 4.995 = -1.750, Last RL - First RL = 42.835 - 45.250 = -2.415 + 0.665 = -1.750 ✓</p>
+<button id="complete-sur19" class="complete-btn" onclick="markSectionComplete('sur19')">Mark as Complete</button>
+</div>
+
+<!-- SUR20: Contours -->
+<div class="section" id="sur20">
+<h2>* CONTOURS & Methods</h2>
+<p><b>Contour:</b> An imaginary line joining points of equal elevation on the earth's surface.</p>
+<p><b>Contour Interval:</b> Vertical distance between two consecutive contours.</p>
+<p><b>Contour Line:</b> Line on map representing a contour.</p>
+
+<h4>Characteristics of Contours</h4>
+<p>1. All points on a contour have same elevation</p>
+<p>2. Contours close to form circles for hills/depressions</p>
+<p>3. Closely spaced contours = steep slope, widely spaced = gentle slope</p>
+<p>4. Contours never cross except in overhanging cliff</p>
+<p>5. Contours cross ridges/valleys at right angles</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="320" height="200" viewBox="0 0 320 200" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="160" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Contour Types</text>
+    <ellipse cx="80" cy="100" rx="50" ry="30" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <ellipse cx="80" cy="100" rx="35" ry="20" fill="none" stroke="var(--accent)" stroke-width="1"/>
+    <ellipse cx="80" cy="100" rx="20" ry="10" fill="none" stroke="var(--accent)" stroke-width="1"/>
+    <text x="80" y="150" text-anchor="middle" fill="var(--text)" font-size="12">Hill</text>
+    
+    <path d="M 180 60 Q 240 100 180 140" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <path d="M 190 65 Q 240 100 190 135" fill="none" stroke="var(--accent)" stroke-width="1"/>
+    <path d="M 200 70 Q 240 100 200 130" fill="none" stroke="var(--accent)" stroke-width="1"/>
+    <text x="210" y="160" text-anchor="middle" fill="var(--text)" font-size="12">Valley</text>
+  </svg>
+</div>
+
+<h3>Methods of Contouring</h3>
+<p><b>1. Direct Method:</b> Points of same elevation are located on ground and plotted.</p>
+
+<div style="text-align:center; margin:1.5rem 0;">
+  <svg width="300" height="160" viewBox="0 0 300 160" style="border:1px solid var(--border); border-radius:8px; background:var(--bg)">
+    <text x="150" y="20" text-anchor="middle" fill="var(--text)" font-size="14">Direct Method</text>
+    <circle cx="60" cy="100" r="3" fill="red"/><text x="55" y="90" fill="var(--text)" font-size="10">100m</text>
+    <circle cx="120" cy="80" r="3" fill="red"/><text x="115" y="70" fill="var(--text)" font-size="10">100m</text>
+    <circle cx="180" cy="110" r="3" fill="red"/><text x="175" y="100" fill="var(--text)" font-size="10">100m</text>
+    <circle cx="240" cy="90" r="3" fill="red"/><text x="235" y="80" fill="var(--text)" font-size="10">100m</text>
+    <path d="M 60 100 Q 120 80 180 110 Q 240 90 240 90" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <text x="150" y="140" text-anchor="middle" fill="var(--text)" font-size="12">Points traced & joined</text>
+  </svg>
+</div>
+
+<p><b>Advantages:</b> Very accurate, suitable for small areas, roads, railways.</p>
+<p><b>Disadvantages:</b> Slow, expensive, tedious for large areas.</p>
+<p><b>Importance:</b> Used for detailed engineering works where high accuracy is needed.</p>
+
+<p><b>2. Indirect Method:</b> Spot levels taken at regular intervals, contours interpolated.</p>
+<p><b>a) Grid Method:</b> Area divided into squares, levels at corners.</p>
+<p><b>b) Cross-section Method:</b> Cross-sections taken at regular intervals along centerline.</p>
+<p><b>c) Radial Line Method:</b> Radiating lines from central point, levels taken along lines.</p>
+
+<p><b>Advantages of Indirect:</b> Faster, economical, suitable for large areas.</p>
+<p><b>Disadvantages:</b> Less accurate than direct method.</p>
+
+<button id="complete-sur20" class="complete-btn" onclick="markSectionComplete('sur20')">Mark as Complete</button>
+</div>
+
+</div>
+
+<script>
+const totalSections = 20;
+let completed = JSON.parse(localStorage.getItem('completedSurvey') || '[]');
+
+function updateProgress() {
+  const percent = (completed.length / totalSections) * 100;
+  document.getElementById('progress-fill').style.width = percent + '%';
+  document.getElementById('progress-text').textContent = `${completed.length}/${totalSections} sections completed`;
+  completed.forEach(id => {
+    const btn = document.getElementById(`complete-${id}`);
+    if (btn) btn.classList.add('completed');
+  });
+}
+
+function markSectionComplete(id) {
+  if (!completed.includes(id)) {
+    completed.push(id);
+    localStorage.setItem('completedSurvey', JSON.stringify(completed));
+    updateProgress();
+  }
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+  localStorage.setItem('surveyTheme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('surveyTheme') === 'dark') {
+    document.body.classList.add('dark-theme');
+  }
+  updateProgress();
+});
+
+window.addEventListener('load', function() {
+  if (window.MathJax) MathJax.typesetPromise();
+});
+</script>
+</body>
+      </html>
