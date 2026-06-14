@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Civil Eng and Building Tech Revision</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1a202c;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+ .login-box {
+    background: #2d3748;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  }
+  h1 { margin: 0 0 30px 0; text-align: center; color: #90cdf4; }
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background: #1a202c;
+    border: 1px solid #4a5568;
+    border-radius: 4px;
+    color: #e2e8f0;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  input:focus { outline: none; border-color: #63b3ed; }
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+    background: #2b6cb0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover { background: #2c5282; }
+  button:disabled { background: #4a5568; cursor: not-allowed; }
+  #error-msg {
+    color: #fc8181;
+    margin-top: 12px;
+    font-size: 14px;
+    min-height: 20px;
+    text-align: center;
+  }
+ .links { margin-top: 20px; text-align: center; font-size: 14px; }
+ .links a { color: #63b3ed; text-decoration: none; cursor: pointer; display: block; margin: 8px 0; }
+ 
+ .whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: #25D366;
+  color: white !important; /* Force white text */
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700; /* Bold for visibility */
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  letter-spacing: 0.3px; /* Slight spacing for readability */
+}
+.whatsapp-btn:hover { 
+  background: #1ebe5d; 
+  transform: translateY(-1px);
+  color: white !important;
+}
+.whatsapp-btn svg { 
+  width: 20px; 
+  height: 20px;
+  flex-shrink: 0;
+}
+.whatsapp-btn:visited { color: white !important; }
+</style>
+</head>
+<body>
+<div class="login-box">
+  <h1>Login to Civil Eng Revision</h1>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <div id="error-msg"></div>
+  <button id="login-btn">Login</button>
+
+  <div class="links">
+    <a id="forgot-btn">Forgot password?</a>
+    <a href="register.html">Don't have an account? Sign up</a>
+    
+    <!-- WhatsApp Channel Button -->
+    <a href="https://whatsapp.com/channel/0029Vb8RWuuDuMRnfJErkX1u" target="_blank" rel="noopener" class="whatsapp-btn">
+      <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+      </svg>
+      Join WhatsApp Channel for Updates
+    </a>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBjPfuz8DdGgEnRsD9nXeka2yN7v_oh3jk",
+    authDomain: "junior-study.firebaseapp.com",
+    projectId: "junior-study",
+    storageBucket: "junior-study.firebasestorage.app",
+    messagingSenderId: "942218434406",
+    appId: "1:942218434406:web:8e95fc80fc28c79fe01aa7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
+  const errorDiv = document.getElementById('error-msg');
+  const loginBtn = document.getElementById('login-btn');
+  const forgotBtn = document.getElementById('forgot-btn');
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) window.location.href = 'home.html';
+  });
+
+  loginBtn.addEventListener('click', () => {
+    const emailVal = email.value.trim();
+    const passVal = password.value;
+    errorDiv.textContent = '';
+
+    if (!emailVal ||!passVal) {
+      errorDiv.textContent = 'Please enter email and password';
+      return;
+    }
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Logging in...';
+
+    signInWithEmailAndPassword(auth, emailVal, passVal)
+     .then(() => window.location.href = 'home.html')
+     .catch((error) => {
+        let message = 'Incorrect email or password';
+        if (error.code === 'auth/too-many-requests') message = 'Too many attempts. Try later';
+        errorDiv.textContent = message;
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
+      });
+  });
+
+  forgotBtn.addEventListener('click', () => {
+    const emailVal = email.value.trim();
+    errorDiv.textContent = '';
+    if (!emailVal) {
+      errorDiv.textContent = 'Enter your email first';
+      return;
+    }
+    sendPasswordResetEmail(auth, emailVal)
+     .then(() => errorDiv.textContent = 'Reset email sent. Check inbox');
+  });
+</script>
+</body>
+</html>
