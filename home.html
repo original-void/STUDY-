@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="auth.js"></script>
+  <div style="position:absolute; top:15px; right:20px; display:flex; align-items:center; gap:12px; color:white;">
+  <span id="user-display">Loading...</span>
+  <button onclick="logout()" style="background:rgba(255,255,255,0.2); border:none; padding:8px 16px; border-radius:6px; color:white; cursor:pointer;">Logout</button>
+  </div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIVIL ENGINEERING AND BUILDING TECH </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #ff3366;
+    --primary-dark: #e91e63;
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #f1f5f9;
+    --text-dim: #94a3b8;
+    --accent: #38bdf8;
+  }
+  
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+  
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 40px 20px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  
+  .header p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+  }
+  
+  .ad-space {
+    background: rgba(255, 51, 102, 0.15);
+    text-align: right;
+    padding: 6px 20px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+  
+  .subject-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: var(--text);
+  }
+  
+  .subject-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 51, 102, 0.25);
+    border-color: rgba(255, 51, 102, 0.3);
+  }
+  
+  .subject-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    box-shadow: 0 4px 12px rgba(255, 51, 102, 0.3);
+  }
+  
+  .subject-text h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .subject-text p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  
+  .arrow {
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: transform 0.3s;
+  }
+  
+  .subject-card:hover .arrow {
+    transform: translateX(5px);
+  }
+  
+  .stats {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .stat-box {
+    background: rgba(255,255,255,0.05);
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+  .whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin: 40px auto 0;
+  padding: 14px;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-2px); }
+.whatsapp-btn svg { width: 22px; height: 22px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CIVIL ENG AND BUILDING TECH REVISION</h1>
+  <p>KNEC Revision Made Simple</p>
+</div>
+
+<div class="ad-space">advertisement</div>
+
+<div class="container">
+  
+  <a href="structures.html" class="subject-card">
+ <div class="subject-info">
+      <div class="icon">🏗️</div>
+      <div class="subject-text">
+        <h3>Structures 1</h3>
+        <p>25 Topics • Beams, Trusses, Deflection</p>
+      </div>
+    </div>
+    <div class="arrow">›</div>
+  </a>
+  
+  <a href="notes.html?subject=sur" class="subject-card">
+    <div class="subject-info">
+      <div class="icon">📐</div>
+      <div class="subject-text">
+        <h3>Survey 1</h3>
+        <p>20 Topics • Levelling, Chain Survey, Contours</p>
+      </div>
+    </div>
+    <div class="arrow">›</div>
+  </a>
+  
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-number">45</div>
+      <div class="stat-label">Total Topics</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Free Access</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">Offline</div>
+      <div class="stat-label">Ready</div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="footer">
+  Made for Civil Eng and Building Tech students • 
+  <!-- WhatsApp Channel Button -->
+<a href="https://whatsapp.com/channel/0029Vb8RWuuDuMRnfJErkX1u" target="_blank" rel="noopener" class="whatsapp-btn">
+  <svg fill="currentColor" viewBox="0 0 24 24">
+    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+  </svg>
+  Join WhatsApp Channel for Updates
+</a>
+</div>
+
+</body>
+</html>
